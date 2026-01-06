@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Careers Toolkit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --neon-green: #00ff41;
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --dark-bg: #050a10;
+            --card-bg: #111827;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-bg);
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111827;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--neon-blue);
+        }
+
+        /* Glitch Effect Text */
+        .glitch {
+            position: relative;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 var(--neon-green);
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 var(--neon-blue);
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(11px, 9999px, 86px, 0); }
+            20% { clip: rect(98px, 9999px, 5px, 0); }
+            40% { clip: rect(34px, 9999px, 63px, 0); }
+            60% { clip: rect(82px, 9999px, 19px, 0); }
+            80% { clip: rect(56px, 9999px, 2px, 0); }
+            100% { clip: rect(4px, 9999px, 92px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(10px, 9999px, 3px, 0); }
+            40% { clip: rect(78px, 9999px, 95px, 0); }
+            60% { clip: rect(15px, 9999px, 33px, 0); }
+            80% { clip: rect(2px, 9999px, 45px, 0); }
+            100% { clip: rect(50px, 9999px, 80px, 0); }
+        }
+
+        /* Flip Card */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .preserve-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        .group:hover .group-hover\:rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+
+        /* Custom Checkbox for Timeline */
+        .checkbox-wrapper input:checked + div {
+            background-color: var(--neon-green);
+            border-color: var(--neon-green);
+        }
+        .checkbox-wrapper input:checked + div svg {
+            display: block;
+        }
+
+        /* Animations */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            will-change: opacity, visibility;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+        
+        .nav-link.active {
+            color: var(--neon-blue);
+            border-left: 3px solid var(--neon-blue);
+            padding-left: 1rem;
+            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1) 0%, transparent 100%);
+        }
+
+        /* Table Styles */
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        .tech-table th {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 2px solid #374151;
+            color: var(--neon-blue);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .tech-table td {
+            padding: 12px;
+            border-bottom: 1px solid #1f2937;
+            color: #d1d5db;
+        }
+        .tech-table tr:hover td {
+            background-color: rgba(34, 211, 238, 0.05);
+        }
+    </style>
+</head>
+<body class="flex">
+
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="fixed top-4 right-4 z-50 p-2 bg-gray-800 rounded-md lg:hidden text-white border border-cyan-500">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar" class="fixed w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+        <div class="p-6 border-b border-gray-800">
+            <h2 class="text-xl font-bold font-mono text-cyan-400 tracking-tighter">CYBER<br><span class="text-white text-sm">Toolkit v2.0</span></h2>
+        </div>
+        <div class="flex-1 overflow-y-auto py-4">
+            <ul class="space-y-1">
+                <li><a href="#part1" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part I: Introduction</a></li>
+                <li><a href="#part2" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part II: Why Cyber?</a></li>
+                <li><a href="#part3" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part III: Credentials</a></li>
+                <li><a href="#part4" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part IV: Majors</a></li>
+                <li><a href="#part5" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part V: Industry Certs</a></li>
+                <li><a href="#part6" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VI: Scholarships</a></li>
+                <li><a href="#part7" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VII: Pathways</a></li>
+                <li><a href="#part8" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VIII: Activities</a></li>
+            </ul>
+        </div>
+        <div class="p-4 border-t border-gray-800">
+            <div class="bg-gray-800 rounded p-3">
+                <p class="text-xs text-gray-400 mb-2">Progress</p>
+                <div class="w-full bg-gray-700 rounded-full h-1.5">
+                    <div id="progress-bar" class="bg-cyan-500 h-1.5 rounded-full" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="lg:ml-64 w-full min-h-screen relative">
+        
+        <!-- Hero Section -->
+        <header class="relative h-screen flex items-center justify-center overflow-hidden bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')] bg-cover bg-center">
+            <div class="absolute inset-0 bg-gray-900 bg-opacity-90"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-transparent to-transparent"></div>
+            
+            <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+                <div class="mb-4 inline-block px-3 py-1 border border-cyan-500 rounded-full text-cyan-400 text-xs font-mono tracking-widest uppercase">Career Counselors & Academic Advisors</div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 glitch text-white" data-text="CYBERSECURITY CAREERS TOOLKIT">CYBERSECURITY CAREERS TOOLKIT</h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 font-light">Unlocking Cyber Success: Your Guide to Thriving in Security Careers.</p>
+                <a href="#part1" class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-cyan-400 hover:bg-cyan-300 transition-colors shadow-[0_0_15px_rgba(34,211,238,0.5)]">
+                    Initialize Toolkit <i class="fas fa-terminal ml-2"></i>
+                </a>
+            </div>
+            
+            <!-- Animated Background Grid -->
+            <div class="absolute inset-0 z-0 opacity-20 pointer-events-none" 
+                 style="background-image: linear-gradient(#22d3ee 1px, transparent 1px), linear-gradient(90deg, #22d3ee 1px, transparent 1px); background-size: 50px 50px;">
+            </div>
+        </header>
+
+        <!-- PART I -->
+        <section id="part1" class="py-20 px-6 md:px-12 border-b border-gray-800 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-10">
+                    <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">01</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-cyan-400">Introduction to Cybersecurity</h2>
+                        <p class="text-gray-400">The Guardians of the Digital Realm</p>
+                    </div>
+                </div>
+
+                <!-- Definition Flip Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <!-- Card 1 -->
+                    <div class="group h-64 perspective-1000 cursor-pointer">
+                        <div class="relative h-full w-full transition-all duration-500 transform-style-3d group-hover:rotate-y-180 preserve-3d">
+                            <!-- Front -->
+                            <div class="absolute inset-0 bg-gray-800 rounded-xl border border-gray-700 flex flex-col items-center justify-center p-6 backface-hidden shadow-lg group-hover:border-cyan-500">
+                                <i class="fas fa-shield-alt text-6xl text-cyan-500 mb-4"></i>
+                                <h3 class="text-xl font-bold text-white">What is Cybersecurity?</h3>
+                                <p class="text-sm text-gray-400 mt-2 text-center">(Hover/Tap to Reveal)</p>
+                            </div>
+                            <!-- Back -->
+                            <div class="absolute inset-0 bg-cyan-900 rounded-xl border border-cyan-500 flex flex-col items-center justify-center p-6 rotate-y-180 backface-hidden">
+                                <p class="text-center text-gray-100 leading-relaxed font-medium">
+                                    "The art of protecting information, information systems, networks, devices, and data from unauthorized access."
+                                </p>
+                                <p class="mt-4 text-xs font-mono text-cyan-300 font-bold">Confidentiality • Integrity • Availability</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Market Intel -->
+                    <div class="bg-gray-800 rounded-xl p-8 border-l-4 border-green-500 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-4 opacity-5 text-6xl text-green-500"><i class="fas fa-chart-line"></i></div>
+                        <h3 class="text-xl font-bold text-green-400 mb-4 font-mono">Market Intel</h3>
+                        <p class="text-gray-300 mb-4">The profession has grown exponentially.</p>
+                        <div class="space-y-4 relative z-10">
+                            <div class="flex justify-between text-sm">
+                                <span>Projected Growth (2025)</span>
+                                <span class="text-green-400 font-bold">+20%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 85%"></div>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span>Median Salary</span>
+                                <span class="text-green-400 font-bold">$81,000+</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-xs text-gray-500">More than 1 million jobs available.</p>
+                    </div>
+                </div>
+
+                <!-- CyberSeek Section -->
+                <div class="bg-gray-900 border border-gray-700 rounded-xl p-6 mb-16 relative">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="flex-1">
+                            <h3 class="text-2xl text-white font-mono mb-2"><i class="fas fa-map-marked-alt text-purple-400 mr-2"></i>CyberSeek & Heat Map</h3>
+                            <p class="text-gray-400 text-sm mb-4">
+                                Use the Interactive Cybersecurity Career Map to explore jobs in your state and metropolitan area. Identify total job openings, supply/demand ratios, and top job titles.
+                            </p>
+                            <a href="https://www.cyberseek.org/heatmap.html" target="_blank" class="text-purple-400 hover:text-white text-sm font-bold underline">Launch CyberSeek Map <i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                        <div class="w-full md:w-1/3 h-32 bg-gray-800 rounded flex items-center justify-center border border-dashed border-gray-600">
+                            <div class="text-center">
+                                <p class="text-2xl font-bold text-white">500,000+</p>
+                                <p class="text-xs text-gray-500">Unfilled Positions (US)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NICE Framework Interactive -->
+                <h3 class="text-2xl text-white mb-6 font-mono border-b border-gray-700 pb-2">NICE Framework (NIST SP 800-181)</h3>
+                <p class="text-gray-400 mb-6 text-sm">The National Initiative for Cybersecurity Education (NICE) establishes a common lexicon. Explore the 7 categories:</p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <button class="nice-btn bg-gray-800 hover:bg-gray-700 p-3 rounded border border-gray-700 hover:border-cyan-500 transition-all text-left text-xs font-bold text-gray-300" onclick="showNiceInfo('oversight')">1. Oversight & Gov</button>
+                    <button class="nice-btn bg-gray-800 hover:bg-gray-700 p-3 rounded border border-gray-700 hover:border-cyan-500 transition-all text-left text-xs font-bold text-gray-300" onclick="showNiceInfo('design')">2. Design & Dev</button>
+                    <button class="nice-btn bg-gray-800 hover:bg-gray-700 p-3 rounded border border-gray-700 hover:border-cyan-500 transition-all text-left text-xs font-bold text-gray-300" onclick="showNiceInfo('implement')">3. Implement & Ops</button>
+                    <button class="nice-btn bg-gray-800 hover:bg-gray-700 p-3 rounded border border-gray-700 hover:border-cyan-500 transition-all text-left text-xs font-bold text-gray-300" onclick="showNiceInfo('protect')">4. Protect & Defend</button>
+                    <button class="nice-btn bg-gray-800 hover:bg-gray-700 p-3 rounded border border-gray-700 hover:border-cyan-500 transition-all text-left text-xs font-bold text-gray-300" onclick="showNiceInfo('investigate')">5. Investigate</button>
+                    <button class="nice-btn bg-gray-800 hover:bg-gray-700 p-3 rounded border border-gray-700 hover:border-cyan-500 transition-all text-left text-xs font-bold text-gray-300" onclick="showNiceInfo('intel')">6. Cyber Intel</button>
+                    <button class="nice-btn bg-gray-800 hover:bg-gray-700 p-3 rounded border border-gray-700 hover:border-cyan-500 transition-all text-left text-xs font-bold text-gray-300" onclick="showNiceInfo('effects')">7. Cyber Effects</button>
+                </div>
+                <div id="nice-display" class="bg-gray-900 p-6 rounded border border-gray-700 text-sm min-h-[100px] flex flex-col justify-center">
+                    <p class="text-cyan-400 font-bold mb-2 text-lg">Select a category above.</p>
+                    <p class="text-gray-400 italic">Detailed descriptions of Work Roles will appear here.</p>
+                </div>
+
+                <!-- DCWF Section -->
+                <div class="mt-16 border-t border-gray-800 pt-10">
+                    <h3 class="text-2xl text-white mb-6 font-mono"><i class="fas fa-fighter-jet text-gray-500 mr-2"></i>DCWF: The DoD Framework</h3>
+                    <p class="text-gray-400 mb-6 text-sm">
+                        The <strong>DoD Cyber Workforce Framework (DCWF)</strong> is derived from NICE but specifically tailored for the Department of Defense (DoD Manual 8140.03). It mandates specific qualification requirements.
+                    </p>
+                    <div class="overflow-x-auto">
+                        <table class="tech-table w-full text-left">
+                            <thead>
+                                <tr>
+                                    <th>Feature</th>
+                                    <th>NICE Framework (NIST)</th>
+                                    <th>DCWF (DoD)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="font-bold text-gray-300">Target Audience</td>
+                                    <td>National (Public, Private, Academic)</td>
+                                    <td>Department of Defense (Military, Civilian, Contractors)</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold text-gray-300">Compliance</td>
+                                    <td>Voluntary Standard</td>
+                                    <td><span class="text-red-400 font-bold">Mandatory</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="font-bold text-gray-300">Structure</td>
+                                    <td>7 Categories, Work Roles</td>
+                                    <td>Same categories, but uses specific 3-digit codes (e.g., 411)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PART II -->
+        <section id="part2" class="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-50 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-10">
+                    <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">02</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-cyan-400">Why Cybersecurity?</h2>
+                        <p class="text-gray-400">Mission, Money, and Momentum</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="group bg-gray-800 p-6 rounded-xl hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all duration-300 border border-gray-700 hover:border-cyan-500 hover:-translate-y-2">
+                        <div class="h-12 w-12 bg-gray-700 rounded-full flex items-center justify-center mb-4 group-hover:bg-cyan-500 transition-colors">
+                            <i class="fas fa-hand-holding-usd text-cyan-400 group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Rewarding Pay</h3>
+                        <p class="text-gray-400 text-sm">High demand + specialized skills = excellent salaries. Often well above average.</p>
+                    </div>
+
+                    <div class="group bg-gray-800 p-6 rounded-xl hover:shadow-[0_0_20px_rgba(0,255,65,0.2)] transition-all duration-300 border border-gray-700 hover:border-green-500 hover:-translate-y-2">
+                        <div class="h-12 w-12 bg-gray-700 rounded-full flex items-center justify-center mb-4 group-hover:bg-green-500 transition-colors">
+                            <i class="fas fa-briefcase text-green-400 group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Opportunities Abound</h3>
+                        <p class="text-gray-400 text-sm">Zero percent unemployment rate in many sectors. A secure career path for the future.</p>
+                    </div>
+
+                    <div class="group bg-gray-800 p-6 rounded-xl hover:shadow-[0_0_20px_rgba(255,255,255,0.2)] transition-all duration-300 border border-gray-700 hover:border-white hover:-translate-y-2">
+                        <div class="h-12 w-12 bg-gray-700 rounded-full flex items-center justify-center mb-4 group-hover:bg-white transition-colors">
+                            <i class="fas fa-flag-usa text-gray-400 group-hover:text-gray-900"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Service to Others</h3>
+                        <p class="text-gray-400 text-sm">Protect national security, communities, and families. Patriotic and fulfilling work.</p>
+                    </div>
+
+                    <div class="group bg-gray-800 p-6 rounded-xl hover:shadow-[0_0_20px_rgba(255,0,255,0.2)] transition-all duration-300 border border-gray-700 hover:border-purple-500 hover:-translate-y-2">
+                        <div class="h-12 w-12 bg-gray-700 rounded-full flex items-center justify-center mb-4 group-hover:bg-purple-500 transition-colors">
+                            <i class="fas fa-brain text-purple-400 group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Diverse Work</h3>
+                        <p class="text-gray-400 text-sm">Dynamic, non-monotonous work demanding critical thinking. Never a dull day.</p>
+                    </div>
+                     <div class="group bg-gray-800 p-6 rounded-xl hover:shadow-[0_0_20px_rgba(255,165,0,0.2)] transition-all duration-300 border border-gray-700 hover:border-orange-500 hover:-translate-y-2">
+                        <div class="h-12 w-12 bg-gray-700 rounded-full flex items-center justify-center mb-4 group-hover:bg-orange-500 transition-colors">
+                            <i class="fas fa-globe text-orange-400 group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Global Impact</h3>
+                        <p class="text-gray-400 text-sm">Secure systems for banking, healthcare, and infrastructure worldwide.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART III -->
+        <section id="part3" class="py-20 px-6 md:px-12 border-b border-gray-800 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-10">
+                    <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">03</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-cyan-400">Academic Credentials</h2>
+                        <p class="text-gray-400">Understanding Degrees & Certificates</p>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="flex flex-wrap gap-2 mb-6" id="credential-tabs">
+                    <button class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-cyan-900 border border-gray-700 focus:outline-none focus:border-cyan-500 active-tab" onclick="switchTab('bachelor', this)">Bachelor's</button>
+                    <button class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-cyan-900 border border-gray-700 focus:outline-none focus:border-cyan-500" onclick="switchTab('master', this)">Master's</button>
+                    <button class="px-4 py-2 bg-gray-800 text-white rounded hover:bg-cyan-900 border border-gray-700 focus:outline-none focus:border-cyan-500" onclick="switchTab('phd', this)">Doctoral (PhD)</button>
+                </div>
+
+                <!-- Content Area -->
+                <div id="credential-content" class="bg-gray-800 border border-gray-700 rounded-xl p-8 min-h-[300px]">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PART IV -->
+        <section id="part4" class="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-50 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-10">
+                    <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">04</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-cyan-400">Cybersecurity Majors</h2>
+                        <p class="text-gray-400">Classified Database of Study Programs</p>
+                    </div>
+                </div>
+
+                <!-- Terminal Style List -->
+                <div class="bg-black rounded-lg border border-gray-700 shadow-2xl overflow-hidden font-mono">
+                    <div class="bg-gray-800 px-4 py-2 flex items-center space-x-2 border-b border-gray-700">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-xs text-gray-400 ml-2">bash -- majors_db.sh</span>
+                    </div>
+                    <div class="p-6 text-sm overflow-x-auto">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Items -->
+                            <div class="hover:bg-gray-900 p-2 rounded cursor-default border-l-2 border-transparent hover:border-cyan-500 transition-all">
+                                <span class="text-green-400">$ ./Cyber_Defense</span>
+                                <p class="text-gray-300 pl-4 mt-1">Protect systems, identify threats. <br><span class="text-gray-500">> Role: Security Analyst</span></p>
+                            </div>
+                            <div class="hover:bg-gray-900 p-2 rounded cursor-default border-l-2 border-transparent hover:border-cyan-500 transition-all">
+                                <span class="text-green-400">$ ./Cyber_Operations</span>
+                                <p class="text-gray-300 pl-4 mt-1">Offensive & defensive tactics. <br><span class="text-gray-500">> Role: Penetration Tester</span></p>
+                            </div>
+                            <div class="hover:bg-gray-900 p-2 rounded cursor-default border-l-2 border-transparent hover:border-cyan-500 transition-all">
+                                <span class="text-green-400">$ ./Digital_Forensics</span>
+                                <p class="text-gray-300 pl-4 mt-1">Investigate cybercrimes, gather evidence. <br><span class="text-gray-500">> Role: Forensic Analyst</span></p>
+                            </div>
+                            <div class="hover:bg-gray-900 p-2 rounded cursor-default border-l-2 border-transparent hover:border-cyan-500 transition-all">
+                                <span class="text-green-400">$ ./Governance_Risk</span>
+                                <p class="text-gray-300 pl-4 mt-1">Compliance, regulation, and policy. <br><span class="text-gray-500">> Role: Consultant</span></p>
+                            </div>
+                            <div class="hover:bg-gray-900 p-2 rounded cursor-default border-l-2 border-transparent hover:border-cyan-500 transition-all">
+                                <span class="text-green-400">$ ./Artificial_Intelligence</span>
+                                <p class="text-gray-300 pl-4 mt-1">Leveraging AI to enhance defenses. <br><span class="text-gray-500">> Role: AI Specialist</span></p>
+                            </div>
+                            <div class="hover:bg-gray-900 p-2 rounded cursor-default border-l-2 border-transparent hover:border-cyan-500 transition-all">
+                                <span class="text-green-400">$ ./Data_Science_Security</span>
+                                <p class="text-gray-300 pl-4 mt-1">Analyzing large datasets for risks. <br><span class="text-gray-500">> Role: Data Analyst</span></p>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-cyan-500 animate-pulse">_</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART V -->
+        <section id="part5" class="py-20 px-6 md:px-12 border-b border-gray-800 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-10">
+                    <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">05</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-cyan-400">Industry Credentials</h2>
+                        <p class="text-gray-400">The "Big Five" Certification Bodies</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+                    <button onclick="showCert('comptia')" class="p-4 bg-gray-800 rounded border border-gray-700 hover:border-cyan-500 transition-all grayscale hover:grayscale-0 flex flex-col items-center">
+                        <i class="fas fa-server text-3xl mb-2 text-red-500"></i>
+                        <span class="font-bold">CompTIA</span>
+                    </button>
+                    <button onclick="showCert('isc2')" class="p-4 bg-gray-800 rounded border border-gray-700 hover:border-green-500 transition-all grayscale hover:grayscale-0 flex flex-col items-center">
+                        <i class="fas fa-id-card text-3xl mb-2 text-green-500"></i>
+                        <span class="font-bold">ISC2</span>
+                    </button>
+                    <button onclick="showCert('ec')" class="p-4 bg-gray-800 rounded border border-gray-700 hover:border-purple-500 transition-all grayscale hover:grayscale-0 flex flex-col items-center">
+                        <i class="fas fa-user-secret text-3xl mb-2 text-purple-500"></i>
+                        <span class="font-bold">EC-Council</span>
+                    </button>
+                    <button onclick="showCert('giac')" class="p-4 bg-gray-800 rounded border border-gray-700 hover:border-blue-500 transition-all grayscale hover:grayscale-0 flex flex-col items-center">
+                        <i class="fas fa-globe-americas text-3xl mb-2 text-blue-500"></i>
+                        <span class="font-bold">GIAC</span>
+                    </button>
+                    <button onclick="showCert('isaca')" class="p-4 bg-gray-800 rounded border border-gray-700 hover:border-yellow-500 transition-all grayscale hover:grayscale-0 flex flex-col items-center">
+                        <i class="fas fa-clipboard-check text-3xl mb-2 text-yellow-500"></i>
+                        <span class="font-bold">ISACA</span>
+                    </button>
+                </div>
+
+                <div id="cert-display" class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 relative overflow-hidden min-h-[200px]">
+                    <div class="absolute top-0 right-0 p-4 opacity-10">
+                        <i class="fas fa-certificate text-9xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2" id="cert-title">Select an Organization</h3>
+                    <div id="cert-body" class="text-gray-300 space-y-4 relative z-10">
+                        <p>Industry certifications are official stamps of approval. They set you apart, validate your skills, and often lead to salary increases.</p>
+                        <p class="text-sm border-l-2 border-cyan-500 pl-3"><strong>The Pyramid Concept:</strong> Certifications are often viewed as a pyramid—starting with baseline knowledge (Entry), moving to specialized skills (Intermediate), and topping out with management/architect status (Expert).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART VI -->
+        <section id="part6" class="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-50 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-10">
+                    <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">06</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-cyan-400">Scholarships</h2>
+                        <p class="text-gray-400">Funding Your Education</p>
+                    </div>
+                </div>
+
+                <div class="flex overflow-x-auto pb-8 space-x-6 snap-x">
+                    <!-- SFS -->
+                    <div class="min-w-[300px] bg-gray-800 p-6 rounded-xl border-t-4 border-blue-500 snap-center">
+                        <h3 class="text-lg font-bold text-white">CyberCorps®: SFS</h3>
+                        <p class="text-xs text-blue-400 mb-4 font-mono">National Science Foundation</p>
+                        <p class="text-sm text-gray-400 mb-4">Tuition, stipend, and professional allowance in exchange for government service after graduation.</p>
+                        <div class="bg-gray-700 p-2 rounded text-xs">
+                            <i class="fas fa-check text-green-400 mr-2"></i>Full Tuition
+                        </div>
+                    </div>
+                     <!-- CIA -->
+                     <div class="min-w-[300px] bg-gray-800 p-6 rounded-xl border-t-4 border-yellow-500 snap-center">
+                        <h3 class="text-lg font-bold text-white">CIA Undergraduate</h3>
+                        <p class="text-xs text-yellow-400 mb-4 font-mono">Central Intelligence Agency</p>
+                        <p class="text-sm text-gray-400 mb-4">Tuition assistance up to $18,000/year, summer work tours, and transportation.</p>
+                        <div class="bg-gray-700 p-2 rounded text-xs">
+                            <i class="fas fa-check text-green-400 mr-2"></i>Summer Internships
+                        </div>
+                    </div>
+                    <!-- Stokes -->
+                    <div class="min-w-[300px] bg-gray-800 p-6 rounded-xl border-t-4 border-red-500 snap-center">
+                        <h3 class="text-lg font-bold text-white">Stokes Program</h3>
+                        <p class="text-xs text-red-400 mb-4 font-mono">NSA</p>
+                        <p class="text-sm text-gray-400 mb-4">$30,000/year for tuition. Includes summer internships at the NSA. Service commitment required.</p>
+                        <div class="bg-gray-700 p-2 rounded text-xs">
+                            <i class="fas fa-check text-green-400 mr-2"></i>High Value
+                        </div>
+                    </div>
+                    <!-- Snort -->
+                    <div class="min-w-[300px] bg-gray-800 p-6 rounded-xl border-t-4 border-orange-500 snap-center">
+                        <h3 class="text-lg font-bold text-white">Snort Scholarship</h3>
+                        <p class="text-xs text-orange-400 mb-4 font-mono">Cisco</p>
+                        <p class="text-sm text-gray-400 mb-4">$10,000 award. Requirements: Seeking a degree in applicable field.</p>
+                        <div class="bg-gray-700 p-2 rounded text-xs">
+                            <i class="fas fa-check text-green-400 mr-2"></i>One-time Award
+                        </div>
+                    </div>
+                    <!-- American Security Professional -->
+                    <div class="min-w-[300px] bg-gray-800 p-6 rounded-xl border-t-4 border-purple-500 snap-center">
+                        <h3 class="text-lg font-bold text-white">Security Fellowships</h3>
+                        <p class="text-xs text-purple-400 mb-4 font-mono">Heinz College</p>
+                        <p class="text-sm text-gray-400 mb-4">Min $10,000/semester up to full tuition. For US citizens with commitment to IT management.</p>
+                        <div class="bg-gray-700 p-2 rounded text-xs">
+                            <i class="fas fa-check text-green-400 mr-2"></i>Fellowship
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART VII -->
+        <section id="part7" class="py-20 px-6 md:px-12 border-b border-gray-800 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-10">
+                    <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">07</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-cyan-400">Career Pathways</h2>
+                        <p class="text-gray-400">Establish Your Roadmap</p>
+                    </div>
+                </div>
+
+                <div class="relative border-l-2 border-gray-700 ml-3 md:ml-6 space-y-12">
+                    <!-- Step 1 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-2.5 top-0 w-5 h-5 bg-cyan-500 rounded-full border-4 border-gray-900"></div>
+                        <h3 class="text-xl font-bold text-white">High School Options</h3>
+                        <p class="text-gray-400 mb-4">Start early with Dual Credit, Dual Enrollment, or AP Programs.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-gray-800 p-3 rounded text-sm border border-gray-700">
+                                <span class="font-bold text-cyan-400">Dual Credit:</span> HS & College credit simultaneously.
+                            </div>
+                            <div class="bg-gray-800 p-3 rounded text-sm border border-gray-700">
+                                <span class="font-bold text-cyan-400">P-TECH:</span> Graduate with HS diploma + Associate degree.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-2.5 top-0 w-5 h-5 bg-gray-700 rounded-full border-4 border-gray-900 group-hover:bg-cyan-500"></div>
+                        <h3 class="text-xl font-bold text-white">Select a College (NSA CAE)</h3>
+                        <p class="text-gray-400 mb-4">The NSA's <strong>Centers of Academic Excellence (CAE)</strong> program designates schools with robust cybersecurity curriculums.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-gray-800 p-4 rounded border-t-2 border-blue-400">
+                                <strong class="text-white block">CAE-CD</strong>
+                                <span class="text-xs text-gray-500">Cyber Defense</span>
+                                <p class="text-xs text-gray-400 mt-2">Focuses on degree programs like the University of Maryland.</p>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded border-t-2 border-green-400">
+                                <strong class="text-white block">CAE-R</strong>
+                                <span class="text-xs text-gray-500">Research</span>
+                                <p class="text-xs text-gray-400 mt-2">Focuses on research (e.g., MIT).</p>
+                            </div>
+                            <div class="bg-gray-800 p-4 rounded border-t-2 border-red-400">
+                                <strong class="text-white block">CAE-O</strong>
+                                <span class="text-xs text-gray-500">Cyber Operations</span>
+                                <p class="text-xs text-gray-400 mt-2">Deeply technical, interdisciplinary (e.g., US Air Force Academy).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Step 3 -->
+                     <div class="relative pl-8">
+                        <div class="absolute -left-2.5 top-0 w-5 h-5 bg-gray-700 rounded-full border-4 border-gray-900"></div>
+                        <h3 class="text-xl font-bold text-white">Create Your Plan</h3>
+                        <div class="bg-gray-800 p-4 rounded-lg mt-2 space-y-2">
+                            <label class="checkbox-wrapper flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" class="hidden">
+                                <div class="w-5 h-5 border-2 border-gray-500 rounded flex items-center justify-center transition-colors">
+                                    <svg class="w-3 h-3 text-black hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <span class="text-sm text-gray-300">Self Evaluate (Strengths/Weaknesses)</span>
+                            </label>
+                            <label class="checkbox-wrapper flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" class="hidden">
+                                <div class="w-5 h-5 border-2 border-gray-500 rounded flex items-center justify-center transition-colors">
+                                    <svg class="w-3 h-3 text-black hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <span class="text-sm text-gray-300">Explore Career Options</span>
+                            </label>
+                            <label class="checkbox-wrapper flex items-center space-x-3 cursor-pointer">
+                                <input type="checkbox" class="hidden">
+                                <div class="w-5 h-5 border-2 border-gray-500 rounded flex items-center justify-center transition-colors">
+                                    <svg class="w-3 h-3 text-black hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <span class="text-sm text-gray-300">Set SMART Goals</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PART VIII -->
+        <section id="part8" class="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-50 fade-in-section">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex items-center mb-10">
+                    <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">08</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-cyan-400">Extra-Curriculars</h2>
+                        <p class="text-gray-400">Sharpen Your Skills in the Arena</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Comp Cards -->
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-cyan-500 transition-colors group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-cyan-500 rounded-bl-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                        <h3 class="text-xl font-bold text-white mb-2">CyberPatriot</h3>
+                        <p class="text-xs text-cyan-400 font-mono mb-2">Air Force Association</p>
+                        <p class="text-sm text-gray-400">National Youth Cyber Defense Competition. Secure virtual networks.</p>
+                        <a href="https://www.uscyberpatriot.org" target="_blank" class="inline-block mt-4 text-xs uppercase tracking-wider text-cyan-400 hover:text-white">Visit Site &rarr;</a>
+                    </div>
+
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-cyan-500 transition-colors group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-purple-500 rounded-bl-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                        <h3 class="text-xl font-bold text-white mb-2">CSAW CTF</h3>
+                        <p class="text-xs text-purple-400 font-mono mb-2">Student-Run Event</p>
+                        <p class="text-sm text-gray-400">Most comprehensive student-run cyber security event. Hacking competitions & workshops.</p>
+                         <a href="https://www.csaw.io" target="_blank" class="inline-block mt-4 text-xs uppercase tracking-wider text-purple-400 hover:text-white">Visit Site &rarr;</a>
+                    </div>
+
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-cyan-500 transition-colors group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-green-500 rounded-bl-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                        <h3 class="text-xl font-bold text-white mb-2">National Cyber League</h3>
+                        <p class="text-xs text-green-400 font-mono mb-2">Cyber Skyline</p>
+                        <p class="text-sm text-gray-400">Virtual training ground. Bridge the gap from curriculum to career.</p>
+                         <a href="https://nationalcyberleague.org" target="_blank" class="inline-block mt-4 text-xs uppercase tracking-wider text-green-400 hover:text-white">Visit Site &rarr;</a>
+                    </div>
+
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-cyan-500 transition-colors group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-red-500 rounded-bl-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                        <h3 class="text-xl font-bold text-white mb-2">NSA Codebreaker</h3>
+                        <p class="text-xs text-red-400 font-mono mb-2">Reverse Engineering</p>
+                        <p class="text-sm text-gray-400">Realistic problem set centered around the NSA's mission. Low-level code analysis.</p>
+                         <a href="https://codebreaker.ltsnet.net/challenge" target="_blank" class="inline-block mt-4 text-xs uppercase tracking-wider text-red-400 hover:text-white">Visit Site &rarr;</a>
+                    </div>
+
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-cyan-500 transition-colors group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-yellow-500 rounded-bl-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                        <h3 class="text-xl font-bold text-white mb-2">PicoCTF</h3>
+                        <p class="text-xs text-yellow-400 font-mono mb-2">CMU</p>
+                        <p class="text-sm text-gray-400">Free security game for middle/high school. Reverse engineer, break, hack, decrypt.</p>
+                         <a href="https://picoctf.com" target="_blank" class="inline-block mt-4 text-xs uppercase tracking-wider text-yellow-400 hover:text-white">Visit Site &rarr;</a>
+                    </div>
+
+                    <div class="bg-gray-800 p-6 rounded-lg border border-gray-700 hover:border-cyan-500 transition-colors group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-16 h-16 bg-blue-500 rounded-bl-full opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                        <h3 class="text-xl font-bold text-white mb-2">MITRE Cyber Academy</h3>
+                        <p class="text-xs text-blue-400 font-mono mb-2">STEM CTF</p>
+                        <p class="text-sm text-gray-400">Annual capture the flag. Open to students and professionals. Prizes for high school teams.</p>
+                         <a href="https://mitrecyberacademy.org" target="_blank" class="inline-block mt-4 text-xs uppercase tracking-wider text-blue-400 hover:text-white">Visit Site &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-black py-10 text-center border-t border-gray-800">
+            <p class="text-gray-500 text-sm">Based on the Cybersecurity Careers Toolkit v2.</p>
+            <p class="text-gray-600 text-xs mt-2">Interactive Experience Generated by AI</p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Data for Tabs (Part III)
+        const degreeData = {
+            bachelor: `
+                <h3 class="text-2xl font-bold text-white mb-4">Bachelor's Degree Programs</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-gray-300 mb-4">A four-year program providing in-depth knowledge. Opens extensive career opportunities and serves as a foundation for advanced education.</p>
+                        <ul class="list-disc list-inside text-sm text-gray-400 space-y-2">
+                            <li>Typically 120 credits (4 years full-time)</li>
+                            <li>BS, BA, BBA, BEng options</li>
+                            <li>Significantly higher lifetime earnings ($2.2M avg)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded border border-gray-700">
+                        <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Admission Requirements</p>
+                        <ul class="space-y-2 text-sm text-cyan-400">
+                            <li><i class="fas fa-check mr-2"></i>High School Diploma</li>
+                            <li><i class="fas fa-check mr-2"></i>Minimum GPA</li>
+                            <li><i class="fas fa-check mr-2"></i>SAT/ACT Scores</li>
+                        </ul>
+                    </div>
+                </div>
+            `,
+            master: `
+                <h3 class="text-2xl font-bold text-white mb-4">Master's Degree Programs</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-gray-300 mb-4">Advanced level education following a bachelor's. Provides specialization and advanced skills (MS, MBA, MEng).</p>
+                        <ul class="list-disc list-inside text-sm text-gray-400 space-y-2">
+                            <li>Typically 1-2 years full-time</li>
+                            <li>Can be pursued part-time while working</li>
+                            <li>Tuition ranges $10k - $40k/year</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded border border-gray-700">
+                         <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Benefits</p>
+                         <ul class="space-y-2 text-sm text-purple-400">
+                            <li><i class="fas fa-arrow-up mr-2"></i>Leadership Roles</li>
+                            <li><i class="fas fa-arrow-up mr-2"></i>Specialized Expertise</li>
+                            <li><i class="fas fa-arrow-up mr-2"></i>Higher Salary Potential</li>
+                        </ul>
+                    </div>
+                </div>
+            `,
+            phd: `
+                <h3 class="text-2xl font-bold text-white mb-4">Doctoral Programs (PhD)</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-gray-300 mb-4">The highest level of education. Rigorous and research-focused. Prepares students for scholarly work and advanced research.</p>
+                        <ul class="list-disc list-inside text-sm text-gray-400 space-y-2">
+                            <li>3-7 years to complete</li>
+                            <li>Requires Dissertation/Thesis</li>
+                            <li>Often funded (Stipends/Fellowships)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-4 rounded border border-gray-700">
+                         <p class="text-xs text-gray-500 uppercase tracking-widest mb-2">Career Outcomes</p>
+                         <ul class="space-y-2 text-sm text-yellow-400">
+                            <li><i class="fas fa-star mr-2"></i>University Professor</li>
+                            <li><i class="fas fa-star mr-2"></i>Senior Researcher</li>
+                            <li><i class="fas fa-star mr-2"></i>Policy Maker</li>
+                        </ul>
+                    </div>
+                </div>
+            `
+        };
+
+        // Data for NICE Framework (Part I) - Updated to 7 Categories
+        const niceData = {
+            oversight: `
+                <strong class="text-purple-400 block mb-2 text-lg">Oversight & Governance</strong>
+                <p>Provides leadership, management, direction, and advocacy so the organization may effectively manage cybersecurity-related risks.</p>
+                <ul class="mt-2 space-y-1 text-xs text-gray-400 list-disc list-inside">
+                    <li>Strategic Planning</li>
+                    <li>Legal Advice</li>
+                    <li>Executive Leadership</li>
+                </ul>
+            `,
+            design: `
+                <strong class="text-green-400 block mb-2 text-lg">Design & Development</strong>
+                <p>Conducts research, conceptualizes, designs, develops, and tests secure technology systems.</p>
+                <ul class="mt-2 space-y-1 text-xs text-gray-400 list-disc list-inside">
+                    <li>Software Development</li>
+                    <li>Enterprise Architecture</li>
+                    <li>Systems Testing</li>
+                </ul>
+            `,
+            implement: `
+                <strong class="text-blue-400 block mb-2 text-lg">Implementation & Operation</strong>
+                <p>Provides implementation, administration, configuration, and maintenance to ensure effective system performance.</p>
+                <ul class="mt-2 space-y-1 text-xs text-gray-400 list-disc list-inside">
+                    <li>System Admin</li>
+                    <li>Network Operations</li>
+                    <li>Data Analysis</li>
+                </ul>
+            `,
+            protect: `
+                <strong class="text-red-400 block mb-2 text-lg">Protection & Defense</strong>
+                <p>Identifies and analyzes risks to systems. Active defense against threats and vulnerabilities.</p>
+                <ul class="mt-2 space-y-1 text-xs text-gray-400 list-disc list-inside">
+                    <li>Incident Response</li>
+                    <li>Vulnerability Assessment</li>
+                    <li>Threat Analysis</li>
+                </ul>
+            `,
+            investigate: `
+                <strong class="text-yellow-400 block mb-2 text-lg">Investigation</strong>
+                <p>Conducts cybercrime investigation and digital evidence analysis.</p>
+                <ul class="mt-2 space-y-1 text-xs text-gray-400 list-disc list-inside">
+                    <li>Digital Forensics</li>
+                    <li>Cybercrime Investigation</li>
+                </ul>
+            `,
+            intel: `
+                <strong class="text-indigo-400 block mb-2 text-lg">Cyberspace Intelligence</strong>
+                <p>Collects, processes, and analyzes information on foreign actors' cyberspace programs.</p>
+                <ul class="mt-2 space-y-1 text-xs text-gray-400 list-disc list-inside">
+                    <li>All-Source Analysis</li>
+                    <li>Target Analysis</li>
+                    <li>Threat Intelligence</li>
+                </ul>
+            `,
+            effects: `
+                <strong class="text-pink-400 block mb-2 text-lg">Cyberspace Effects</strong>
+                <p>Plans and executes cyberspace capabilities to defend or conduct force projection.</p>
+                <ul class="mt-2 space-y-1 text-xs text-gray-400 list-disc list-inside">
+                    <li>Cyber Operations Planning</li>
+                    <li>Partner Integration</li>
+                </ul>
+            `
+        };
+
+        // Data for Certs (Part V)
+        const certData = {
+            comptia: {
+                title: "CompTIA",
+                color: "text-red-500",
+                content: `
+                    <p class="mb-2">Highly recognized entry-level and intermediate IT certifications.</p>
+                    <ul class="list-disc ml-5 space-y-1 text-sm text-gray-400">
+                        <li><strong>Security+:</strong> Ideal launchpad. Covers network security and risk.</li>
+                        <li><strong>CySA+:</strong> Cybersecurity Analyst. Threat detection and response.</li>
+                        <li><strong>CASP+:</strong> Advanced Security Practitioner for architects/engineers.</li>
+                    </ul>
+                `
+            },
+            isc2: {
+                title: "(ISC)²",
+                color: "text-green-500",
+                content: `
+                    <p class="mb-2">The "World's Leading Cybersecurity Professional Organization".</p>
+                    <ul class="list-disc ml-5 space-y-1 text-sm text-gray-400">
+                        <li><strong>CISSP:</strong> The gold standard. For experienced security managers.</li>
+                        <li><strong>SSCP:</strong> Systems Security Certified Practitioner. For operational security.</li>
+                        <li><strong>CC:</strong> Certified in Cybersecurity. Entry-level.</li>
+                    </ul>
+                `
+            },
+            ec: {
+                title: "EC-Council",
+                color: "text-purple-500",
+                content: `
+                    <p class="mb-2">Known for role-specific titles and offensive security.</p>
+                    <ul class="list-disc ml-5 space-y-1 text-sm text-gray-400">
+                        <li><strong>CEH:</strong> Certified Ethical Hacker. Widely recognized offensive cert.</li>
+                        <li><strong>CND:</strong> Certified Network Defender. For network admins/engineers.</li>
+                        <li><strong>CHFI:</strong> Computer Hacking Forensic Investigator.</li>
+                    </ul>
+                `
+            },
+            giac: {
+                title: "GIAC",
+                color: "text-blue-500",
+                content: `
+                    <p class="mb-2">Validates hands-on skills. Associated with SANS training. High respect.</p>
+                    <ul class="list-disc ml-5 space-y-1 text-sm text-gray-400">
+                        <li><strong>GSEC:</strong> Security Essentials. Hands-on knowledge beyond theory.</li>
+                        <li><strong>GCFA:</strong> Certified Forensic Analyst. Advanced incident response.</li>
+                        <li><strong>GCIH:</strong> Certified Incident Handler.</li>
+                    </ul>
+                `
+            },
+            isaca: {
+                title: "ISACA",
+                color: "text-yellow-500",
+                content: `
+                    <p class="mb-2">Focus on auditing, control, and management.</p>
+                    <ul class="list-disc ml-5 space-y-1 text-sm text-gray-400">
+                        <li><strong>CISA:</strong> Certified Information Systems Auditor. Audit control & assurance.</li>
+                        <li><strong>CISM:</strong> Certified Information Security Manager. Management focused.</li>
+                        <li><strong>CRISC:</strong> Risk and Information Systems Control.</li>
+                    </ul>
+                `
+            }
+        };
+
+        // --- Functions ---
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load default bachelor tab
+            document.getElementById('credential-content').innerHTML = degreeData.bachelor;
+            
+            // Intersection Observer for Animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+
+            // Scroll Spy for Nav
+            window.addEventListener('scroll', () => {
+                updateProgressBar();
+                highlightNav();
+            });
+        });
+
+        // Tab Switcher
+        function switchTab(tab, btn) {
+            const content = document.getElementById('credential-content');
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('#credential-tabs button').forEach(b => {
+                b.classList.remove('bg-cyan-900', 'border-cyan-500');
+                b.classList.add('bg-gray-800', 'border-gray-700');
+            });
+
+            // Add active class to clicked button
+            btn.classList.remove('bg-gray-800', 'border-gray-700');
+            btn.classList.add('bg-cyan-900', 'border-cyan-500');
+
+            // Fade out, switch, fade in
+            content.style.opacity = '0';
+            setTimeout(() => {
+                content.innerHTML = degreeData[tab];
+                content.style.opacity = '1';
+            }, 200);
+        }
+
+        // NICE Framework Info
+        function showNiceInfo(key) {
+            const display = document.getElementById('nice-display');
+            display.innerHTML = niceData[key];
+            display.classList.remove('text-gray-500', 'italic', 'flex', 'flex-col', 'items-center', 'justify-center');
+            display.classList.add('text-white');
+        }
+
+        // Cert Matrix Info
+        function showCert(key) {
+            const data = certData[key];
+            const title = document.getElementById('cert-title');
+            const body = document.getElementById('cert-body');
+            
+            title.innerHTML = `<span class="${data.color}">${data.title}</span>`;
+            body.innerHTML = data.content;
+        }
+
+        // Mobile Menu
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        let menuOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if(menuOpen) {
+                sidebar.classList.remove('-translate-x-full');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+
+        // Progress Bar
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        }
+
+        // Highlight Active Nav Link
+        function highlightNav() {
+            const sections = document.querySelectorAll('section');
+            const navLi = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLi.forEach(li => {
+                li.classList.remove('active');
+                if (li.getAttribute('href').includes(current)) {
+                    li.classList.add('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
