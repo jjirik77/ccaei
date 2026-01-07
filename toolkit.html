@@ -489,24 +489,29 @@
                     </button>
                 </div>
 
-                <!-- Content Container (Iframe + Fallback) -->
-                <div class="bg-gray-900 border border-gray-700 rounded-xl overflow-hidden min-h-[600px] relative">
+                <!-- Content Container -->
+                <div class="bg-gray-900 border border-gray-700 rounded-xl overflow-hidden min-h-[500px] relative">
                     
                     <!-- NICE Tool Container -->
-                    <div id="nice-container" class="w-full h-full absolute inset-0 bg-white">
-                        <!-- NICE Tool -->
-                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 p-6 h-full overflow-y-auto bg-gray-900">
+                    <div id="nice-container" class="w-full h-full absolute inset-0 bg-gray-900 block animate-fade-in">
+                        <div class="flex justify-between items-end px-6 pt-6 pb-2 border-b border-gray-700">
+                            <div>
+                                <h3 class="text-lg text-white font-bold">NICE Framework Explorer</h3>
+                                <p class="text-gray-400 text-xs">Explore roles and skills by category.</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 p-6 h-full">
                             <!-- NICE Categories (Col 1) -->
-                            <div class="lg:col-span-1 space-y-2">
-                                <button onclick="loadNiceRoles('provision')" class="w-full text-left p-4 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-purple-500 text-gray-300 font-bold text-sm transition-all focus:bg-gray-700 focus:text-white">1. Securely Provision</button>
-                                <button onclick="loadNiceRoles('operate')" class="w-full text-left p-4 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-green-500 text-gray-300 font-bold text-sm transition-all focus:bg-gray-700 focus:text-white">2. Operate & Maintain</button>
-                                <button onclick="loadNiceRoles('protect')" class="w-full text-left p-4 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-red-500 text-gray-300 font-bold text-sm transition-all focus:bg-gray-700 focus:text-white">3. Protect & Defend</button>
-                                <button onclick="loadNiceRoles('analyze')" class="w-full text-left p-4 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-yellow-500 text-gray-300 font-bold text-sm transition-all focus:bg-gray-700 focus:text-white">4. Analyze</button>
-                                <button onclick="loadNiceRoles('oversight')" class="w-full text-left p-4 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-indigo-500 text-gray-300 font-bold text-sm transition-all focus:bg-gray-700 focus:text-white">5. Oversight & Governance</button>
+                            <div class="lg:col-span-1 space-y-2 overflow-y-auto max-h-[400px] pr-2 custom-scroll">
+                                <button onclick="loadNiceRoles('provision')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-purple-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">1. Securely Provision</button>
+                                <button onclick="loadNiceRoles('operate')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-green-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">2. Operate & Maintain</button>
+                                <button onclick="loadNiceRoles('protect')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-red-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">3. Protect & Defend</button>
+                                <button onclick="loadNiceRoles('analyze')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-yellow-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">4. Analyze</button>
+                                <button onclick="loadNiceRoles('oversight')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-indigo-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">5. Oversight & Governance</button>
                             </div>
 
                             <!-- NICE Roles & Details (Col 2-4) -->
-                            <div class="lg:col-span-3 bg-gray-900 border border-gray-700 rounded-lg p-6 min-h-[400px]">
+                            <div class="lg:col-span-3 bg-gray-800/50 border border-gray-700 rounded-lg p-6 min-h-[400px]">
                                 <div id="nice-content-area">
                                     <div class="h-full flex flex-col items-center justify-center text-center opacity-50">
                                         <i class="fas fa-mouse-pointer text-4xl mb-4 text-white"></i>
@@ -518,18 +523,24 @@
                     </div>
 
                     <!-- DCWF Tool Container (Hidden by default) -->
-                    <div id="dcwf-container" class="w-full h-full absolute inset-0 bg-white hidden">
+                    <div id="dcwf-container" class="w-full h-full absolute inset-0 bg-gray-900 hidden animate-fade-in">
+                         <div class="flex justify-between items-end px-6 pt-6 pb-2 border-b border-red-900/50">
+                            <div>
+                                <h3 class="text-lg text-white font-bold">DCWF Framework Explorer</h3>
+                                <p class="text-gray-400 text-xs">Military codes and mandatory qualifications.</p>
+                            </div>
+                        </div>
                          <!-- DCWF Tool -->
-                         <div id="dcwf-simple-view" class="grid grid-cols-1 lg:grid-cols-4 gap-6 p-6 h-full overflow-y-auto bg-gray-900">
+                         <div id="dcwf-simple-view" class="grid grid-cols-1 lg:grid-cols-4 gap-6 p-6 h-full">
                             <!-- DCWF Categories (Col 1) -->
-                            <div class="lg:col-span-1 space-y-2 h-96 overflow-y-auto pr-2 custom-scroll">
-                                <button onclick="loadDcwfRoles('sp')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-purple-500 text-gray-300 font-bold text-xs transition-all">Securely Provision</button>
-                                <button onclick="loadDcwfRoles('om')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-green-500 text-gray-300 font-bold text-xs transition-all">Operate & Maintain</button>
-                                <button onclick="loadDcwfRoles('pd')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-red-500 text-gray-300 font-bold text-xs transition-all">Protect & Defend</button>
-                                <button onclick="loadDcwfRoles('an')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-yellow-500 text-gray-300 font-bold text-xs transition-all">Analyze</button>
-                                <button onclick="loadDcwfRoles('co')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-pink-500 text-gray-300 font-bold text-xs transition-all">Collect & Operate</button>
-                                <button onclick="loadDcwfRoles('in')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-blue-500 text-gray-300 font-bold text-xs transition-all">Investigate</button>
-                                <button onclick="loadDcwfRoles('ov')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-indigo-500 text-gray-300 font-bold text-xs transition-all">Oversight & Dev</button>
+                            <div class="lg:col-span-1 space-y-2 overflow-y-auto max-h-[400px] pr-2 custom-scroll">
+                                <button onclick="loadDcwfRoles('sp')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-purple-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">Securely Provision</button>
+                                <button onclick="loadDcwfRoles('om')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-green-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">Operate & Maintain</button>
+                                <button onclick="loadDcwfRoles('pd')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-red-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">Protect & Defend</button>
+                                <button onclick="loadDcwfRoles('an')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-yellow-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">Analyze</button>
+                                <button onclick="loadDcwfRoles('co')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-pink-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">Collect & Operate</button>
+                                <button onclick="loadDcwfRoles('in')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-blue-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">Investigate</button>
+                                <button onclick="loadDcwfRoles('ov')" class="w-full text-left p-3 rounded bg-gray-800 hover:bg-gray-700 border-l-4 border-indigo-500 text-gray-300 font-bold text-xs transition-all focus:bg-gray-700 focus:text-white">Oversight & Dev</button>
                             </div>
     
                             <!-- DCWF Roles & Details (Col 2-4) -->
@@ -853,7 +864,9 @@
             const dcwfBtn = document.getElementById('btn-dcwf');
             const niceCont = document.getElementById('nice-container');
             const dcwfCont = document.getElementById('dcwf-container');
-            const dcwfSimple = document.getElementById('dcwf-simple-view');
+            
+            // Note: dcwf-simple-view is removed/merged into dcwf-container in this restoration
+            // We use the ID logic from the baseline restore
 
             if (fw === 'nice') {
                 niceBtn.classList.add('border-cyan-500', 'text-white');
@@ -863,18 +876,82 @@
                 
                 niceCont.classList.remove('hidden');
                 dcwfCont.classList.add('hidden');
-                dcwfSimple.classList.add('hidden');
             } else {
                 dcwfBtn.classList.add('border-red-500', 'text-white');
                 dcwfBtn.classList.remove('border-gray-700', 'text-gray-400');
                 niceBtn.classList.remove('border-cyan-500', 'text-white');
                 niceBtn.classList.add('border-gray-700', 'text-gray-400');
 
-                dcwfCont.classList.add('hidden'); // Hide Iframe
-                niceCont.classList.add('hidden'); // Hide NICE
-                dcwfSimple.classList.remove('hidden'); // Show Simplified View
+                dcwfCont.classList.remove('hidden');
+                niceCont.classList.add('hidden');
             }
         }
+        
+        // Load Roles Logic (Restored)
+        function loadNiceRoles(cat) {
+            const roles = niceV2Data[cat];
+            const contentArea = document.getElementById('nice-content-area');
+            
+            let html = `<h4 class="text-xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Available Job Roles</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">`;
+            
+            roles.forEach((role, index) => {
+                html += `<button onclick="showNiceDetails('${cat}', ${index})" class="role-btn text-left p-3 rounded border border-gray-700 text-gray-300 text-sm transition-all hover:text-white">
+                            ${role.title}
+                         </button>`;
+            });
+            html += `</div><div id="nice-details-panel" class="mt-6 p-4 bg-gray-800 rounded border border-cyan-500/30 hidden animate-fade-in"></div>`;
+            
+            contentArea.innerHTML = html;
+        }
+
+        function showNiceDetails(cat, index) {
+            const role = niceV2Data[cat][index];
+            const panel = document.getElementById('nice-details-panel');
+            panel.innerHTML = `
+                <h5 class="text-lg font-bold text-cyan-400 mb-2">${role.title}</h5>
+                <div class="text-sm text-gray-300">
+                    <strong class="block text-gray-500 text-xs uppercase mb-1">Skills, Knowledge & Capabilities:</strong>
+                    ${role.ksa}
+                </div>
+            `;
+            panel.classList.remove('hidden');
+        }
+
+        function loadDcwfRoles(cat) {
+            const roles = dcwfData[cat];
+            const contentArea = document.getElementById('dcwf-content-area');
+            
+            let html = `<h4 class="text-xl font-bold text-white mb-4 border-b border-red-900 pb-2">DCWF Qualified Roles</h4>
+                        <div class="grid grid-cols-1 gap-2">`;
+            
+            roles.forEach((role, index) => {
+                html += `<button onclick="showDcwfDetails('${cat}', ${index})" class="dcwf-btn text-left p-3 rounded border border-gray-700 text-gray-300 text-sm transition-all hover:bg-red-900/20 hover:border-red-500 flex justify-between">
+                            <span>${role.title}</span>
+                            <span class="font-mono text-xs text-red-400 bg-gray-900 px-2 py-0.5 rounded">${role.code}</span>
+                         </button>`;
+            });
+            html += `</div><div id="dcwf-details-panel" class="mt-6 p-4 bg-gray-800 rounded border border-red-500/30 hidden animate-fade-in"></div>`;
+            
+            contentArea.innerHTML = html;
+        }
+
+        function showDcwfDetails(cat, index) {
+            const role = dcwfData[cat][index];
+            const panel = document.getElementById('dcwf-details-panel');
+            panel.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <h5 class="text-lg font-bold text-red-400">${role.title}</h5>
+                    <span class="text-xs font-mono border border-red-500 px-2 rounded text-red-500">Code: ${role.code}</span>
+                </div>
+                <div class="text-sm text-gray-300">
+                    <strong class="block text-gray-500 text-xs uppercase mb-1">Required Capabilities:</strong>
+                    ${role.ksa}
+                </div>
+            `;
+            panel.classList.remove('hidden');
+        }
+
 
         // --- Industry Description Logic ---
         const industryData = {
