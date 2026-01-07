@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Career Assessment - High Stakes v2.5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .fade-in { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .progress-bar-fill { transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+        .framework-card { transition: all 0.2s ease-in-out; border-width: 2px; }
+        .framework-card.recommended { border-color: #22d3ee; background-color: rgba(31, 41, 55, 0.5); box-shadow: 0 0 20px rgba(34, 211, 238, 0.15); }
+        .interest-bar-fill { background-color: #22d3ee; transition: width 0.6s ease-out; }
+        .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.85); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: #1f2937; padding: 2.5rem; border-radius: 1.5rem; width: 90%; max-width: 800px; max-height: 85vh; overflow-y: auto; border: 1px solid #374151; }
+        .clarity-bar-bg { background-color: #111827; height: 8px; border-radius: 4px; position: relative; overflow: hidden; }
+        .clarity-fill { height: 100%; background: linear-gradient(to right, #06b6d4, #22d3ee); transition: width 0.8s ease-out; }
+        .trait-label { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #9ca3af; }
+        button:focus { outline: 2px solid #22d3ee; outline-offset: 2px; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div id="assessment-container" class="w-full max-w-5xl mx-auto bg-gray-800 rounded-3xl shadow-2xl p-6 md:p-12 transition-all duration-500 border border-gray-700">
+
+        <!-- Start Screen -->
+        <div id="start-screen" class="text-center fade-in">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-cyan-400 mb-6 tracking-tight">Cybersecurity Career Assessment</h1>
+            <p class="text-gray-300 mb-8 text-xl max-w-2xl mx-auto leading-relaxed">
+                A professional diagnostic utilizing <span class="text-white font-bold">Vector-Based Similarity</span> and 
+                <span class="text-cyan-300 font-semibold">NICE/DCWF</span> technical mapping.
+            </p>
+            <div class="bg-gray-900/50 p-6 rounded-2xl mb-8 border border-gray-700 max-w-lg mx-auto">
+                <div class="flex items-start text-left">
+                    <input id="consent-checkbox" type="checkbox" class="mt-1 h-5 w-5 rounded border-gray-600 bg-gray-800 text-cyan-500 focus:ring-cyan-500 transition-colors">
+                    <label for="consent-checkbox" class="ml-3 block text-sm text-gray-400 leading-snug cursor-pointer">
+                        I consent to the anonymous collection of my responses for validity testing of the Cognitive Flex & Inconsistency metrics.
+                    </label>
+                </div>
+            </div>
+            <button id="start-btn" class="bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold py-4 px-10 rounded-xl text-xl transition-all transform hover:scale-105 shadow-lg shadow-cyan-500/20">
+                Begin Assessment
+            </button>
+        </div>
+
+        <!-- Stage 1 Quiz -->
+        <div id="quiz-screen-stage1" class="hidden fade-in">
+            <div class="mb-10">
+                <div class="flex justify-between items-end mb-3">
+                    <div>
+                        <span id="question-counter-stage1" class="text-xs font-bold uppercase tracking-widest text-cyan-500"></span>
+                        <h2 class="text-lg font-medium text-gray-400">Psychometric Baseline</h2>
+                    </div>
+                    <span id="progress-text-stage1" class="text-sm font-bold text-cyan-400"></span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
+                    <div id="progress-bar-stage1" class="bg-cyan-500 h-3 rounded-full progress-bar-fill shadow-[0_0_15px_rgba(34,211,238,0.4)]"></div>
+                </div>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-bold mb-10 text-gray-100 text-center leading-tight">Which environment describes you better?</h3>
+            <div id="answers-container-stage1" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        </div>
+        
+        <!-- Intermediate Transition -->
+        <div id="intermediate-screen" class="hidden fade-in text-center py-12">
+            <div class="mb-6 inline-flex p-4 rounded-full bg-cyan-500/10 text-cyan-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                </svg>
+            </div>
+            <h2 class="text-3xl font-bold text-white mb-4">Cognitive Profile Generated</h2>
+            <p class="text-gray-400 mb-10 text-lg max-w-md mx-auto">Functional traits and cognitive flexibility have been calculated. Proceeding to task-specific interest mapping.</p>
+            <button id="start-stage2-btn" class="bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold py-4 px-10 rounded-xl text-xl transition-all shadow-lg">
+                Continue to Interest Mapping
+            </button>
+        </div>
+
+        <!-- Stage 2 Quiz -->
+        <div id="quiz-screen-stage2" class="hidden fade-in">
+            <div class="mb-10">
+                <div class="flex justify-between items-end mb-3">
+                    <div>
+                        <span id="question-counter-stage2" class="text-xs font-bold uppercase tracking-widest text-cyan-500"></span>
+                        <h2 class="text-lg font-medium text-gray-400">NICE CWF Technical Alignment</h2>
+                    </div>
+                    <span id="progress-text-stage2" class="text-sm font-bold text-cyan-400"></span>
+                </div>
+                <div class="w-full bg-gray-700 rounded-full h-3">
+                    <div id="progress-bar-stage2" class="bg-cyan-500 h-3 rounded-full progress-bar-fill"></div>
+                </div>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-gray-100 text-center">Rate your professional interest:</h3>
+            <p id="interest-question-text" class="text-center text-xl text-cyan-100 mb-12 min-h-[4rem] font-medium px-4"></p>
+            <div id="interest-answers-container" class="flex flex-wrap justify-center gap-4"></div>
+        </div>
+
+        <!-- Results View -->
+        <div id="results-screen" class="hidden fade-in">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl md:text-5xl font-black text-cyan-400 mb-2 uppercase tracking-tighter">Career Diagnosis</h1>
+                <div id="profile-summary" class="mt-4"></div>
+            </div>
+
+            <!-- Cognitive Flex Visualization -->
+            <div class="bg-gray-900/50 p-8 rounded-2xl mb-12 border border-gray-700">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-sm font-bold text-cyan-500 uppercase tracking-widest">Cognitive Preference Clarity</h3>
+                    <div id="overall-flex-badge"></div>
+                </div>
+                <div id="clarity-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10"></div>
+            </div>
+            
+            <div id="top-roles-container" class="mb-12 space-y-6"></div>
+            
+            <div id="gated-roles-container" class="hidden mb-12">
+                <button id="toggle-gated-btn" class="w-full text-left flex items-center justify-between p-4 bg-gray-900/50 rounded-xl border border-gray-700 text-gray-400 hover:text-white transition-colors">
+                    <span class="font-bold text-sm uppercase tracking-widest">Secondary Technical Alignments</span>
+                    <span id="gated-arrow">▼</span>
+                </button>
+                <div id="gated-content" class="hidden pt-4 space-y-4"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6 pt-10 border-t border-gray-700">
+                <button id="restart-btn" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-4 px-10 rounded-xl transition-all w-full md:w-auto">
+                    Reset Diagnostic
+                </button>
+                <button id="export-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-xl transition-all w-full md:w-auto flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Export Telemetry (JSON)
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Export Modal -->
+    <div id="export-modal" class="modal-overlay hidden">
+        <div class="modal-content fade-in">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-cyan-400">Psychometric Data Export</h2>
+                <button id="close-modal-btn" class="text-gray-400 hover:text-white text-3xl font-light">&times;</button>
+            </div>
+            <textarea id="json-output" readonly class="w-full h-80 p-4 bg-gray-900 text-cyan-100 border border-gray-700 rounded-xl font-mono text-xs focus:ring-0"></textarea>
+            <div class="mt-6 flex justify-end gap-4">
+                <button id="copy-json-btn" class="bg-cyan-500 hover:bg-cyan-600 text-gray-900 font-bold py-3 px-8 rounded-xl transition-all">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    /**
+     * Assessment Version: v2.5.1
+     * Final Psychometric Baseline - English
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- DOM SELECTION ---
+        const get = id => document.getElementById(id);
+        const startBtn = get('start-btn');
+        const startStage2Btn = get('start-stage2-btn');
+        const restartBtn = get('restart-btn');
+        const exportBtn = get('export-btn');
+        const closeModalBtn = get('close-modal-btn');
+        const copyJsonBtn = get('copy-json-btn');
+        const toggleGatedBtn = get('toggle-gated-btn');
+        const consentCheckbox = get('consent-checkbox');
+
+        const startScreen = get('start-screen');
+        const quiz1 = get('quiz-screen-stage1');
+        const intermediate = get('intermediate-screen');
+        const quiz2 = get('quiz-screen-stage2');
+        const results = get('results-screen');
+        const exportModal = get('export-modal');
+
+        const progBar1 = get('progress-bar-stage1');
+        const progText1 = get('progress-text-stage1');
+        const count1 = get('question-counter-stage1');
+        const container1 = get('answers-container-stage1');
+
+        const progBar2 = get('progress-bar-stage2');
+        const progText2 = get('progress-text-stage2');
+        const count2 = get('question-counter-stage2');
+        const interestText = get('interest-question-text');
+        const container2 = get('interest-answers-container');
+
+        const profileSummary = get('profile-summary');
+        const topRolesContainer = get('top-roles-container');
+        const gatedContent = get('gated-content');
+        const gatedRolesWrapper = get('gated-roles-container');
+        const clarityContainer = get('clarity-container');
+        const overallFlex = get('overall-flex-badge');
+        const jsonOut = get('json-output');
+
+        // --- DATA STRUCTURES ---
+        const traits = {
+            ANALYTICAL: { name: 'Logic Expert', raw: 0 },
+            DECISIVE: { name: 'Tactical Responder', raw: 0 },
+            METHODICAL: { name: 'Quality Guard', raw: 0 },
+            LEADERSHIP: { name: 'Strategic Lead', raw: 0 },
+            POLICY: { name: 'Governance Guardian', raw: 0 },
+            ARCHITECTURE: { name: 'Systems Architect', raw: 0 },
+            DEVELOPMENT: { name: 'Secure Solutions Builder', raw: 0 },
+            EDUCATION: { name: 'Workforce Enablement Lead', raw: 0 },
+        };
+
+        const cognitive = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+
+        const workRoles = {
+            'APPSEC': { id: 'APPSEC', cat: 'SP', trait: 'DEVELOPMENT', mbti: 'ISTP', name: 'AppSec Engineer', desc: 'Engineering security directly into software pipelines.', skills: ['SAST/DAST', 'Python', 'CI/CD'], certs: ['CSSLP'], projects: ['Secure Microservice'] },
+            'ARCHITECT': { id: 'ARCHITECT', cat: 'SP', trait: 'ARCHITECTURE', mbti: 'INTJ', name: 'Security Architect', desc: 'Designing resilient enterprise ecosystems.', skills: ['Zero Trust', 'Cloud Design'], certs: ['SABSA'], projects: ['Identity Blueprint'] },
+            'GRC': { id: 'GRC', cat: 'OV', trait: 'POLICY', mbti: 'ISTJ', name: 'GRC Specialist', desc: 'Aligning operations with regulatory standards.', skills: ['NIST CSF', 'Auditing'], certs: ['CISA'], projects: ['Compliance Gap Audit'] },
+            'SOC': { id: 'SOC', cat: 'PR', trait: 'DECISIVE', mbti: 'ISTP', name: 'SOC Analyst', desc: 'Rapid detection and triage of live attacks.', skills: ['SIEM', 'Traffic Analysis'], certs: ['CYSA+'], projects: ['Log correlation hunt'] },
+            'CTI': { id: 'CTI', cat: 'AN', trait: 'ANALYTICAL', mbti: 'INTP', name: 'Threat Intel Analyst', desc: 'Deep-dive profiling of adversary behaviors.', skills: ['Threat Cycle', 'Intelligence Writing'], certs: ['GCTI'], projects: ['APT Actor Profile'] },
+            'EXPL': { id: 'EXPL', cat: 'CO', trait: 'ANALYTICAL', mbti: 'INTP', name: 'Exploitation Analyst', desc: 'Discovery of complex technical target paths.', skills: ['Reverse Engineering', 'CNE'], certs: ['GREM'], projects: ['Protocol Fuzzing'] }
+        };
+
+        const stage1Questions = [];
+        const traitKeys = Object.keys(traits);
+        const cogKeys = [['E','I'], ['S','N'], ['T','F'], ['J','P']];
+
+        for(let i=0; i<40; i++) {
+            const t1 = traitKeys[i % 8], t2 = traitKeys[(i + 4) % 8];
+            const axisIdx = i % 4;
+            stage1Questions.push({
+                id: i + 1,
+                a: { text: `Environment: High-focus on ${traits[t1].name} workflows.`, trait: t1, cog: cogKeys[axisIdx][0] },
+                b: { text: `Approach: Preferring ${traits[t2].name} methodologies.`, trait: t2, cog: cogKeys[axisIdx][1] }
+            });
+        }
+
+        const interestQuestionsByTrait = {
+            DEVELOPMENT: [{ id: 'D1', text: "Building automated security enforcement scripts.", roles: ['APPSEC'] }],
+            ARCHITECTURE: [{ id: 'A1', text: "Design high-level security for large distributed networks.", roles: ['ARCHITECT'] }],
+            POLICY: [{ id: 'P1', text: "Ensuring regulatory compliance through strict audit trails.", roles: ['GRC'] }],
+            DECISIVE: [{ id: 'C1', text: "Rapid alert triaging in high-pressure SOC environments.", roles: ['SOC'] }],
+            ANALYTICAL: [{ id: 'Y1', text: "Mapping adversary TTPs to the MITRE ATT&CK framework.", roles: ['CTI'] }, { id: 'Y2', text: "Reverse engineering protocol binary data.", roles: ['EXPL'] }]
+        };
+
+        // --- APP STATE ---
+        let cur1 = 0, cur2 = 0, stage2Set = [], scores = {}, maxScores = {}, telemetry = {}, userPrimaryTraits = [];
+
+        function start1() {
+            startScreen.classList.add('hidden');
+            quiz1.classList.remove('hidden');
+            cur1 = 0;
+            telemetry = { stage1: [], consent: consentCheckbox.checked };
+            Object.keys(traits).forEach(t => traits[t].raw = 0);
+            Object.keys(cognitive).forEach(k => cognitive[k] = 0);
+            show1();
+        }
+
+        function show1() {
+            container1.innerHTML = '';
+            if (cur1 < stage1Questions.length) {
+                const q = stage1Questions[cur1];
+                const pct = ((cur1 + 1) / stage1Questions.length) * 100;
+                progBar1.style.width = `${pct}%`;
+                count1.textContent = `Trait Diagnostic ${cur1 + 1} / 40`;
+                progText1.textContent = `${Math.round(pct)}%`;
+                
+                ['a', 'b'].forEach(c => {
+                    const btn = document.createElement('button');
+                    btn.className = "p-6 bg-gray-900/40 border border-gray-700 rounded-2xl hover:border-cyan-500 text-left transition-all active:scale-95 group focus:ring-2 focus:ring-cyan-500";
+                    btn.innerHTML = `<span class="trait-label mb-2 block group-hover:text-cyan-400">Candidate ${c.toUpperCase()}</span>${q[c].text}`;
+                    btn.onclick = () => {
+                        traits[q[c].trait].raw++;
+                        cognitive[q[c].cog]++;
+                        if (telemetry.consent) telemetry.stage1.push({ t: q[c].trait, c: q[c].cog });
+                        cur1++;
+                        show1();
+                    };
+                    container1.appendChild(btn);
+                });
+            } else {
+                quiz1.classList.add('hidden');
+                intermediate.classList.remove('hidden');
+            }
+        }
+
+        function getCognitiveStats() {
+            const axes = [
+                { left: 'Extraversion', right: 'Introversion', lCode: 'E', rCode: 'I' },
+                { left: 'Sensing', right: 'Intuitive', lCode: 'S', rCode: 'N' },
+                { left: 'Thinking', right: 'Feeling', lCode: 'T', rCode: 'F' },
+                { left: 'Judging', right: 'Perceiving', lCode: 'J', rCode: 'P' }
+            ];
+            let type = '', flexCount = 0;
+            const clarity = axes.map(axis => {
+                const l = cognitive[axis.lCode], r = cognitive[axis.rCode];
+                const total = l + r;
+                const pos = total === 0 ? 50 : (r / total) * 100;
+                if (Math.abs(50 - pos) < 15) flexCount++;
+                type += (l >= r ? axis.lCode : axis.rCode);
+                return { ...axis, pos };
+            });
+            return { type, clarity, flexRating: flexCount };
+        }
+
+        function start2() {
+            intermediate.classList.add('hidden');
+            quiz2.classList.remove('hidden');
+            
+            const raw = Object.values(traits).map(t => t.raw);
+            const min = Math.min(...raw), max = Math.max(...raw);
+            telemetry.stage1Normalized = Object.fromEntries(Object.entries(traits).map(([k, v]) => [k, Math.round(((v.raw - min) / (max - min)) * 100)]));
+            
+            const sorted = Object.entries(telemetry.stage1Normalized).sort((a,b) => b[1] - a[1]);
+            userPrimaryTraits = [sorted[0][0]];
+            if (sorted[1] && sorted[0][1] - sorted[1][1] <= 10) userPrimaryTraits.push(sorted[1][0]);
+
+            let pool = [];
+            userPrimaryTraits.forEach(t => { if(interestQuestionsByTrait[t]) pool.push(...interestQuestionsByTrait[t]); });
+            Object.keys(interestQuestionsByTrait).filter(t => !userPrimaryTraits.includes(t)).forEach(t => pool.push(interestQuestionsByTrait[t][0]));
+            
+            const unique = new Map();
+            pool.forEach(q => unique.set(q.id, q));
+            stage2Set = [...unique.values()];
+
+            cur2 = 0;
+            scores = {}; maxScores = {};
+            Object.keys(workRoles).forEach(id => { scores[id] = 0; maxScores[id] = 0; });
+            stage2Set.forEach(q => { q.roles.forEach(rid => { if(maxScores[rid] !== undefined) maxScores[rid] += 3; })});
+            show2();
+        }
+
+        function show2() {
+            if (cur2 < stage2Set.length) {
+                const q = stage2Set[cur2];
+                const pct = ((cur2 + 1) / stage2Set.length) * 100;
+                progBar2.style.width = `${pct}%`;
+                count2.textContent = `Interest Probe ${cur2 + 1} / ${stage2Set.length}`;
+                interestText.textContent = q.text;
+                container2.innerHTML = '';
+                ['None', 'Low', 'Moderate', 'Strong'].forEach((l, v) => {
+                    const btn = document.createElement('button');
+                    btn.className = "bg-gray-700 hover:bg-cyan-600 text-white font-bold py-3 px-8 rounded-xl transition-all active:scale-95 focus:ring-2 focus:ring-cyan-500";
+                    btn.textContent = l;
+                    btn.onclick = () => {
+                        q.roles.forEach(rid => scores[rid] += v);
+                        if(telemetry.consent) telemetry.stage2 = telemetry.stage2 || [];
+                        cur2++;
+                        show2();
+                    };
+                    container2.appendChild(btn);
+                });
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            quiz2.classList.add('hidden');
+            results.classList.remove('hidden');
+            
+            const { type, clarity, flexRating } = getCognitiveStats();
+            profileSummary.innerHTML = `<span class="text-4xl font-black text-white uppercase tracking-tighter">${type}</span><p class="text-cyan-400 font-mono text-sm mt-1 uppercase tracking-widest">NICE Framework Vector Analysis</p>`;
+
+            const flexLabels = ["Specialized", "Balanced", "Versatile", "Bridge Profile", "Master Adaptor"];
+            overallFlex.innerHTML = `<span class="px-4 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-[10px] font-bold uppercase tracking-widest border border-cyan-500/30">${flexLabels[flexRating]}</span>`;
+
+            clarityContainer.innerHTML = clarity.map(s => `
+                <div class="space-y-2">
+                    <div class="flex justify-between trait-label"><span>${s.left}</span><span>${s.right}</span></div>
+                    <div class="clarity-bar-bg"><div class="clarity-fill" style="width: ${s.pos}%"></div></div>
+                </div>`).join('');
+
+            allRolesWithScores = Object.values(workRoles).map(role => {
+                const interestPct = maxScores[role.id] > 0 ? (scores[role.id] / maxScores[role.id]) * 100 : 0;
+                let match = 0; for(let i=0; i<4; i++) if(type[i] === role.mbti[i]) match++;
+                const mbtiSim = (match / 4) * 100;
+                const traitAlign = userPrimaryTraits.includes(role.trait) ? 100 : 30;
+                const finalScore = (interestPct * 0.5) + (mbtiSim * 0.3) + (traitAlign * 0.2);
+                return { ...role, finalScore };
+            });
+
+            const top = allRolesWithScores.sort((a,b) => b.finalScore - a.finalScore).slice(0,3);
+            topRolesContainer.innerHTML = top.map(r => `
+                <div class="bg-gray-900/60 border border-gray-700 p-8 rounded-3xl hover:border-cyan-500/50 transition-all group">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <div class="flex items-center gap-2">
+                                <h3 class="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors">${r.name}</h3>
+                                <span class="text-[10px] bg-cyan-500/10 text-cyan-400 px-2 rounded border border-cyan-500/20">${r.mbti}</span>
+                            </div>
+                            <p class="text-gray-400 text-sm italic mt-1 leading-relaxed">${r.desc}</p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-4xl font-black text-cyan-400 leading-none">${Math.round(r.finalScore)}%</div>
+                            <div class="text-[9px] font-bold text-gray-500 uppercase mt-1">Vector Match</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-gray-800">
+                        <div><span class="trait-label">NICE Skills Focus</span><div class="text-xs text-gray-300 mt-2">${r.skills.join(', ')}</div></div>
+                        <div><span class="trait-label">Career Entry Project</span><div class="text-xs text-gray-300 mt-2">${r.projects[0]}</div></div>
+                    </div>
+                </div>`).join('');
+
+            const gated = allRolesWithScores.slice(3);
+            gatedContent.innerHTML = gated.map(r => `
+                <div class="flex justify-between items-center bg-gray-800/40 p-4 rounded-xl border border-gray-700">
+                    <span class="text-sm font-bold text-gray-300">${r.name}</span>
+                    <span class="text-xs font-mono text-cyan-500">${Math.round(r.finalScore)}%</span>
+                </div>`).join('');
+            if (gated.length > 0) gatedRolesWrapper.classList.remove('hidden');
+        }
+
+        // --- EVENTS ---
+        startBtn.onclick = start1;
+        startStage2Btn.onclick = start2;
+        restartBtn.onclick = () => window.location.reload();
+        exportBtn.onclick = () => { 
+            jsonOut.value = JSON.stringify(telemetry.consent ? telemetry : { optOut: true }, null, 2); 
+            exportModal.classList.remove('hidden'); 
+        };
+        closeModalBtn.onclick = () => exportModal.classList.add('hidden');
+        copyJsonBtn.onclick = () => {
+            jsonOut.select();
+            document.execCommand('copy');
+            copyJsonBtn.textContent = "Copied!";
+            setTimeout(() => copyJsonBtn.textContent = "Copy to Clipboard", 2000);
+        };
+        toggleGatedBtn.onclick = () => gatedContent.classList.toggle('hidden');
+    });
+    </script>
+</body>
+</html>
