@@ -44,48 +44,6 @@
             background: var(--neon-blue);
         }
 
-        /* Glitch Effect Text */
-        .glitch {
-            position: relative;
-        }
-        .glitch::before, .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .glitch::before {
-            left: 2px;
-            text-shadow: -1px 0 var(--neon-green);
-            clip: rect(24px, 550px, 90px, 0);
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
-        .glitch::after {
-            left: -2px;
-            text-shadow: -1px 0 var(--neon-blue);
-            clip: rect(85px, 550px, 140px, 0);
-            animation: glitch-anim 2.5s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim {
-            0% { clip: rect(11px, 9999px, 86px, 0); }
-            20% { clip: rect(98px, 9999px, 5px, 0); }
-            40% { clip: rect(34px, 9999px, 63px, 0); }
-            60% { clip: rect(82px, 9999px, 19px, 0); }
-            80% { clip: rect(56px, 9999px, 2px, 0); }
-            100% { clip: rect(4px, 9999px, 92px, 0); }
-        }
-        @keyframes glitch-anim-2 {
-            0% { clip: rect(65px, 9999px, 100px, 0); }
-            20% { clip: rect(10px, 9999px, 3px, 0); }
-            40% { clip: rect(78px, 9999px, 95px, 0); }
-            60% { clip: rect(15px, 9999px, 33px, 0); }
-            80% { clip: rect(2px, 9999px, 45px, 0); }
-            100% { clip: rect(50px, 9999px, 80px, 0); }
-        }
-
         /* Flip Card */
         .perspective-1000 {
             perspective: 1000px;
@@ -185,12 +143,17 @@
 <body class="flex">
 
     <!-- Mobile Menu Button -->
-    <button id="mobile-menu-btn" class="fixed top-4 right-4 z-50 p-2 bg-gray-800 rounded-md lg:hidden text-white border border-cyan-500">
+    <button id="mobile-menu-btn" class="fixed top-4 right-4 z-50 p-2 bg-gray-800 rounded-md lg:hidden text-white border border-cyan-500 print:hidden">
         <i class="fas fa-bars"></i>
     </button>
 
+    <!-- Print PDF Button -->
+    <button onclick="window.print()" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-cyan-600 rounded-full text-white shadow-[0_0_15px_rgba(34,211,238,0.5)] hover:bg-cyan-500 transition-all print:hidden flex items-center justify-center group" title="Print / Save as PDF">
+        <i class="fas fa-print text-xl group-hover:scale-110 transition-transform"></i>
+    </button>
+
     <!-- Sidebar Navigation -->
-    <nav id="sidebar" class="fixed w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+    <nav id="sidebar" class="fixed w-64 h-screen bg-gray-900 border-r border-gray-800 flex flex-col z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 print:hidden">
         <div class="p-6 border-b border-gray-800">
             <h2 class="text-xl font-bold font-mono text-cyan-400 tracking-tighter">CCAEI<br><span class="text-white text-sm">Toolkit</span></h2>
         </div>
@@ -204,6 +167,7 @@
                 <li><a href="#part6" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VI: Scholarships</a></li>
                 <li><a href="#part7" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VII: Pathways</a></li>
                 <li><a href="#part8" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VIII: Activities</a></li>
+                <li><a href="#part9" class="nav-link block py-3 px-6 text-sm text-gray-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part IX: Career Assessment</a></li>
             </ul>
         </div>
         <div class="p-4 border-t border-gray-800">
@@ -217,7 +181,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="lg:ml-64 w-full min-h-screen relative">
+    <main class="lg:ml-64 w-full min-h-screen relative print:ml-0">
         
         <!-- Hero Section -->
         <header class="relative h-screen flex items-center justify-center overflow-hidden bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80')] bg-cover bg-center">
@@ -969,7 +933,6 @@
 
         <!-- PART VIII (Unchanged) -->
         <section id="part8" class="py-20 px-6 md:px-12 bg-gray-900 bg-opacity-50 fade-in-section">
-             <!-- ... existing content ... -->
              <div class="max-w-6xl mx-auto">
                 <div class="flex items-center mb-10">
                     <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">08</span>
@@ -978,8 +941,35 @@
                         <p class="text-gray-400">Sharpen Your Skills in the Arena</p>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Activities will be rendered here by JS -->
+                 <!-- Try Before You Buy Block -->
+                <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-green-500 mb-8 shadow-lg">
+                    <h3 class="text-lg font-bold text-white mb-2"><i class="fas fa-gamepad text-green-500 mr-2"></i>"Try Before You Buy" - The Competitive Advantage</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Cyber competitions aren't just games; they are the most effective way to separate yourself from other candidates. Participating in CTFs (Capture The Flag) allows you to test drive different roles (like red teaming vs. blue teaming) in a safe environment. Employers look for this practical experience as proof of your passion and hands-on ability.
+                    </p>
+                </div>
+
+                <!-- Activities Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+        </section>
+        
+        <!-- Part IX: Career Assessment -->
+        <section id="part9" class="py-20 px-6 md:px-12 border-b border-gray-800 fade-in-section">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center mb-10">
+                    <span class="text-6xl font-bold text-gray-800 mr-4 font-mono select-none opacity-50">09</span>
+                    <div>
+                        <h2 class="text-3xl font-bold text-cyan-400">Career Assessment</h2>
+                        <p class="text-gray-400">Discover Your Cyber Strengths</p>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 mb-8 shadow-lg"><h3 class="text-lg font-bold text-white mb-2"><i class="fas fa-clipboard-list text-purple-500 mr-2"></i>Why Assessment Matters</h3><p class="text-gray-300 text-sm leading-relaxed">Navigating the cybersecurity landscape can be overwhelming given the variety of roles available. A professional career assessment helps you identify your cognitive strengths, interests, and potential fit within the industry. By aligning your natural aptitudes with specific work roles (like those in the NICE or DCWF frameworks), you can make informed decisions about your education and career path.</p></div>
+                <div class="bg-gray-900 border border-gray-700 rounded-xl overflow-hidden relative w-full h-[800px]">
+                    <iframe src="https://jjirik77.github.io/ccaei/assessment.html" class="w-full h-full border-none" title="Cybersecurity Career Assessment"></iframe>
+                    <div class="absolute bottom-4 right-4 z-20 pointer-events-none">
+                        <a href="https://jjirik77.github.io/ccaei/assessment.html" target="_blank" class="pointer-events-auto bg-gray-900 text-white px-4 py-2 rounded shadow-xl border border-purple-500 hover:bg-black transition-all flex items-center gap-2 text-xs font-bold"><i class="fas fa-external-link-alt"></i> Open Assessment in New Window</a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1230,9 +1220,8 @@
                 niceBtn.classList.remove('border-cyan-500', 'text-white');
                 niceBtn.classList.add('border-gray-700', 'text-gray-400');
 
-                dcwfCont.classList.remove('hidden'); // Hide Iframe
-                niceCont.classList.add('hidden'); // Hide NICE
-                dcwfSimple.classList.remove('hidden'); // Show Simplified View
+                dcwfCont.classList.remove('hidden'); 
+                niceCont.classList.add('hidden');
             }
         }
 
@@ -1308,7 +1297,8 @@
             sp: [
                 { code: "621", title: "Software Developer", ksa: "Ability to secure code, knowledge of compilers." },
                 { code: "652", title: "Enterprise Architect", ksa: "Design network perimeters, cloud security." },
-                { code: "632", title: "System Designer", ksa: "Hardware/software integration security." }
+                { code: "632", title: "System Designer", ksa: "Hardware/software integration security." },
+                { code: "671", title: "Artificial Intelligence Engineer (NEW)", ksa: "Design, build, and evaluate AI/ML systems and their security implications." }
             ],
             om: [
                 { code: "441", title: "Network Operations Specialist", ksa: "Configure routers/switches, monitor traffic." },
@@ -1322,7 +1312,8 @@
             ],
             an: [
                 { code: "141", title: "Threat/Warning Analyst", ksa: "Monitor intelligence feeds, predict attacks." },
-                { code: "121", title: "Exploitation Analyst", ksa: "Identify vulnerabilities for offensive use." }
+                { code: "121", title: "Exploitation Analyst", ksa: "Identify vulnerabilities for offensive use." },
+                { code: "422", title: "Data Scientist (NEW)", ksa: "Apply statistical modeling and machine learning to analyze large datasets for cyber insights." }
             ],
             co: [
                 { code: "331", title: "Cyber Operator", ksa: "Conduct offensive operations, manipulate networks." },
@@ -1338,118 +1329,13 @@
             ]
         };
 
-        // Updated Cert Data with Progression Details (from Turn 6 content as requested)
+        // Cert Data & Tab Switcher (Existing Logic Preserved)
         const certData = {
-            comptia: {
-                title: "CompTIA",
-                color: "text-red-500",
-                content: `
-                    <p class="mb-4 text-gray-300">The Computing Technology Industry Association (CompTIA) is the leading provider of vendor-neutral IT certifications. Their certifications are often the "starting line" for many cybersecurity professionals.</p>
-                    <div class="space-y-4">
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-gray-500">
-                            <h4 class="text-xs uppercase font-bold text-gray-400">Entry / Foundation</h4>
-                            <p class="text-white font-bold">ITF+, A+, Network+, Security+</p>
-                            <p class="text-xs text-gray-500">Foundational IT and security knowledge. Security+ is the standard entry-level cyber cert.</p>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-cyan-500">
-                            <h4 class="text-xs uppercase font-bold text-cyan-400">Intermediate</h4>
-                            <p class="text-white font-bold">CySA+, PenTest+, Linux+</p>
-                            <p class="text-xs text-gray-500">Specialized skills in analysis (CySA+) or offensive security (PenTest+).</p>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-purple-500">
-                            <h4 class="text-xs uppercase font-bold text-purple-400">Advanced</h4>
-                            <p class="text-white font-bold">CASP+ (Advanced Security Practitioner)</p>
-                            <p class="text-xs text-gray-500">For technical professionals who wish to remain hands-on rather than move into management.</p>
-                        </div>
-                    </div>
-                `
-            },
-            isc2: {
-                title: "(ISC)²",
-                color: "text-green-500",
-                content: `
-                    <p class="mb-4 text-gray-300">The International Information System Security Certification Consortium, or (ISC)², is best known for the CISSP, often considered the "gold standard" for security management.</p>
-                    <div class="space-y-4">
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-gray-500">
-                            <h4 class="text-xs uppercase font-bold text-gray-400">Entry Level</h4>
-                            <p class="text-white font-bold">CC (Certified in Cybersecurity), SSCP</p>
-                            <p class="text-xs text-gray-500">Entry-level IT security administration and operations.</p>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-purple-500">
-                            <h4 class="text-xs uppercase font-bold text-purple-400">Advanced / Expert</h4>
-                            <p class="text-white font-bold">CISSP, CCSP (Cloud), ISSAP/ISSEP/ISSMP</p>
-                            <p class="text-xs text-gray-500">The CISSP is a requirement for many high-level and management roles.</p>
-                        </div>
-                    </div>
-                `
-            },
-            ec: {
-                title: "EC-Council",
-                color: "text-purple-500",
-                content: `
-                    <p class="mb-4 text-gray-300">The International Council of E-Commerce Consultants focuses heavily on offensive security (hacking), forensics, and incident response.</p>
-                    <div class="space-y-4">
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-gray-500">
-                            <h4 class="text-xs uppercase font-bold text-gray-400">Core / Entry</h4>
-                            <p class="text-white font-bold">CCT (Certified Cybersecurity Technician), CND (Network Defender)</p>
-                            <p class="text-xs text-gray-500">Focus on network defense fundamentals.</p>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-cyan-500">
-                            <h4 class="text-xs uppercase font-bold text-cyan-400">Intermediate</h4>
-                            <p class="text-white font-bold">CEH (Certified Ethical Hacker)</p>
-                            <p class="text-xs text-gray-500">One of the most recognized certifications for penetration testing foundations.</p>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-purple-500">
-                            <h4 class="text-xs uppercase font-bold text-purple-400">Advanced</h4>
-                            <p class="text-white font-bold">LPT (Licensed Penetration Tester), CHFI (Forensic Investigator)</p>
-                            <p class="text-xs text-gray-500">Advanced mastery of pentesting and digital forensics.</p>
-                        </div>
-                    </div>
-                `
-            },
-            giac: {
-                title: "GIAC",
-                color: "text-blue-500",
-                content: `
-                    <p class="mb-4 text-gray-300">Global Information Assurance Certification (GIAC) validates the hands-on skills of security professionals. These are often associated with SANS training courses and are highly respected for their technical depth.</p>
-                    <div class="space-y-4">
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-gray-500">
-                            <h4 class="text-xs uppercase font-bold text-gray-400">Foundational</h4>
-                            <p class="text-white font-bold">GFACT, GSEC (Security Essentials)</p>
-                            <p class="text-xs text-gray-500">Solidifies core concepts and practical security skills.</p>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-cyan-500">
-                            <h4 class="text-xs uppercase font-bold text-cyan-400">Intermediate/Practitioner</h4>
-                            <p class="text-white font-bold">GCIH (Incident Handler), GPEN (Pen Tester)</p>
-                            <p class="text-xs text-gray-500">Specific role-based certifications.</p>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-purple-500">
-                            <h4 class="text-xs uppercase font-bold text-purple-400">Advanced</h4>
-                            <p class="text-white font-bold">GCFA (Forensics Analyst), GREM (Reverse Engineering)</p>
-                            <p class="text-xs text-gray-500">Deep technical specializations.</p>
-                        </div>
-                    </div>
-                `
-            },
-            isaca: {
-                title: "ISACA",
-                color: "text-yellow-500",
-                content: `
-                    <p class="mb-4 text-gray-300">ISACA focuses on IT governance, risk management, and auditing. These certifications are essential for roles in compliance and leadership.</p>
-                    <div class="space-y-4">
-                         <div class="bg-gray-800 p-3 rounded border-l-4 border-gray-500">
-                            <h4 class="text-xs uppercase font-bold text-gray-400">Fundamentals</h4>
-                            <p class="text-white font-bold">ITCA (Information Technology Certified Associate)</p>
-                            <p class="text-xs text-gray-500">Foundational knowledge in computing and audit.</p>
-                        </div>
-                        <div class="bg-gray-800 p-3 rounded border-l-4 border-purple-500">
-                            <h4 class="text-xs uppercase font-bold text-purple-400">Professional / Expert</h4>
-                            <p class="text-white font-bold">CISA (Auditor), CISM (Manager), CRISC (Risk)</p>
-                            <p class="text-xs text-gray-500">Standard requirements for IT auditors and information security managers.</p>
-                        </div>
-                    </div>
-                `
-            }
+            comptia: { title: "CompTIA", color: "text-red-500", content: "<p class='mb-2'>Highly recognized entry-level and intermediate IT certifications.</p><ul class='list-disc ml-5 space-y-1 text-sm text-gray-400'><li><strong>Security+:</strong> Ideal launchpad.</li><li><strong>CySA+:</strong> Threat detection.</li></ul>" },
+            isc2: { title: "(ISC)²", color: "text-green-500", content: "<p class='mb-2'>World's Leading Cybersecurity Org.</p><ul class='list-disc ml-5 space-y-1 text-sm text-gray-400'><li><strong>CISSP:</strong> Gold standard for managers.</li><li><strong>CC:</strong> Entry-level.</li></ul>" },
+            ec: { title: "EC-Council", color: "text-purple-500", content: "<p class='mb-2'>Offensive security focus.</p><ul class='list-disc ml-5 space-y-1 text-sm text-gray-400'><li><strong>CEH:</strong> Certified Ethical Hacker.</li></ul>" },
+            giac: { title: "GIAC", color: "text-blue-500", content: "<p class='mb-2'>Validates hands-on SANS training.</p><ul class='list-disc ml-5 space-y-1 text-sm text-gray-400'><li><strong>GSEC:</strong> Security Essentials.</li></ul>" },
+            isaca: { title: "ISACA", color: "text-yellow-500", content: "<p class='mb-2'>Auditing & Management.</p><ul class='list-disc ml-5 space-y-1 text-sm text-gray-400'><li><strong>CISA:</strong> Auditing.</li><li><strong>CISM:</strong> Management.</li></ul>" }
         };
 
         const degreeData = {
