@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CCAEI Toolkit</title>
+    <title>Cybersecurity Career Awareness Exploration</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -206,10 +206,17 @@
         <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Print PDF Button -->
-    <button onclick="window.print()" class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-tr from-cyan-600 to-cyan-400 rounded-full text-white shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 transition-all print:hidden flex items-center justify-center group" title="Print / Save as PDF">
-        <i class="fas fa-print text-xl group-hover:scale-110 transition-transform"></i>
-    </button>
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-6 right-6 z-50 flex gap-4 print:hidden">
+        <!-- Glossary Button -->
+        <button onclick="openGlossaryModal()" class="w-14 h-14 bg-gradient-to-tr from-purple-600 to-purple-400 rounded-full text-white shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] hover:scale-105 transition-all flex items-center justify-center group" title="Open Glossary">
+            <i class="fas fa-book text-xl group-hover:scale-110 transition-transform"></i>
+        </button>
+        <!-- Print PDF Button -->
+        <button onclick="window.print()" class="w-14 h-14 bg-gradient-to-tr from-cyan-600 to-cyan-400 rounded-full text-white shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 transition-all flex items-center justify-center group" title="Print / Save as PDF">
+            <i class="fas fa-print text-xl group-hover:scale-110 transition-transform"></i>
+        </button>
+    </div>
 
     <!-- Sidebar Navigation -->
     <nav id="sidebar" class="fixed w-64 h-screen bg-slate-900/95 backdrop-blur-xl border-r border-slate-800 flex flex-col z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 shadow-2xl print:hidden">
@@ -219,14 +226,15 @@
         <div class="flex-1 overflow-y-auto py-6">
             <ul class="space-y-1">
                 <li><a href="#part1" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part I: Introduction to Cybersecurity</a></li>
-                <li><a href="#part2" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part II: Why Cyber & Frameworks</a></li>
-                <li><a href="#part3" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part III: Academic Credentials</a></li>
-                <li><a href="#part4" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part IV: Cybersecurity Majors</a></li>
-                <li><a href="#part5" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part V: Industry Certifications</a></li>
-                <li><a href="#part6" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VI: Scholarships</a></li>
-                <li><a href="#part7" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VII: Pathways</a></li>
-                <li><a href="#part8" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VIII: Activities</a></li>
-                <li><a href="#part9" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part IX: Career Assessment</a></li>
+                <li><a href="#part2" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part II: Why Consider Cyber</a></li>
+                <li><a href="#part3" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part III: Workforce Frameworks</a></li>
+                <li><a href="#part4" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part IV: Academic Credentials</a></li>
+                <li><a href="#part5" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part V: Cybersecurity Majors</a></li>
+                <li><a href="#part6" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VI: Industry Certifications</a></li>
+                <li><a href="#part7" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VII: Scholarships</a></li>
+                <li><a href="#part8" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part VIII: Pathways</a></li>
+                <li><a href="#part9" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part IX: Activities</a></li>
+                <li><a href="#part10" class="nav-link block py-3 px-6 text-sm text-slate-400 hover:text-cyan-300 transition-all border-l-2 border-transparent">Part X: Career Assessment</a></li>
             </ul>
         </div>
         <div class="p-6 border-t border-slate-800 bg-slate-900">
@@ -250,7 +258,7 @@
             
             <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20">
                 <div class="mb-6 inline-block px-4 py-1.5 bg-slate-900/50 backdrop-blur-md border border-cyan-500/30 rounded-full text-cyan-400 text-xs font-mono tracking-[0.2em] uppercase shadow-[0_0_15px_rgba(6,182,212,0.2)]">Career Counselors & Academic Advisors</div>
-                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white uppercase tracking-tight leading-tight drop-shadow-lg">Cybersecurity Careers: Protecting Our Digital World</h1>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 text-white uppercase tracking-tight leading-tight drop-shadow-lg">Cybersecurity Career Awareness Exploration</h1>
                 <p class="text-xl md:text-2xl text-slate-300 mb-10 font-light max-w-4xl mx-auto leading-relaxed">Help your students see how their interests in technology, puzzles, and helping others can become in-demand, well-paid cybersecurity careers in every industry.</p>
                 <a href="#part1" class="inline-flex items-center px-8 py-4 border border-transparent text-base font-bold rounded-full text-slate-950 bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-400 hover:to-cyan-300 hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(6,182,212,0.4)]">
                     Initialize Toolkit <i class="fas fa-arrow-down ml-3 text-sm"></i>
@@ -480,7 +488,7 @@
                                 <ul class="list-disc list-inside text-sm text-slate-400 space-y-1">
                                     <li>Pick one career profile that looks interesting.</li>
                                     <li>Identify what information is shown (tasks, skills, etc.).</li>
-                                    <li>Compare this profile to the NICE Framework (in Section 2).</li>
+                                    <li>Compare this profile to the NICE Framework (in Section 3).</li>
                                 </ul>
                             </div>
                             
@@ -727,14 +735,26 @@
                     </div>
                 </div>
 
-                <!-- Transition to Workforce Frameworks -->
-                <div class="mt-24 mb-12 border-t border-slate-800/80 pt-16">
-                    <h3 class="text-3xl md:text-4xl font-bold text-cyan-400 tracking-tight mb-4">Structuring the Workforce</h3>
-                    <p class="text-slate-400 text-lg leading-relaxed max-w-4xl">
-                        Now that we've covered the "why", let's look at the "how". The cybersecurity industry uses standardized frameworks to categorize roles, map necessary skills, and define career progression. Use these civilian (NICE) and military (DCWF) frameworks to help students identify specific job titles that match their interests.
-                    </p>
+            </div>
+        </section>
+
+        <!-- PART III: Workforce Frameworks -->
+        <section id="part3" class="py-24 px-6 md:px-12 border-b border-slate-800 fade-in-section">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center mb-12">
+                    <span class="text-7xl font-black text-slate-800 mr-6 font-mono select-none opacity-40 tracking-tighter">03</span>
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-cyan-400 tracking-tight">Structuring the Workforce</h2>
+                        <p class="text-slate-400 text-lg mt-1 font-medium">Civilian (NICE) vs. Military (DCWF) Frameworks</p>
+                    </div>
                 </div>
 
+                <div class="bg-slate-900/60 border border-slate-700/50 rounded-2xl p-6 mb-12 shadow-sm">
+                    <p class="text-slate-300 text-sm italic leading-relaxed border-l-4 border-slate-600 pl-4">
+                        “Now that we've covered the 'why', let's look at the 'how'. The cybersecurity industry uses standardized frameworks to categorize roles, map necessary skills, and define career progression. Use these frameworks to help students identify specific job titles that match their interests.”
+                    </p>
+                </div>
+                
                 <!-- Comparison Card -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                     <div class="glass-panel border-l-4 border-l-cyan-500 p-8 rounded-2xl shadow-xl hover:-translate-y-1 transition-transform duration-300">
@@ -854,11 +874,11 @@
             </div>
         </section>
 
-        <!-- PART III: Academic Credentials -->
-        <section id="part3" class="py-24 px-6 md:px-12 border-b border-slate-800 fade-in-section">
+        <!-- PART IV: Academic Credentials -->
+        <section id="part4" class="py-24 px-6 md:px-12 border-b border-slate-800 fade-in-section">
             <div class="max-w-7xl mx-auto">
                 <div class="flex items-center mb-6">
-                    <span class="text-7xl font-black text-slate-800 mr-6 font-mono select-none opacity-40 tracking-tighter">03</span>
+                    <span class="text-7xl font-black text-slate-800 mr-6 font-mono select-none opacity-40 tracking-tighter">04</span>
                     <div>
                         <h2 class="text-3xl md:text-4xl font-bold text-cyan-400 tracking-tight">Understanding Academic Credentials</h2>
                         <p class="text-slate-400 text-lg mt-1 font-medium">Degrees, Certificates, and Career Impact</p>
@@ -1077,7 +1097,12 @@
 
                 <!-- Student Mini Activity -->
                 <div class="glass-panel p-8 rounded-3xl mb-16 border border-cyan-500/30 shadow-xl">
-                    <h3 class="text-2xl font-bold text-white mb-4"><i class="fas fa-search text-cyan-400 mr-3"></i>Activity: Find Cyber Credentials That Interest You</h3>
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight"><i class="fas fa-search text-cyan-400 mr-3"></i>Activity: Find Cyber Credentials That Interest You</h3>
+                        <button onclick="window.print()" class="shrink-0 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-600 hover:border-cyan-500/50 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-cyan-400"></i> Download Worksheet (PDF)
+                        </button>
+                    </div>
                     <p class="text-slate-300 text-sm mb-6">Use your school's catalog, local community college website, or the CAE programs list to find at least four academic credentials related to cybersecurity that interest you. For each, record the details below.</p>
                     
                     <div class="overflow-x-auto bg-slate-900/50 rounded-xl border border-slate-700 mb-6">
@@ -1268,7 +1293,7 @@
 
                     <div class="bg-slate-900 border border-slate-700 rounded-xl p-4">
                         <strong class="text-cyan-400 text-xs uppercase tracking-widest font-mono block mb-1">Advisor Usage</strong>
-                        <p class="text-slate-400 text-sm italic">"After students complete the career interest assessment (Part IX), point them back to this table and highlight 1–2 majors that align with their profile."</p>
+                        <p class="text-slate-400 text-sm italic">"After students complete the career interest assessment (Part X), point them back to this table and highlight 1–2 majors that align with their profile."</p>
                     </div>
                 </div>
 
@@ -1289,28 +1314,33 @@
                     </div>
 
                     <!-- Program Evaluation Checklist -->
-                    <div class="glass-panel p-8 rounded-3xl shadow-xl">
-                        <h3 class="text-xl font-bold text-white mb-4 tracking-tight"><i class="fas fa-clipboard-check text-rose-400 mr-3"></i>How to Compare Programs</h3>
-                        <ul class="space-y-3 text-sm text-slate-300 leading-relaxed mb-6">
-                            <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>Is the program aligned with national standards (e.g., designated as a Center of Academic Excellence in Cyber Defense)?</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>Does the curriculum include a mix of technical courses (networking, OS, security) and broader topics (policy, risk, ethics)?</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>Are there opportunities for hands-on labs, projects, competitions, or internships?</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>Does the program offer stackable certificates or transfer pathways to bachelor's degrees?</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>What percentage of graduates find jobs in cybersecurity or related fields, and in what types of roles?</span></li>
-                        </ul>
-                        <div class="bg-slate-900 border border-slate-700 rounded-xl p-4">
-                            <strong class="text-rose-400 text-xs uppercase tracking-widest font-mono block mb-1">Advisor Note</strong>
-                            <p class="text-slate-400 text-sm italic">"Encourage students to talk with program coordinators, ask about graduate outcomes, and review course lists—not just marketing materials."</p>
-                        </div>
+                <div class="glass-panel p-8 rounded-3xl shadow-xl">
+                    <h3 class="text-xl font-bold text-white mb-4 tracking-tight"><i class="fas fa-clipboard-check text-rose-400 mr-3"></i>How to Compare Programs</h3>
+                    <ul class="space-y-3 text-sm text-slate-300 leading-relaxed mb-6">
+                        <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>Is the program aligned with national standards (e.g., designated as a Center of Academic Excellence in Cyber Defense)?</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>Does the curriculum include a mix of technical courses (networking, OS, security) and broader topics (policy, risk, ethics)?</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>Are there opportunities for hands-on labs, projects, competitions, or internships?</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>Does the program offer stackable certificates or transfer pathways to bachelor's degrees?</span></li>
+                        <li class="flex items-start"><i class="fas fa-check text-rose-400 mt-1 mr-3 text-xs"></i><span>What percentage of graduates find jobs in cybersecurity or related fields, and in what types of roles?</span></li>
+                    </ul>
+                    <div class="bg-slate-900 border border-slate-700 rounded-xl p-4">
+                        <strong class="text-rose-400 text-xs uppercase tracking-widest font-mono block mb-1">Advisor Note</strong>
+                        <p class="text-slate-400 text-sm italic">"Encourage students to talk with program coordinators, ask about graduate outcomes, and review course lists—not just marketing materials."</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Student Mini Activity -->
-                <div class="glass-panel p-8 rounded-3xl mb-16 border border-cyan-500/30 shadow-xl">
-                    <h3 class="text-2xl font-bold text-white mb-4"><i class="fas fa-search text-cyan-400 mr-3"></i>Activity: Find Cybersecurity Majors Near You</h3>
-                    <p class="text-slate-300 text-sm mb-6 leading-relaxed">
-                        Using college websites, transfer guides, and CAE program lists, have students identify:<br>
-                        • One community college program with a security certificate or cyber-related associate degree.<br>
+            <!-- Student Mini Activity -->
+            <div class="glass-panel p-8 rounded-3xl mb-16 border border-cyan-500/30 shadow-xl">
+                <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
+                    <h3 class="text-2xl font-bold text-white tracking-tight"><i class="fas fa-search text-cyan-400 mr-3"></i>Activity: Find Cybersecurity Majors Near You</h3>
+                    <button onclick="window.print()" class="shrink-0 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-600 hover:border-cyan-500/50 transition-all flex items-center shadow-sm print:hidden">
+                        <i class="fas fa-file-download mr-2 text-cyan-400"></i> Download Worksheet (PDF)
+                    </button>
+                </div>
+                <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+                    Using college websites, transfer guides, and CAE program lists, have students identify:<br>
+                    • One community college program with a security certificate or cyber-related associate degree.<br>
                         • One 4-year institution with a cybersecurity or related major (such as Cybersecurity, Information Assurance, or IT with Security).<br>
                         • If possible, one program recognized as a Center of Academic Excellence (CAE).
                     </p>
@@ -1612,7 +1642,18 @@
                     <div class="glass-panel p-2 rounded-3xl flex justify-center shadow-2xl">
                         <div class="bg-slate-950 rounded-2xl overflow-hidden w-full h-[800px] relative border border-slate-800/80">
                              <!-- Paul Jerimy Cert Roadmap Iframe -->
-                            <iframe src="https://pauljerimy.com/security-certification-roadmap/" class="w-full h-full border-none" title="Paul Jerimy Security Certification Roadmap"></iframe>
+                            <iframe src="https://pauljerimy.com/security-certification-roadmap/" class="w-full h-full border-none relative z-10" title="Paul Jerimy Security Certification Roadmap"></iframe>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent z-20 flex justify-between items-end pointer-events-none">
+                                <div class="pointer-events-auto bg-slate-900/95 backdrop-blur-sm p-4 rounded-xl border border-slate-700/50 shadow-2xl max-w-xl hidden md:block">
+                                    <strong class="text-white text-sm font-bold block mb-1"><i class="fas fa-info-circle text-indigo-400 mr-2"></i>Tool Summary (Offline Reference)</strong>
+                                    <p class="text-xs text-slate-300 leading-relaxed">This roadmap organizes hundreds of certifications by domain (Security Operations, IAM, Engineering, etc.) and ranks them from Novice to Expert. Foundational certs are broad, while advanced certs are highly specialized.</p>
+                                </div>
+                                <div class="shrink-0 pointer-events-auto">
+                                    <a href="https://pauljerimy.com/security-certification-roadmap/" target="_blank" class="bg-slate-900/90 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-2xl border border-indigo-500/50 hover:bg-slate-950 hover:border-indigo-400 transition-all flex items-center gap-3 text-sm font-bold">
+                                        <i class="fas fa-external-link-alt text-indigo-400"></i> Open Full Map
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1623,19 +1664,30 @@
                         <h3 class="text-xl font-bold text-white tracking-tight"><i class="fas fa-project-diagram text-cyan-400 mr-3"></i>Interactive Career Roadmap</h3>
                         <span class="text-xs font-mono font-bold text-slate-500 bg-slate-950/50 px-3 py-1 rounded-md border border-slate-800">Powered by CyberSeek</span>
                     </div>
-                    <div class="h-[calc(100%-75px)] w-full bg-[#f8fafc]">
+                    <div class="h-[calc(100%-75px)] w-full bg-[#f8fafc] relative z-10">
                         <iframe src="https://www.cyberseek.org/pathway.html" class="w-full h-full border-none" title="CyberSeek Certification Roadmap"></iframe>
                     </div>
-                    <div class="absolute bottom-6 right-6 z-20 pointer-events-none">
-                        <a href="https://www.cyberseek.org/pathway.html" target="_blank" class="pointer-events-auto bg-slate-900/90 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-2xl border border-cyan-500/50 hover:bg-slate-950 hover:border-cyan-400 transition-all flex items-center gap-3 text-sm font-bold">
-                            <i class="fas fa-external-link-alt text-cyan-400"></i> Launch Full Roadmap
-                        </a>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent z-20 flex justify-between items-end pointer-events-none">
+                        <div class="pointer-events-auto bg-slate-900/95 backdrop-blur-sm p-4 rounded-xl border border-slate-700/50 shadow-2xl max-w-xl hidden md:block">
+                            <strong class="text-white text-sm font-bold block mb-1"><i class="fas fa-info-circle text-cyan-400 mr-2"></i>Tool Summary (Offline Reference)</strong>
+                            <p class="text-xs text-slate-300 leading-relaxed">This pathway maps out entry-level feeder roles and shows how they transition into core cybersecurity positions (like Cyber Defense Analyst or Pen Tester), displaying average salaries and required skills.</p>
+                        </div>
+                        <div class="shrink-0 pointer-events-auto">
+                            <a href="https://www.cyberseek.org/pathway.html" target="_blank" class="bg-slate-900/90 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-2xl border border-cyan-500/50 hover:bg-slate-950 hover:border-cyan-400 transition-all flex items-center gap-3 text-sm font-bold">
+                                <i class="fas fa-external-link-alt text-cyan-400"></i> Launch Full Roadmap
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Student Mini Activity -->
                 <div class="mt-16 glass-panel p-8 rounded-3xl mb-16 border border-emerald-500/30 shadow-xl">
-                    <h3 class="text-2xl font-bold text-white mb-4"><i class="fas fa-search text-emerald-400 mr-3"></i>Activity: Research Certifications for Your Target Role</h3>
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight"><i class="fas fa-search text-emerald-400 mr-3"></i>Activity: Research Certifications for Your Target Role</h3>
+                        <button onclick="window.print()" class="shrink-0 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-600 hover:border-emerald-500/50 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-emerald-400"></i> Download Worksheet (PDF)
+                        </button>
+                    </div>
                     <div class="space-y-3 text-slate-300 text-sm mb-6 leading-relaxed">
                         <p>Use the CyberSeek Certifications Tool at <a href="https://www.cyberseek.org/certifications.html" target="_blank" class="text-emerald-400 hover:underline">cyberseek.org/certifications.html</a> to see which certifications are most requested for common cybersecurity roles.</p>
                         <p>Open the Security Certification Roadmap (<a href="https://pauljerimy.com/security-certification-roadmap/" target="_blank" class="text-emerald-400 hover:underline">pauljerimy.com</a>) and/or the interactive GitHub version (<a href="https://github.com/PaulJerimy/SecCertRoadmap" target="_blank" class="text-emerald-400 hover:underline">github.com</a>).</p>
@@ -1668,19 +1720,19 @@
                 <!-- Added MVCC Certification Explorer -->
                 <div class="mt-16 mb-16">
                     <div class="mb-8">
-                        <h3 class="text-2xl font-bold text-white mb-4 tracking-tight"><i class="fas fa-search-plus text-emerald-400 mr-3"></i>Certification Explorer Tool</h3>
-                        <p class="text-slate-400 text-base leading-relaxed max-w-4xl">
-                            To successfully navigate the complex ecosystem of cybersecurity credentials, use this interactive explorer. By categorizing exams across distinct difficulty tiers and domains, this tool allows you to systematically scaffold your credentials. Filter by <strong>Difficulty Level</strong>, <strong>Knowledge Domain</strong>, and <strong>Vendor</strong> to map the exact certifications you need to transition from a beginner to an expert in your chosen pathway.
-                        </p>
-                    </div>
-                    <div class="glass-panel rounded-3xl overflow-hidden relative w-full h-[850px] shadow-2xl border-slate-700/50 p-2">
-                        <div class="bg-slate-950 rounded-2xl w-full h-full overflow-hidden border border-slate-800/80">
-                            <iframe src="https://sands-mvcc.github.io/MVCC/cybercerts.html" class="w-full h-full border-none" title="Certification Explorer"></iframe>
-                        </div>
-                        <div class="absolute bottom-8 right-8 z-20 pointer-events-none">
-                            <a href="https://sands-mvcc.github.io/MVCC/cybercerts.html" target="_blank" class="pointer-events-auto bg-slate-900/90 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-2xl border border-emerald-500/50 hover:bg-slate-950 hover:border-emerald-400 transition-all flex items-center gap-3 text-sm font-bold">
-                                <i class="fas fa-external-link-alt text-emerald-400"></i> Open Explorer in New Window
-                            </a>
+                        <div class="bg-slate-950 rounded-2xl w-full h-full overflow-hidden border border-slate-800/80 relative">
+                            <iframe src="https://sands-mvcc.github.io/MVCC/cybercerts.html" class="w-full h-full border-none relative z-10" title="Certification Explorer"></iframe>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent z-20 flex justify-between items-end pointer-events-none">
+                                <div class="pointer-events-auto bg-slate-900/95 backdrop-blur-sm p-4 rounded-xl border border-slate-700/50 shadow-2xl max-w-xl hidden md:block">
+                                    <strong class="text-white text-sm font-bold block mb-1"><i class="fas fa-info-circle text-emerald-400 mr-2"></i>Tool Summary (Offline Reference)</strong>
+                                    <p class="text-xs text-slate-300 leading-relaxed">This database categorizes certifications across difficulty tiers and domains, allowing you to systematically filter and scaffold the credentials needed for specific cyber pathways.</p>
+                                </div>
+                                <div class="shrink-0 pointer-events-auto">
+                                    <a href="https://sands-mvcc.github.io/MVCC/cybercerts.html" target="_blank" class="bg-slate-900/90 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-2xl border border-emerald-500/50 hover:bg-slate-950 hover:border-emerald-400 transition-all flex items-center gap-3 text-sm font-bold">
+                                        <i class="fas fa-external-link-alt text-emerald-400"></i> Open Explorer in New Window
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1932,7 +1984,7 @@
 
                     <div class="bg-slate-900 border border-slate-700 rounded-xl p-4">
                         <strong class="text-cyan-400 text-xs uppercase tracking-widest font-mono block mb-1">Advisor Note</strong>
-                        <p class="text-slate-400 text-sm italic">"Encourage students interested in cyber to choose dual credit or dual enrollment classes that align with IT/cyber pathways (for example, Intro to IT, networking, programming) when available."</p>
+                        <p class="text-slate-400 text-sm italic">"Encourage students to choose dual credit or dual enrollment classes that align with IT/cyber pathways (for example, Intro to IT, networking, programming) when available."</p>
                     </div>
                 </div>
 
@@ -2029,12 +2081,18 @@
                         </div>
                         <div class="glass-panel p-2 rounded-3xl shadow-xl flex-grow flex flex-col">
                             <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden relative w-full flex-grow min-h-[300px]">
-                                <img src="map.png" alt="CAE Community Map" class="w-full h-full object-cover opacity-80">
-                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent pointer-events-none"></div>
-                                <div class="absolute bottom-6 right-6 z-20 pointer-events-none">
-                                    <a href="https://caecommunity.org/cae-map" target="_blank" class="pointer-events-auto bg-slate-900/90 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-2xl border border-blue-500/50 hover:bg-slate-950 hover:border-blue-400 transition-all flex items-center gap-3 text-sm font-bold">
-                                        <i class="fas fa-external-link-alt text-blue-400"></i> Launch Map
-                                    </a>
+                                <img src="map.png" alt="CAE Community Map" class="w-full h-full object-cover opacity-80 relative z-10">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none z-10"></div>
+                                <div class="absolute bottom-0 left-0 right-0 p-6 z-20 flex justify-between items-end pointer-events-none">
+                                    <div class="pointer-events-auto bg-slate-900/95 backdrop-blur-sm p-4 rounded-xl border border-slate-700/50 shadow-2xl max-w-lg hidden md:block">
+                                        <strong class="text-white text-sm font-bold block mb-1"><i class="fas fa-info-circle text-blue-400 mr-2"></i>Tool Summary (Offline Reference)</strong>
+                                        <p class="text-xs text-slate-300 leading-relaxed">This map visualizes the NCAE-C program, helping you locate vetted college programs specializing in Cyber Defense, Research, or Operations near your students.</p>
+                                    </div>
+                                    <div class="shrink-0 pointer-events-auto">
+                                        <a href="https://caecommunity.org/cae-map" target="_blank" class="bg-slate-900/90 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-2xl border border-blue-500/50 hover:bg-slate-950 hover:border-blue-400 transition-all flex items-center gap-3 text-sm font-bold">
+                                            <i class="fas fa-external-link-alt text-blue-400"></i> Launch Map
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -2043,7 +2101,12 @@
 
                 <!-- Worksheet Mini Activity -->
                 <div class="glass-panel p-8 rounded-3xl mb-16 border border-purple-500/30 shadow-xl">
-                    <h3 class="text-2xl font-bold text-white mb-4"><i class="fas fa-edit text-purple-400 mr-3"></i>Activity: Build Your Cyber Career Pathway Plan</h3>
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight"><i class="fas fa-edit text-purple-400 mr-3"></i>Activity: Build Your Cyber Career Pathway Plan</h3>
+                        <button onclick="window.print()" class="shrink-0 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-600 hover:border-purple-500/50 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-purple-400"></i> Download Worksheet (PDF)
+                        </button>
+                    </div>
                     <p class="text-slate-300 text-sm mb-6 leading-relaxed">
                         Using the steps above, create your own career pathway plan. Fill out the sections below to outline your roadmap.
                     </p>
@@ -2206,7 +2269,12 @@
 
                 <!-- Mini-Activity: Choose your activity -->
                 <div class="glass-panel p-8 rounded-3xl mb-16 border border-emerald-500/30 shadow-xl">
-                    <h3 class="text-2xl font-bold text-white mb-4"><i class="fas fa-edit text-emerald-400 mr-3"></i>Activity: Pick a Cyber Activity to Join This Term</h3>
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
+                        <h3 class="text-2xl font-bold text-white tracking-tight"><i class="fas fa-edit text-emerald-400 mr-3"></i>Activity: Pick a Cyber Activity to Join This Term</h3>
+                        <button onclick="window.print()" class="shrink-0 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-600 hover:border-emerald-500/50 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-emerald-400"></i> Download Worksheet (PDF)
+                        </button>
+                    </div>
                     <p class="text-slate-300 text-sm mb-6 leading-relaxed">
                         Based on your interests and current skill level, choose at least one cyber club or competition to participate in this term. Use the table below to plan your involvement.
                     </p>
@@ -2293,11 +2361,17 @@
                 
                 <div class="glass-panel p-2 rounded-3xl shadow-2xl">
                     <div class="bg-slate-950 rounded-2xl border border-slate-800 overflow-hidden relative w-full h-[850px]">
-                        <iframe src="https://jjirik77.github.io/ccaei/assessment.html" class="w-full h-full border-none" title="Cybersecurity Career Assessment"></iframe>
-                        <div class="absolute bottom-6 right-6 z-20 pointer-events-none">
-                            <a href="https://jjirik77.github.io/ccaei/assessment.html" target="_blank" class="pointer-events-auto bg-slate-900/90 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-2xl border border-purple-500/50 hover:bg-slate-950 hover:border-purple-400 transition-all flex items-center gap-3 text-sm font-bold">
-                                <i class="fas fa-external-link-alt text-purple-400"></i> Open Assessment in New Window
-                            </a>
+                        <iframe src="https://jjirik77.github.io/ccaei/assessment.html" class="w-full h-full border-none relative z-10" title="Cybersecurity Career Assessment"></iframe>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent z-20 flex justify-between items-end pointer-events-none">
+                            <div class="pointer-events-auto bg-slate-900/95 backdrop-blur-sm p-4 rounded-xl border border-slate-700/50 shadow-2xl max-w-xl hidden md:block">
+                                <strong class="text-white text-sm font-bold block mb-1"><i class="fas fa-info-circle text-purple-400 mr-2"></i>Tool Summary (Offline Reference)</strong>
+                                <p class="text-xs text-slate-300 leading-relaxed">This assessment evaluates student interests and natural aptitudes (like solving puzzles, building networks, or managing policy), matching them directly to specific cybersecurity work roles and NICE framework categories.</p>
+                            </div>
+                            <div class="shrink-0 pointer-events-auto">
+                                <a href="https://jjirik77.github.io/ccaei/assessment.html" target="_blank" class="bg-slate-900/90 backdrop-blur-sm text-white px-5 py-3 rounded-xl shadow-2xl border border-purple-500/50 hover:bg-slate-950 hover:border-purple-400 transition-all flex items-center gap-3 text-sm font-bold">
+                                    <i class="fas fa-external-link-alt text-purple-400"></i> Open Assessment in New Window
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2322,6 +2396,27 @@
                 <a id="modal-link" href="#" target="_blank" class="inline-flex items-center px-8 py-4 border border-transparent text-sm font-bold rounded-xl text-slate-950 bg-gradient-to-r from-cyan-500 to-cyan-400 hover:from-cyan-400 hover:to-cyan-300 transition-all w-full justify-center shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 transform hover:-translate-y-0.5">
                     Visit Site <i class="fas fa-arrow-right ml-3"></i>
                 </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Glossary Modal -->
+    <div id="glossary-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden bg-slate-950/80 backdrop-blur-md p-4 transition-opacity duration-300">
+        <div class="bg-slate-900 border border-purple-500/50 rounded-3xl w-full max-w-4xl relative shadow-[0_0_50px_rgba(168,85,247,0.15)] overflow-hidden max-h-[90vh] flex flex-col">
+            <button onclick="closeGlossaryModal()" class="absolute top-5 right-5 text-slate-400 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-full w-10 h-10 flex items-center justify-center transition-all z-10 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+            <div class="p-8 border-b border-slate-800 bg-slate-900/80 backdrop-blur-md z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <h3 class="text-2xl font-bold text-white tracking-tight"><i class="fas fa-book text-purple-400 mr-3"></i>Cybersecurity Glossary</h3>
+                <div class="relative w-full sm:w-64">
+                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500"></i>
+                    <input type="text" id="glossary-search" onkeyup="filterGlossary()" placeholder="Search terms..." class="w-full bg-slate-950 border border-slate-700 rounded-xl py-2 pl-10 pr-4 text-sm text-slate-200 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all placeholder-slate-600">
+                </div>
+            </div>
+            <div class="p-8 overflow-y-auto custom-scroll flex-1 bg-slate-950/30">
+                <div id="glossary-content" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Populated by JS -->
+                </div>
             </div>
         </div>
     </div>
@@ -2351,9 +2446,38 @@
             { id: 'pico', title: 'PicoCTF', subtitle: 'CMU Security Game', desc: 'A free computer security game targeted at middle and high school students, created by security experts at Carnegie Mellon University. Participants must reverse engineer, break, hack, decrypt, or do whatever it takes to solve the challenge.', alignment: 'Operate & Maintain, Protect & Defend', skills: 'Web Exploitation, Cryptography, Binary Exploitation, Forensics', link: 'https://picoctf.com', color: 'border-l-slate-400' }
         ];
 
+        // --- Glossary Data ---
+        const glossaryData = [
+            { term: "AAS", def: "Associate of Applied Science. A 2-year degree designed for immediate entry into the workforce." },
+            { term: "AP", def: "Advanced Placement. High school courses that can grant college credit based on exam scores." },
+            { term: "AS", def: "Associate of Science. A 2-year degree designed to transfer to a 4-year university bachelor's program." },
+            { term: "CAE", def: "Center of Academic Excellence. A designation awarded to college cyber programs by the NSA/DHS." },
+            { term: "CASP+", def: "CompTIA Advanced Security Practitioner. An advanced-level industry certification." },
+            { term: "CC", def: "Certified in Cybersecurity. An entry-level certification from ISC2." },
+            { term: "CEH", def: "Certified Ethical Hacker. An intermediate EC-Council cert focused on offensive techniques." },
+            { term: "CIA Triad", def: "Confidentiality, Integrity, and Availability. The three core goals of cybersecurity." },
+            { term: "CISA", def: "Certified Information Systems Auditor. An ISACA cert focused on audit and governance." },
+            { term: "CISM", def: "Certified Information Security Manager. An ISACA cert focused on enterprise security management." },
+            { term: "CISSP", def: "Certified Information Systems Security Professional. A globally recognized advanced/expert cert by ISC2." },
+            { term: "CND", def: "Certified Network Defender. An EC-Council certification for network protection." },
+            { term: "CTF", def: "Capture The Flag. A cybersecurity competition where participants solve puzzles to find 'flags'." },
+            { term: "CySA+", def: "CompTIA Cybersecurity Analyst. An intermediate defensive (blue team) certification." },
+            { term: "DCWF", def: "DoD Cyber Workforce Framework. The military's framework for categorizing cyber roles." },
+            { term: "GCFA", def: "GIAC Certified Forensic Analyst. An advanced certification for digital forensics and incident response." },
+            { term: "GIAC", def: "Global Information Assurance Certification. Certifications closely aligned with SANS Institute training." },
+            { term: "GRC", def: "Governance, Risk, and Compliance. The policy and management side of cybersecurity." },
+            { term: "GSEC", def: "GIAC Security Essentials. A highly respected foundational security certification." },
+            { term: "ITF+", def: "IT Fundamentals+. CompTIA's most basic, exploratory IT certification." },
+            { term: "NCL", def: "National Cyber League. A popular collegiate and high school cyber competition." },
+            { term: "NICE", def: "National Initiative for Cybersecurity Education. The civilian framework mapping cyber jobs and skills." },
+            { term: "OSINT", def: "Open Source Intelligence. Gathering data from publicly available sources." },
+            { term: "SFS", def: "Scholarship for Service (CyberCorps). A federal program funding degrees in exchange for government work." },
+            { term: "SOC", def: "Security Operations Center. The centralized team/facility that monitors and defends an organization's network." }
+        ];
+
         // --- Render Functions ---
         function renderScholarships() {
-            const container = document.querySelector('#part6 .grid');
+            const container = document.querySelector('#part7 #scholarship-grid-container');
             if(container) {
                 container.innerHTML = scholarshipData.map(item => `
                     <div onclick="openModal(${item.id})" class="glass-panel p-8 rounded-2xl border-l-4 ${item.color} hover:-translate-y-1 hover:shadow-xl transition-all cursor-pointer group duration-300 flex flex-col h-full">
@@ -2368,7 +2492,7 @@
         }
         
         function renderActivities() {
-             const container = document.querySelector('#part8 .grid');
+             const container = document.querySelector('#part9 .grid');
              if(container) {
                  container.innerHTML = activityData.map(item => `
                     <div onclick="openActivityModal('${item.id}')" class="glass-panel p-8 rounded-2xl border-l-4 ${item.color} hover:-translate-y-1 hover:shadow-xl transition-all cursor-pointer group duration-300 flex flex-col h-full">
@@ -2417,6 +2541,44 @@
 
         function closeModal() {
             document.getElementById('scholarship-modal').classList.add('hidden');
+        }
+
+        // --- Glossary Logic ---
+        function renderGlossary(filterText = "") {
+            const container = document.getElementById('glossary-content');
+            if (!container) return;
+            
+            const filtered = glossaryData.filter(item => 
+                item.term.toLowerCase().includes(filterText.toLowerCase()) || 
+                item.def.toLowerCase().includes(filterText.toLowerCase())
+            );
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="col-span-full text-center p-8 text-slate-500 italic">No terms found matching "${filterText}"</div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => `
+                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-xl hover:border-purple-500/30 transition-colors shadow-sm flex flex-col">
+                    <strong class="text-purple-400 font-mono text-sm block mb-1 tracking-wide">${item.term}</strong>
+                    <span class="text-slate-300 text-sm leading-relaxed">${item.def}</span>
+                </div>
+            `).join('');
+        }
+
+        function openGlossaryModal() {
+            document.getElementById('glossary-search').value = '';
+            renderGlossary();
+            document.getElementById('glossary-modal').classList.remove('hidden');
+        }
+
+        function closeGlossaryModal() {
+            document.getElementById('glossary-modal').classList.add('hidden');
+        }
+
+        function filterGlossary() {
+            const text = document.getElementById('glossary-search').value;
+            renderGlossary(text);
         }
 
         // --- CAE Toggle Logic ---
@@ -2667,185 +2829,10 @@
             isaca: { title: "ISACA", color: "text-amber-500", content: "<p class='mb-3 font-medium text-slate-200'>Auditing, Governance, & Management.</p><ul class='space-y-3 mt-4'><li><div class='bg-slate-900 p-3 rounded-lg border border-slate-700'><strong class='text-amber-400 block mb-1'>CISA</strong><span class='text-sm text-slate-400'>Information Systems Auditing.</span></div></li><li><div class='bg-slate-900 p-3 rounded-lg border border-slate-700'><strong class='text-amber-400 block mb-1'>CISM</strong><span class='text-sm text-slate-400'>Information Security Management.</span></div></li></ul>" }
         };
 
-        const degreeData = {
-            aas: `
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="md:col-span-2">
-                        <h3 class="text-3xl font-bold text-white mb-3 tracking-tight">Associate of Applied Science (A.A.S.)</h3>
-                        <p class="text-cyan-400 font-mono text-sm mb-6 uppercase tracking-widest font-semibold">The "Workforce Ready" Degree</p>
-                        <p class="text-slate-300 mb-6 leading-relaxed text-base">Designed for students who want to enter the workforce immediately after two years. The curriculum minimizes general education electives in favor of hands-on technical labs and specific skill acquisition.</p>
-                        <div class="bg-slate-900/80 p-6 rounded-2xl border-l-4 border-l-emerald-500 shadow-inner">
-                            <strong class="text-emerald-400 block mb-2 font-bold tracking-wide uppercase text-sm">Primary Goal</strong>
-                            <p class="text-slate-300">Equip you with the exact technical skills needed for entry-level roles like Network Technician, Help Desk Specialist, or Junior SOC Analyst.</p>
-                        </div>
-                    </div>
-                    <div class="space-y-5">
-                        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-clock text-cyan-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Duration</strong>
-                            <span class="text-sm text-slate-400 font-medium">2 Years (60 Credits)</span>
-                        </div>
-                        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-dollar-sign text-emerald-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Avg. Cost</strong>
-                            <span class="text-sm text-slate-400 font-medium">Low (Community College)</span>
-                        </div>
-                    </div>
-                </div>
-            `,
-            as: `
-                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="md:col-span-2">
-                        <h3 class="text-3xl font-bold text-white mb-3 tracking-tight">Associate of Science (A.S.)</h3>
-                        <p class="text-cyan-400 font-mono text-sm mb-6 uppercase tracking-widest font-semibold">The "Transfer Pathway" Degree</p>
-                        <p class="text-slate-300 mb-6 leading-relaxed text-base">Focuses on building a strong academic foundation in math, science, and general education. Designed specifically to transfer credits to a 4-year university to complete a Bachelor's degree.</p>
-                         <div class="bg-slate-900/80 p-6 rounded-2xl border-l-4 border-l-blue-500 shadow-inner">
-                            <strong class="text-blue-400 block mb-2 font-bold tracking-wide uppercase text-sm">Primary Goal</strong>
-                            <p class="text-slate-300">Complete core requirements (English, Math, basic CS) at a lower cost before transferring to a university for specialized cybersecurity coursework.</p>
-                        </div>
-                    </div>
-                    <div class="space-y-5">
-                        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-exchange-alt text-blue-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Transferability</strong>
-                            <span class="text-sm text-slate-400 font-medium">High (Articulation Agreements)</span>
-                        </div>
-                         <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-book-open text-amber-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Curriculum</strong>
-                            <span class="text-sm text-slate-400 font-medium">Theory & General Ed Heavy</span>
-                        </div>
-                    </div>
-                </div>
-            `,
-            bachelor: `
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="md:col-span-2">
-                        <h3 class="text-3xl font-bold text-white mb-3 tracking-tight">Bachelor's Degree</h3>
-                        <p class="text-cyan-400 font-mono text-sm mb-6 uppercase tracking-widest font-semibold">The Industry Standard</p>
-                        <p class="text-slate-300 mb-6 leading-relaxed text-base">A four-year program providing in-depth knowledge, theory, and extensive career opportunities. Most corporate roles require a Bachelor's degree for advancement.</p>
-                        <div class="grid grid-cols-2 gap-5 mt-6">
-                             <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 hover:border-cyan-500/30 transition-colors">
-                                <strong class="text-cyan-400 block text-base mb-2">B.S. (Science)</strong>
-                                <span class="text-sm text-slate-400 leading-relaxed block">Technical focus: Coding, Network Architecture, Forensics.</span>
-                            </div>
-                            <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 hover:border-purple-500/30 transition-colors">
-                                <strong class="text-purple-400 block text-base mb-2">B.A. (Arts)</strong>
-                                <span class="text-sm text-slate-400 leading-relaxed block">Policy focus: Governance, Law, Management, Compliance.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-5">
-                         <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-briefcase text-purple-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Career Impact</strong>
-                            <span class="text-sm text-slate-400 font-medium">Significantly higher lifetime earnings.</span>
-                        </div>
-                        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-clock text-cyan-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Duration</strong>
-                            <span class="text-sm text-slate-400 font-medium">4 Years (120 Credits)</span>
-                        </div>
-                    </div>
-                </div>
-            `,
-            master: `
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="md:col-span-2">
-                        <h3 class="text-3xl font-bold text-white mb-3 tracking-tight">Master's Degree</h3>
-                        <p class="text-cyan-400 font-mono text-sm mb-6 uppercase tracking-widest font-semibold">Advanced Specialization & Leadership</p>
-                        <p class="text-slate-300 mb-6 leading-relaxed text-base">Advanced level education for specialized expertise or management roles. Often pursued by professionals with a few years of experience.</p>
-                         <ul class="space-y-4 bg-slate-900/80 p-6 rounded-2xl border border-slate-800">
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mt-1 mr-3"></i><span class="text-slate-300"><strong class="text-white">M.S. Cybersecurity:</strong> Technical deep dive (e.g., Cryptography, Reverse Engineering).</span></li>
-                            <li class="flex items-start"><i class="fas fa-check text-indigo-400 mt-1 mr-3"></i><span class="text-slate-300"><strong class="text-white">MBA (InfoSec focus):</strong> Business risk, C-suite preparation (CISO track).</span></li>
-                        </ul>
-                    </div>
-                    <div class="space-y-5">
-                         <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-user-tie text-indigo-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Target Roles</strong>
-                            <span class="text-sm text-slate-400 font-medium">Security Architect, CISO, Director, Consultant.</span>
-                        </div>
-                        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-clock text-cyan-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Duration</strong>
-                            <span class="text-sm text-slate-400 font-medium">1-2 Years (30-36 Credits)</span>
-                        </div>
-                    </div>
-                </div>
-            `,
-            phd: `
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="md:col-span-2">
-                        <h3 class="text-3xl font-bold text-white mb-3 tracking-tight">Doctoral (PhD)</h3>
-                        <p class="text-cyan-400 font-mono text-sm mb-6 uppercase tracking-widest font-semibold">Research & Authoritative Knowledge</p>
-                        <p class="text-slate-300 mb-6 leading-relaxed text-base">The highest level of education. Focused on creating *new* knowledge through rigorous research, rather than just learning existing skills.</p>
-                        <div class="bg-slate-900/80 p-6 rounded-2xl border-l-4 border-l-rose-500 shadow-inner">
-                            <strong class="text-rose-400 block mb-2 font-bold tracking-wide uppercase text-sm">Is this for me?</strong>
-                            <p class="text-slate-300">Only if you want to be a University Professor, a Lead Researcher at a think-tank, or a high-level Policy Advisor.</p>
-                        </div>
-                    </div>
-                     <div class="space-y-5">
-                         <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-scroll text-amber-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Requirement</strong>
-                            <span class="text-sm text-slate-400 font-medium">Dissertation / Original Research</span>
-                        </div>
-                        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-clock text-cyan-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Duration</strong>
-                            <span class="text-sm text-slate-400 font-medium">3-7 Years</span>
-                        </div>
-                    </div>
-                </div>
-            `,
-            cert: `
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="md:col-span-2">
-                        <h3 class="text-3xl font-bold text-white mb-3 tracking-tight">Academic Certificates</h3>
-                        <p class="text-cyan-400 font-mono text-sm mb-6 uppercase tracking-widest font-semibold">Targeted Upskilling & Pivoting</p>
-                        <p class="text-slate-300 mb-6 leading-relaxed text-base">Not to be confused with industry certifications (like Security+). These are credit-bearing academic programs offered by colleges that are shorter than a degree.</p>
-                         <div class="grid grid-cols-2 gap-5 mt-6">
-                             <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 hover:border-emerald-500/30 transition-colors">
-                                <strong class="text-emerald-400 block text-base mb-2">Undergraduate Cert</strong>
-                                <span class="text-sm text-slate-400 leading-relaxed block">For beginners adding cyber skills to another major.</span>
-                            </div>
-                            <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 hover:border-purple-500/30 transition-colors">
-                                <strong class="text-purple-400 block text-base mb-2">Graduate Cert</strong>
-                                <span class="text-sm text-slate-400 leading-relaxed block">For professionals with a degree who want to pivot into cyber.</span>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="space-y-5">
-                         <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-bullseye text-rose-500 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Focus</strong>
-                            <span class="text-sm text-slate-400 font-medium">Niche skills (e.g., "Digital Forensics Certificate").</span>
-                        </div>
-                        <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-md">
-                            <i class="fas fa-clock text-cyan-400 mb-3 text-2xl"></i>
-                            <strong class="block text-white text-base mb-1">Duration</strong>
-                            <span class="text-sm text-slate-400 font-medium">6-12 Months (12-18 Credits)</span>
-                        </div>
-                    </div>
-                </div>
-            `
-        };
-
         function showCert(key) {
             const data = certData[key];
             document.getElementById('cert-title').innerHTML = `<span class="${data.color}">${data.title}</span>`;
             document.getElementById('cert-body').innerHTML = data.content;
-        }
-
-        function switchTab(tab, btn) {
-            document.getElementById('credential-content').innerHTML = degreeData[tab];
-            document.querySelectorAll('#credential-tabs button').forEach(b => {
-                b.classList.remove('bg-cyan-600/20', 'border-cyan-500/50', 'text-cyan-400', 'shadow-[0_0_10px_rgba(6,182,212,0.2)]');
-                b.classList.add('bg-slate-800/80', 'border-slate-700', 'text-slate-300', 'shadow-sm');
-            });
-            btn.classList.remove('bg-slate-800/80', 'border-slate-700', 'text-slate-300', 'shadow-sm');
-            btn.classList.add('bg-cyan-600/20', 'border-cyan-500/50', 'text-cyan-400', 'shadow-[0_0_10px_rgba(6,182,212,0.2)]');
         }
 
         // --- Load Nice Roles ---
