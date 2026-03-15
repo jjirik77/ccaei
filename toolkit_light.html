@@ -130,6 +130,9 @@
         @keyframes drawLine {
             to { stroke-dashoffset: 0; }
         }
+        @keyframes fade-in {
+            to { opacity: 1; }
+        }
         .bar-animate {
             animation: growBar 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
         }
@@ -375,24 +378,23 @@
                 </div>
 
                 <!-- Advisor Overview Blurb -->
-                <div class="advisor-note-box rounded-2xl p-6 mb-12">
-                    <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-2"><i class="fas fa-info-circle mr-2"></i>Section Overview</strong>
-                    <p class="text-slate-700 text-sm italic leading-relaxed">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-12 shadow-sm">
+                    <p class="text-slate-600 text-sm italic leading-relaxed border-l-4 border-slate-300 pl-4">
                         “This section helps advisors and counselors explain what cybersecurity is, why it matters in students’ daily lives, and how the cybersecurity workforce is structured and growing. Use it to spark interest and answer first-order questions like ‘What do cyber people actually do?’ and ‘Are there really jobs in this?’”
                     </p>
                 </div>
 
                 <!-- Advisor Callout Box -->
-                <div class="mb-16 advisor-note-box rounded-2xl p-8 relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-6 opacity-5"><i class="fas fa-lightbulb text-8xl text-pink-600"></i></div>
+                <div class="mb-16 bg-gradient-to-r from-indigo-50 to-white border border-indigo-200 rounded-2xl p-8 shadow-md relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-6 opacity-5"><i class="fas fa-lightbulb text-8xl text-indigo-600"></i></div>
                     <div class="relative z-10">
-                        <h3 class="text-xl font-bold advisor-note-label mb-4 tracking-tight uppercase text-sm font-mono"><i class="fas fa-chalkboard-teacher mr-2"></i>How to use this section</h3>
+                        <h3 class="text-xl font-bold text-indigo-700 mb-4 tracking-tight uppercase text-sm font-mono"><i class="fas fa-chalkboard-teacher mr-2"></i>How to use this section</h3>
                         <p class="text-slate-700 mb-4 font-medium">In a 5–10 minute conversation, use this section to:</p>
-                        <ul class="space-y-3 text-slate-600">
-                            <li class="flex items-start"><i class="fas fa-check-circle text-pink-500 mt-1 mr-3 text-sm"></i><span>Offer a clear, simple definition of cybersecurity.</span></li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-pink-500 mt-1 mr-3 text-sm"></i><span>Connect cyber work to everyday life (phones, games, banking, school).</span></li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-pink-500 mt-1 mr-3 text-sm"></i><span>Show that cyber jobs exist across ALL sectors—not just tech companies.</span></li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-pink-500 mt-1 mr-3 text-sm"></i><span>Reassure students that the field is growing and needs people like them.</span></li>
+                        <ul class="space-y-3 text-slate-700">
+                            <li class="flex items-start"><i class="fas fa-check-circle text-indigo-600 mt-1 mr-3 text-sm"></i><span>Offer a clear, simple definition of cybersecurity.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-indigo-600 mt-1 mr-3 text-sm"></i><span>Connect cyber work to everyday life (phones, games, banking, school).</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-indigo-600 mt-1 mr-3 text-sm"></i><span>Show that cyber jobs exist across ALL sectors—not just tech companies.</span></li>
+                            <li class="flex items-start"><i class="fas fa-check-circle text-indigo-600 mt-1 mr-3 text-sm"></i><span>Reassure students that the field is growing and needs people like them.</span></li>
                         </ul>
                     </div>
                 </div>
@@ -401,21 +403,21 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
                     <!-- What is Cyber Panel -->
                     <div class="glass-panel p-8 rounded-2xl flex flex-col justify-center relative overflow-hidden">
-                        <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-shield-alt text-[250px] text-slate-400"></i></div>
+                        <div class="absolute -right-10 -bottom-10 opacity-5 text-slate-400"><i class="fas fa-shield-alt text-[250px]"></i></div>
                         <h3 class="text-2xl font-bold text-slate-900 mb-6 tracking-tight relative z-10">What is cybersecurity?</h3>
                         <div class="space-y-6 relative z-10">
-                            <p class="text-slate-700 text-lg leading-relaxed font-light">
+                            <p class="text-slate-600 text-lg leading-relaxed font-light">
                                 <strong class="text-slate-900 font-semibold">Cybersecurity is the art of protecting information</strong>, information systems, networks, devices, and data from unauthorized access, damage, or misuse.
                             </p>
-                            <p class="text-slate-600 text-base leading-relaxed">
+                            <p class="text-slate-500 text-base leading-relaxed">
                                 Cybersecurity professionals make sure that the data and systems we rely on every day remain safe, accurate, and available when people need them.
                             </p>
                         </div>
                         
                         <!-- Mini Script Box inside Panel -->
-                        <div class="mt-8 advisor-note-box p-4 rounded-xl">
-                            <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-2"><i class="fas fa-comment-dots mr-2"></i>Script you can use</strong>
-                            <p class="text-slate-700 text-sm italic">
+                        <div class="mt-8 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                            <strong class="text-amber-700 text-xs uppercase tracking-widest font-mono block mb-2"><i class="fas fa-comment-dots mr-2"></i>Script you can use</strong>
+                            <p class="text-slate-600 text-sm italic">
                                 "Cybersecurity is like digital safety and security. Just like we lock doors and protect valuables in the physical world, cybersecurity pros lock down data and systems in the digital world so people and organizations can trust and use them."
                             </p>
                         </div>
@@ -433,7 +435,7 @@
                             
                             <!-- Nodes -->
                             <div class="cia-node cia-node-c group">
-                                <i class="fas fa-user-secret text-2xl text-cyan-600 mb-2"></i>
+                                <i class="fas fa-user-secret text-2xl text-cyan-700 mb-2"></i>
                                 <strong class="text-slate-900 text-sm">Confidentiality</strong>
                                 <!-- Tooltip -->
                                 <div class="absolute -top-16 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
@@ -442,7 +444,7 @@
                             </div>
                             
                             <div class="cia-node cia-node-i group">
-                                <i class="fas fa-check-double text-2xl text-emerald-600 mb-2"></i>
+                                <i class="fas fa-check-double text-2xl text-emerald-700 mb-2"></i>
                                 <strong class="text-slate-900 text-sm">Integrity</strong>
                                 <!-- Tooltip -->
                                 <div class="absolute -bottom-16 -left-10 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
@@ -451,7 +453,7 @@
                             </div>
                             
                             <div class="cia-node cia-node-a group">
-                                <i class="fas fa-server text-2xl text-purple-600 mb-2"></i>
+                                <i class="fas fa-server text-2xl text-purple-700 mb-2"></i>
                                 <strong class="text-slate-900 text-sm">Availability</strong>
                                 <!-- Tooltip -->
                                 <div class="absolute -bottom-16 -right-10 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
@@ -459,7 +461,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-center text-xs text-slate-400 mt-6 font-medium uppercase tracking-widest">Hover over circles for definitions</p>
+                        <p class="text-center text-xs text-slate-500 mt-6 font-medium uppercase tracking-widest">Hover over circles for definitions</p>
                     </div>
                 </div>
 
@@ -513,10 +515,9 @@
                             <p class="text-slate-900 text-base font-medium mb-3">
                                 "Think about how many of these you use in a single day—your phone, your bank app, your favorite game. Cybersecurity professionals help make all of that possible and safe."
                             </p>
-                            <div class="advisor-note-box p-4 mt-4">
-                                <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-1">Advisor Prompt</strong>
-                                <p class="text-slate-700 text-sm italic">"Ask students: 'Which of these areas—games, healthcare, money, transportation—interests you most? Cybersecurity has roles in all of them.'"</p>
-                            </div>
+                            <p class="text-cyan-700 text-sm font-bold tracking-wide uppercase font-mono">
+                                Advisor Prompt: <span class="text-slate-600 font-normal normal-case">"Ask students: 'Which of these areas—games, healthcare, money, transportation—interests you most? Cybersecurity has roles in all of them.'"</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -531,9 +532,9 @@
                             <p>Cybersecurity roles are often fast-paced, problem-solving jobs with competitive median salaries and strong long-term demand.</p>
                         </div>
                         
-                        <div class="mt-8 advisor-note-box p-5">
-                            <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-2">How to talk about job demand</strong>
-                            <p class="text-slate-700 text-sm italic">
+                        <div class="mt-8 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                            <strong class="text-emerald-700 text-xs uppercase tracking-widest font-mono block mb-2">How to talk about job demand</strong>
+                            <p class="text-slate-600 text-sm italic">
                                 "You can say: 'Cybersecurity is one of the few fields where there are many more jobs than people to fill them. That means students with the right training can find opportunities in lots of different industries and locations.'"
                             </p>
                         </div>
@@ -564,7 +565,6 @@
                             <div class="w-full border-t border-slate-200 mb-[25%] border-dashed"></div>
                             <div class="w-full border-t border-slate-200 mb-[25%] border-dashed"></div>
                         </div>
-                        <style>@keyframes fade-in { to { opacity: 1; } }</style>
                     </div>
                 </div>
 
@@ -590,10 +590,7 @@
                                 </ul>
                             </div>
                             
-                            <div class="advisor-note-box p-3 mb-4">
-                                <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-1">Advisor Hint</strong>
-                                <p class="text-xs text-slate-700 italic">Use these profiles as visual aids during 1-1 conversations or classroom visits; they help students picture what cyber professionals actually do day to day.</p>
-                            </div>
+                            <p class="text-xs text-slate-500 italic mb-4 border-l-2 border-slate-300 pl-2">Advisor hint: Use these profiles as visual aids during 1-1 conversations or classroom visits; they help students picture what cyber professionals actually do day to day.</p>
                             
                             <a href="https://cyber.org/career-exploration/cyber-career-profiles" target="_blank" class="mt-auto block text-center bg-white hover:bg-slate-50 text-cyan-700 text-sm font-bold py-3 rounded-lg transition-colors border border-slate-200 shadow-sm">
                                 Get Profiles at CYBER.ORG <i class="fas fa-external-link-alt ml-1 text-xs"></i>
@@ -616,10 +613,7 @@
                                 <h4 class="text-lg font-bold text-slate-900 mb-2"><i class="fas fa-map-marked-alt text-rose-700 mr-2"></i>See real jobs with CyberSeek</h4>
                                 <p class="text-sm text-slate-600 mb-4">The Career Pathway tool connects jobs to the NICE framework. The Heat Map explores demand by state/metro area.</p>
                                 
-                                <div class="advisor-note-box p-3 mb-4">
-                                    <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-1">Advisor Idea</strong>
-                                    <p class="text-xs text-slate-700 italic">In group sessions, project the Heat Map and explore your state or metro area together so students can see local demand.</p>
-                                </div>
+                                <p class="text-xs text-slate-500 italic mb-4 border-l-2 border-slate-300 pl-2">Advisor idea: In group sessions, project the Heat Map and explore your state or metro area together so students can see local demand.</p>
                                 
                                 <div class="flex gap-2 mt-auto">
                                     <a href="https://www.cyberseek.org/pathway.html" target="_blank" class="flex-1 text-center bg-white hover:bg-slate-50 text-rose-700 text-xs font-bold py-2 rounded transition-colors border border-slate-200 shadow-sm">Pathway Tool</a>
@@ -631,27 +625,27 @@
                 </div>
 
                 <!-- Advisor Micro-Scripts -->
-                <div class="advisor-script-box rounded-2xl p-8">
+                <div class="bg-slate-50/80 border border-slate-300 rounded-2xl p-8 shadow-sm">
                     <h3 class="text-xl font-bold text-slate-900 mb-6 tracking-tight flex items-center">
-                        <i class="fas fa-comments advisor-note-label mr-3"></i> For Advisors: Micro-Scripts
+                        <i class="fas fa-comments text-cyan-700 mr-3"></i> For Advisors: Micro-Scripts
                     </h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <h4 class="font-bold advisor-note-label mb-3 border-b border-pink-200 pb-2">Script A – 2-minute hallway conversation</h4>
-                            <p class="text-sm text-slate-700 leading-relaxed italic">
+                            <h4 class="font-bold text-cyan-700 mb-3 border-b border-slate-200 pb-2">Script A – 2-minute hallway conversation</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed italic">
                                 "Do you use your phone for games, social media, or banking? All of that only works if it's secure. Cybersecurity is the field that protects our digital world—everything from hospital records to video games. There are thousands of open cyber jobs, and they exist in every industry. If you like solving problems, working with technology, or helping people, cyber could be a great fit. Want to see what some of these jobs look like?"
                             </p>
                         </div>
                         
                         <div>
-                            <h4 class="font-bold advisor-note-label mb-3 border-b border-pink-200 pb-2">Script B – 10-minute advising appointment</h4>
-                            <div class="space-y-4 text-sm text-slate-700 leading-relaxed italic">
-                                <p><strong class="text-slate-600 not-italic block text-xs uppercase mb-1">Start with interests:</strong> "Tell me about classes or activities you enjoy. Do you like working with technology, solving puzzles, or helping others?"</p>
-                                <p><strong class="text-slate-600 not-italic block text-xs uppercase mb-1">Connect to cyber:</strong> "Those interests show up a lot in cybersecurity roles. For example, if you enjoy puzzles or games, you might like roles that hunt for vulnerabilities. If you like helping people or care about fairness, you might enjoy protecting hospitals, schools, or small businesses from cyber-attacks."</p>
-                                <p><strong class="text-slate-600 not-italic block text-xs uppercase mb-1">Show real jobs:</strong> "Let's look at a couple of real job types using CyberSeek and CYBER.ORG profiles so you can see what people actually do and how much demand there is."</p>
+                            <h4 class="font-bold text-cyan-700 mb-3 border-b border-slate-200 pb-2">Script B – 10-minute advising appointment</h4>
+                            <div class="space-y-4 text-sm text-slate-600 leading-relaxed italic">
+                                <p><strong class="text-slate-500 not-italic block text-xs uppercase mb-1">Start with interests:</strong> "Tell me about classes or activities you enjoy. Do you like working with technology, solving puzzles, or helping others?"</p>
+                                <p><strong class="text-slate-500 not-italic block text-xs uppercase mb-1">Connect to cyber:</strong> "Those interests show up a lot in cybersecurity roles. For example, if you enjoy puzzles or games, you might like roles that hunt for vulnerabilities. If you like helping people or care about fairness, you might enjoy protecting hospitals, schools, or small businesses from cyber-attacks."</p>
+                                <p><strong class="text-slate-500 not-italic block text-xs uppercase mb-1">Show real jobs:</strong> "Let's look at a couple of real job types using CyberSeek and CYBER.ORG profiles so you can see what people actually do and how much demand there is."</p>
                                 <div>
-                                    <strong class="text-slate-600 not-italic block text-xs uppercase mb-1">Close with next steps:</strong>
+                                    <strong class="text-slate-500 not-italic block text-xs uppercase mb-1">Close with next steps:</strong>
                                     "Based on what you've shared, a simple next step could be: exploring one Cyber Career Profile, trying a beginner challenge on TryCyber, or talking with your teacher/advisor about a technology or cybersecurity class you could take next term."
                                 </div>
                             </div>
@@ -722,9 +716,9 @@
                             <p>Cybersecurity professionals safeguard data and digital systems that keep communities running, from small businesses and schools to hospitals and local government services.</p>
                             <p>By protecting people's information and the systems they rely on, cyber professionals help families, friends, and neighbors stay safe in an increasingly connected world.</p>
                         </div>
-                        <div class="advisor-note-box p-4 relative z-10">
-                            <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-1">Advisor Framing</strong>
-                            <p class="text-slate-700 text-sm italic">"You can say: 'If you care about helping people and keeping them safe, cybersecurity lets you protect entire communities—not just one person at a time.'"</p>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4 relative z-10 shadow-sm">
+                            <strong class="text-emerald-700 text-xs uppercase tracking-widest font-mono block mb-1">Advisor Framing</strong>
+                            <p class="text-slate-600 text-sm italic">"You can say: 'If you care about helping people and keeping them safe, cybersecurity lets you protect entire communities—not just one person at a time.'"</p>
                         </div>
                     </div>
 
@@ -737,9 +731,9 @@
                             <p>They help protect a nation's sensitive information and critical infrastructure, including energy systems, transportation networks, and defense operations.</p>
                             <p>For students interested in public service or patriotic careers, cybersecurity offers roles in government agencies, military organizations, and other public institutions.</p>
                         </div>
-                        <div class="advisor-note-box p-4 relative z-10">
-                            <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-1">Advisor Prompt</strong>
-                            <p class="text-slate-700 text-sm italic">"When talking with students who express interest in military, law enforcement, or public service, highlight cyber roles in organizations like the Department of Defense, intelligence agencies, and government."</p>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4 relative z-10 shadow-sm">
+                            <strong class="text-blue-700 text-xs uppercase tracking-widest font-mono block mb-1">Advisor Prompt</strong>
+                            <p class="text-slate-600 text-sm italic">"When talking with students who express interest in military, law enforcement, or public service, highlight cyber roles in organizations like the Department of Defense, intelligence agencies, and government."</p>
                         </div>
                     </div>
 
@@ -752,9 +746,9 @@
                             <p>Because of this gap, students who gain cybersecurity skills can expect abundant job opportunities and a relatively secure career path.</p>
                             <p>Cyber roles exist at many levels—from technician and analyst positions requiring certificates or associate degrees to advanced roles that build on bachelor's and graduate education.</p>
                         </div>
-                        <div class="advisor-note-box p-4 relative z-10">
-                            <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-1">Advisor Usage</strong>
-                            <p class="text-slate-700 text-sm italic">"Use local data from the CyberSeek Heat Map (Section 1) to show students that there are real openings in your state and nearby metro areas."</p>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4 relative z-10 shadow-sm">
+                            <strong class="text-amber-700 text-xs uppercase tracking-widest font-mono block mb-1">Advisor Usage</strong>
+                            <p class="text-slate-600 text-sm italic">"Use local data from the CyberSeek Heat Map (Section 1) to show students that there are real openings in your state and nearby metro areas."</p>
                         </div>
                     </div>
 
@@ -767,9 +761,9 @@
                             <p>Across a wide range of roles, cybersecurity professionals often earn compensation that is above the average for many other occupations.</p>
                             <p>As students gain experience and additional credentials, their earning potential and advancement opportunities typically increase.</p>
                         </div>
-                        <div class="advisor-note-box p-4 relative z-10">
-                            <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-1">Advisor Framing</strong>
-                            <p class="text-slate-700 text-sm italic">"You can position this as: 'Cybersecurity can offer both meaningful work and strong financial stability, especially when combined with the right education and certifications.'"</p>
+                        <div class="bg-white border border-slate-200 rounded-xl p-4 relative z-10 shadow-sm">
+                            <strong class="text-rose-700 text-xs uppercase tracking-widest font-mono block mb-1">Advisor Framing</strong>
+                            <p class="text-slate-600 text-sm italic">"You can position this as: 'Cybersecurity can offer both meaningful work and strong financial stability, especially when combined with the right education and certifications.'"</p>
                         </div>
                     </div>
 
@@ -784,9 +778,9 @@
                             <p>The threat landscape is constantly changing, which means cyber professionals must continually learn new tools, techniques, and technologies.</p>
                             <p>This makes cybersecurity a strong fit for students who enjoy challenges, creativity, and innovation rather than doing the same task day after day.</p>
                         </div>
-                        <div class="advisor-note-box p-5 flex flex-col justify-center">
-                            <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-2">Advisor Tips</strong>
-                            <p class="text-slate-700 text-sm italic">Encourage students who say they "get bored easily" or "like a challenge" to consider cyber career paths, emphasizing ongoing learning and variety.</p>
+                        <div class="bg-white border border-slate-200 rounded-xl p-5 flex flex-col justify-center shadow-sm">
+                            <strong class="text-purple-700 text-xs uppercase tracking-widest font-mono block mb-2">Advisor Tips</strong>
+                            <p class="text-slate-600 text-sm italic">Encourage students who say they "get bored easily" or "like a challenge" to consider cyber career paths, emphasizing ongoing learning and variety.</p>
                         </div>
                     </div>
                 </div>
@@ -806,34 +800,34 @@
                         </ul>
                     </div>
 
-                    <div class="advisor-note-box p-4 relative z-10">
-                        <strong class="advisor-note-label text-sm block mb-1">Advisor Instructions:</strong>
-                        <p class="text-slate-700 text-xs leading-relaxed">Ask students to answer these questions (on their own or in a group). If they answer 'yes' to several, suggest they continue to Sections 3 and 4 to learn about credentials and specific cybersecurity majors and roles.</p>
+                    <div class="bg-white border-l-4 border-cyan-500 rounded-r-xl p-4 relative z-10 shadow-sm">
+                        <strong class="text-slate-900 text-sm block mb-1">Advisor Instructions:</strong>
+                        <p class="text-slate-600 text-xs leading-relaxed">Ask students to answer these questions (on their own or in a group). If they answer 'yes' to several, suggest they continue to Sections 3 and 4 to learn about credentials and specific cybersecurity majors and roles.</p>
                     </div>
                 </div>
 
                 <!-- Advisor Micro-Scripts -->
-                <div class="advisor-script-box rounded-2xl p-8">
+                <div class="bg-slate-50/80 border border-slate-300 rounded-2xl p-8 shadow-sm">
                     <h3 class="text-xl font-bold text-slate-900 mb-6 tracking-tight flex items-center">
-                        <i class="fas fa-comments advisor-note-label mr-3"></i> For Advisors: Micro-Scripts
+                        <i class="fas fa-comments text-cyan-700 mr-3"></i> For Advisors: Micro-Scripts
                     </h3>
                     
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div>
-                            <h4 class="font-bold advisor-note-label mb-3 border-b border-pink-200 pb-2 text-sm">Script C: Meaning & Impact</h4>
-                            <p class="text-sm text-slate-700 leading-relaxed italic">
+                            <h4 class="font-bold text-cyan-700 mb-3 border-b border-slate-200 pb-2 text-sm">Script C: Meaning & Impact</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed italic">
                                 "If you want a job that matters, cybersecurity lets you protect people's information, local businesses, hospitals, and even national systems. It's a way to serve your community and your country using technology."
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold advisor-note-label mb-3 border-b border-pink-200 pb-2 text-sm">Script D: Opportunity & Pay</h4>
-                            <p class="text-sm text-slate-700 leading-relaxed italic">
+                            <h4 class="font-bold text-cyan-700 mb-3 border-b border-slate-200 pb-2 text-sm">Script D: Opportunity & Pay</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed italic">
                                 "Cybersecurity is one of the rare fields where there are more open jobs than trained people. That means strong job prospects and usually good pay, especially as you gain skills and experience."
                             </p>
                         </div>
                         <div>
-                            <h4 class="font-bold advisor-note-label mb-3 border-b border-pink-200 pb-2 text-sm">Script E: Challenge & Variety</h4>
-                            <p class="text-sm text-slate-700 leading-relaxed italic">
+                            <h4 class="font-bold text-cyan-700 mb-3 border-b border-slate-200 pb-2 text-sm">Script E: Challenge & Variety</h4>
+                            <p class="text-sm text-slate-600 leading-relaxed italic">
                                 "If you don't want a boring job, cyber might fit you. Threats change constantly, so cyber professionals are always learning, solving new problems, and working in teams to protect systems."
                             </p>
                         </div>
@@ -854,9 +848,8 @@
                     </div>
                 </div>
 
-                <div class="advisor-note-box rounded-2xl p-6 mb-12">
-                    <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-2"><i class="fas fa-info-circle mr-2"></i>Section Overview</strong>
-                    <p class="text-slate-700 text-sm italic leading-relaxed">
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 mb-12 shadow-sm">
+                    <p class="text-slate-600 text-sm italic leading-relaxed border-l-4 border-slate-300 pl-4">
                         “Now that we've covered the 'why', let's look at the 'how'. The cybersecurity industry uses standardized frameworks to categorize roles, map necessary skills, and define career progression. Use these frameworks to help students identify specific job titles that match their interests.”
                     </p>
                 </div>
@@ -1182,20 +1175,28 @@
                     <div class="glass-panel rounded-2xl p-8 h-full flex flex-col justify-end relative shadow-md">
                         <h4 class="text-slate-900 font-bold tracking-tight absolute top-6 left-6">Earning Potential Over Time</h4>
                         <div class="flex items-end justify-between h-48 w-full mt-10 gap-2 border-b-2 border-slate-200 pb-2">
-                            <div class="w-1/4 flex flex-col items-center">
-                                <div class="w-full bg-slate-300 rounded-t-md relative hover:bg-slate-400 transition-colors" style="height: 30%"></div>
+                            <div class="w-1/4 flex flex-col items-center justify-end h-full">
+                                <div class="w-full bg-slate-300 rounded-t-md relative hover:bg-slate-400 transition-colors bar-animate" style="--target-height: 30%; height: 0%">
+                                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-slate-600 opacity-0" style="animation: fade-in 0.5s ease-in 1s forwards;">$45k</span>
+                                </div>
                                 <span class="text-[10px] text-slate-600 mt-2 text-center font-medium">HS Diploma</span>
                             </div>
-                            <div class="w-1/4 flex flex-col items-center">
-                                <div class="w-full bg-emerald-400 rounded-t-md relative hover:bg-emerald-500 transition-colors" style="height: 50%"></div>
+                            <div class="w-1/4 flex flex-col items-center justify-end h-full">
+                                <div class="w-full bg-emerald-400 rounded-t-md relative hover:bg-emerald-500 transition-colors bar-animate" style="--target-height: 50%; height: 0%">
+                                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-emerald-700 opacity-0" style="animation: fade-in 0.5s ease-in 1.1s forwards;">$65k</span>
+                                </div>
                                 <span class="text-[10px] text-emerald-700 mt-2 text-center font-bold">Cert / Assoc.</span>
                             </div>
-                            <div class="w-1/4 flex flex-col items-center">
-                                <div class="w-full bg-cyan-400 rounded-t-md relative hover:bg-cyan-500 transition-colors shadow-sm" style="height: 75%"></div>
+                            <div class="w-1/4 flex flex-col items-center justify-end h-full">
+                                <div class="w-full bg-cyan-400 rounded-t-md relative hover:bg-cyan-500 transition-colors shadow-sm bar-animate" style="--target-height: 75%; height: 0%">
+                                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-cyan-700 opacity-0" style="animation: fade-in 0.5s ease-in 1.2s forwards;">$90k</span>
+                                </div>
                                 <span class="text-[10px] text-cyan-700 font-bold mt-2 text-center">Bachelor's</span>
                             </div>
-                            <div class="w-1/4 flex flex-col items-center">
-                                <div class="w-full bg-purple-400 rounded-t-md relative hover:bg-purple-500 transition-colors shadow-sm" style="height: 100%"></div>
+                            <div class="w-1/4 flex flex-col items-center justify-end h-full">
+                                <div class="w-full bg-purple-400 rounded-t-md relative hover:bg-purple-500 transition-colors shadow-sm bar-animate" style="--target-height: 100%; height: 0%">
+                                    <span class="absolute -top-6 left-1/2 -translate-x-1/2 text-xs font-bold text-purple-700 opacity-0" style="animation: fade-in 0.5s ease-in 1.3s forwards;">$115k+</span>
+                                </div>
                                 <span class="text-[10px] text-purple-700 font-bold mt-2 text-center">Graduate</span>
                             </div>
                         </div>
@@ -1456,9 +1457,9 @@
                                 </label>
                             </li>
                         </ul>
-                        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                            <strong class="text-rose-700 text-xs uppercase tracking-widest font-mono block mb-1">Advisor Note</strong>
-                            <p class="text-slate-600 text-sm italic">"Encourage students to talk with program coordinators, ask about graduate outcomes, and review course lists—not just marketing materials."</p>
+                        <div class="advisor-note-box p-4">
+                            <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-1">Advisor Note</strong>
+                            <p class="text-slate-700 text-sm italic">"Encourage students to talk with program coordinators, ask about graduate outcomes, and review course lists—not just marketing materials."</p>
                         </div>
                     </div>
                 </div>
@@ -2659,6 +2660,7 @@
         // --- Modal Logic ---
         function openModal(id) {
             const item = scholarshipData.find(d => d.id === id);
+            if (!item) return;
             document.getElementById('modal-title').innerText = item.title;
             document.getElementById('modal-content').innerText = item.desc;
             document.getElementById('modal-link').href = item.link;
@@ -2667,6 +2669,7 @@
 
         function openActivityModal(id) {
             const item = activityData.find(d => d.id === id);
+            if (!item) return;
             document.getElementById('modal-title').innerText = item.title;
             
             const contentDiv = document.getElementById('modal-content');
@@ -2738,87 +2741,6 @@
             }
         });
 
-        // --- CAE Toggle Logic ---
-        function toggleCAE(id) {
-            document.querySelectorAll('.cae-card').forEach(card => {
-                if (card.id !== id) {
-                    card.classList.remove('active');
-                    const chevron = card.querySelector('.fa-chevron-down');
-                    if(chevron) chevron.style.transform = 'rotate(0deg)';
-                }
-            });
-            
-            const selectedCard = document.getElementById(id);
-            if(selectedCard) {
-                selectedCard.classList.toggle('active');
-                const chevron = selectedCard.querySelector('.fa-chevron-down');
-                if(selectedCard.classList.contains('active')) {
-                     if(chevron) chevron.style.transform = 'rotate(180deg)';
-                } else {
-                     if(chevron) chevron.style.transform = 'rotate(0deg)';
-                }
-            }
-        }
-        
-        // --- Pathway Toggle Logic ---
-        function togglePathway(id) {
-            document.querySelectorAll('.pathway-card').forEach(c => {
-                 if(c.getAttribute('onclick').includes(id)) return;
-                c.classList.remove('active');
-                const chevron = c.querySelector('.fa-chevron-down');
-                if(chevron) chevron.style.transform = 'rotate(0deg)';
-            });
-
-             const card = document.querySelector(`.pathway-card[onclick="togglePathway('${id}')"]`);
-             if(card) {
-                const isActive = card.classList.contains('active');
-                 if(isActive) {
-                     card.classList.remove('active');
-                     const chevron = card.querySelector('.fa-chevron-down');
-                     if(chevron) chevron.style.transform = 'rotate(0deg)';
-                 } else {
-                     card.classList.add('active');
-                     const chevron = card.querySelector('.fa-chevron-down');
-                     if(chevron) chevron.style.transform = 'rotate(180deg)';
-                 }
-             }
-        }
-
-        // --- CyberSeek Logic ---
-        function switchCyberSeek(tool) {
-            const mapFrame = document.getElementById('cs-frame-map');
-            const pathFrame = document.getElementById('cs-frame-path');
-            const btnMap = document.getElementById('btn-cs-map');
-            const btnPath = document.getElementById('btn-cs-path');
-            const extLink = document.getElementById('cs-ext-link');
-
-            if (!mapFrame || !pathFrame) return;
-
-            if (tool === 'map') {
-                mapFrame.classList.remove('hidden');
-                pathFrame.classList.add('hidden');
-                
-                btnMap.classList.add('bg-indigo-500', 'text-white', 'shadow-lg');
-                btnMap.classList.remove('text-slate-400', 'hover:bg-slate-800');
-                
-                btnPath.classList.remove('bg-cyan-500', 'text-white', 'shadow-lg');
-                btnPath.classList.add('text-slate-400', 'hover:bg-slate-800');
-                
-                extLink.href = "https://www.cyberseek.org/heatmap.html";
-            } else {
-                pathFrame.classList.remove('hidden');
-                mapFrame.classList.add('hidden');
-                
-                btnPath.classList.add('bg-cyan-500', 'text-white', 'shadow-lg');
-                btnPath.classList.remove('text-slate-400', 'hover:bg-slate-800');
-                
-                btnMap.classList.remove('bg-indigo-500', 'text-white', 'shadow-lg');
-                btnMap.classList.add('text-slate-400', 'hover:bg-slate-800');
-                
-                extLink.href = "https://www.cyberseek.org/pathway.html";
-            }
-        }
-
         // --- Framework Logic ---
         function toggleFramework(fw) {
             const niceBtn = document.getElementById('btn-nice');
@@ -2849,88 +2771,131 @@
             }
         }
 
-        // --- Data ---
-        
-        // NICE v2.0 Data (5 Categories)
+        // NICE v2.0 Data
         const niceV2Data = {
             provision: [
                 { title: "Software Developer", ksa: "Secure coding (C++, Java, Python), SDLC, Threat Modeling" },
                 { title: "Enterprise Architect", ksa: "Network topology, Cloud infrastructure, Security policies" },
                 { title: "System Developer", ksa: "System integration, Hardware security, API design" },
-                { title: "Secure Software Assessor", ksa: "Code review, Static analysis, Vulnerability scanning" },
-                { title: "Systems Requirements Planner", ksa: "Requirement gathering, Feasibility analysis, Compliance" },
-                { title: "System Testing & Evaluation Specialist", ksa: "Penetration testing basics, QA methodologies, Scripting" },
-                { title: "Research & Development Specialist", ksa: "Emerging tech, Cryptography research, Prototyping" }
+                { title: "Secure Software Assessor", ksa: "Code review, Static analysis, Vulnerability scanning" }
             ],
             operate: [
                 { title: "Database Administrator", ksa: "SQL injection prevention, Data encryption, Backup/Recovery" },
                 { title: "Data Analyst", ksa: "Log analysis, Data visualization, Statistical modeling" },
                 { title: "Network Operations Specialist", ksa: "Firewall config, Routing protocols, Traffic monitoring" },
-                { title: "System Administrator", ksa: "Patch management, OS hardening (Linux/Windows), Access control" },
-                { title: "Systems Security Analyst", ksa: "Security auditing, Baseline configuration, Policy enforcement" },
-                { title: "Technical Support Specialist", ksa: "Incident ticketing, End-user training, Troubleshooting" },
-                { title: "Knowledge Manager", ksa: "Documentation, Information sharing, Training development" }
+                { title: "System Administrator", ksa: "Patch management, OS hardening (Linux/Windows), Access control" }
             ],
             protect: [
                 { title: "Cyber Defense Analyst", ksa: "SIEM tools, Packet analysis (Wireshark), IDS/IPS tuning" },
                 { title: "Cyber Defense Infrastructure Support Specialist", ksa: "Network device hardening, VPN management, PKI" },
                 { title: "Cyber Defense Incident Responder", ksa: "Forensics basics, Malware containment, Root cause analysis" },
-                { title: "Vulnerability Assessment Analyst", ksa: "Nessus/Qualys, Risk scoring (CVSS), Remediation planning" },
-                { title: "Cyber Defense Forensics Analyst", ksa: "Digital evidence handling, File system analysis, Chain of custody" }
+                { title: "Vulnerability Assessment Analyst", ksa: "Nessus/Qualys, Risk scoring (CVSS), Remediation planning" }
             ],
             analyze: [
                 { title: "Threat/Warning Analyst", ksa: "Threat intelligence feeds, IOC analysis, TTP identification" },
                 { title: "Exploitation Analyst", ksa: "Reverse engineering, Exploit development, Sandbox analysis" },
                 { title: "All-Source Analyst", ksa: "OSINT, Geopolitical analysis, Intelligence reporting" },
-                { title: "Target Developer", ksa: "Network mapping, Target profiling, Vulnerability research" },
-                { title: "Language Analyst", ksa: "Foreign language proficiency, Cultural context, Translation" }
+                { title: "Target Developer", ksa: "Network mapping, Target profiling, Vulnerability research" }
             ],
             oversight: [
                 { title: "Legal Advisor", ksa: "Cyber law, Privacy regulations (GDPR/CCPA), Ethics" },
                 { title: "Privacy Officer/Specialist", ksa: "PII protection, Data governance, Compliance auditing" },
                 { title: "Cyber Workforce Developer", ksa: "Training curriculum, Skill assessment, Mentoring" },
-                { title: "Cyber Instructor", ksa: "Pedagogy, Lab creation, Public speaking" },
-                { title: "Program Manager", ksa: "Budgeting, Resource allocation, Agile/Waterfall" },
-                { title: "Executive Cyber Leadership", ksa: "Strategic planning, Risk management, C-suite communication" }
+                { title: "Program Manager", ksa: "Budgeting, Resource allocation, Agile/Waterfall" }
             ]
         };
 
-        // DCWF Data (7 Categories, Sample Roles with Codes)
         const dcwfData = {
             sp: [
                 { code: "621", title: "Software Developer", ksa: "Ability to secure code, knowledge of compilers." },
-                { code: "652", title: "Enterprise Architect", ksa: "Design network perimeters, cloud security." },
-                { code: "632", title: "System Designer", ksa: "Hardware/software integration security." },
-                { code: "671", title: "Artificial Intelligence Engineer (NEW)", ksa: "Design, build, and evaluate AI/ML systems and their security implications." }
+                { code: "652", title: "Enterprise Architect", ksa: "Design network perimeters, cloud security." }
             ],
             om: [
                 { code: "441", title: "Network Operations Specialist", ksa: "Configure routers/switches, monitor traffic." },
-                { code: "451", title: "System Administrator", ksa: "Manage accounts, patches, and OS security." },
-                { code: "421", title: "Database Administrator", ksa: "Ensure data integrity and availability." }
+                { code: "451", title: "System Administrator", ksa: "Manage accounts, patches, and OS security." }
             ],
             pd: [
                 { code: "511", title: "Cyber Defense Analyst", ksa: "Analyze alerts, tune sensors, report incidents." },
-                { code: "531", title: "Incident Responder", ksa: "Contain breaches, eradicate malware, recover systems." },
-                { code: "541", title: "Vulnerability Analyst", ksa: "Scan networks, prioritize patching, assess risk." }
+                { code: "531", title: "Incident Responder", ksa: "Contain breaches, eradicate malware, recover systems." }
             ],
             an: [
                 { code: "141", title: "Threat/Warning Analyst", ksa: "Monitor intelligence feeds, predict attacks." },
-                { code: "121", title: "Exploitation Analyst", ksa: "Identify vulnerabilities for offensive use." },
-                { code: "422", title: "Data Scientist (NEW)", ksa: "Apply statistical modeling and machine learning to analyze large datasets for cyber insights." }
+                { code: "121", title: "Exploitation Analyst", ksa: "Identify vulnerabilities for offensive use." }
             ],
             co: [
-                { code: "331", title: "Cyber Operator", ksa: "Conduct offensive operations, manipulate networks." },
-                { code: "332", title: "Cyber Ops Planner", ksa: "Plan missions, coordinate effects." }
+                { code: "331", title: "Cyber Operator", ksa: "Conduct offensive operations, manipulate networks." }
             ],
             in: [
-                { code: "211", title: "Forensics Analyst", ksa: "Analyze hard drives, memory, and mobile devices." },
-                { code: "221", title: "Cyber Crime Investigator", ksa: "Investigate digital crimes, prepare legal evidence." }
+                { code: "211", title: "Forensics Analyst", ksa: "Analyze hard drives, memory, and mobile devices." }
             ],
             ov: [
-                { code: "901", title: "Executive Cyber Leadership", ksa: "Direct cybersecurity programs and strategy." },
-                { code: "732", title: "Legal Advisor", ksa: "Advise on cyber operations law and policy." }
+                { code: "901", title: "Executive Cyber Leadership", ksa: "Direct cybersecurity programs and strategy." }
             ]
         };
+
+        function loadNiceRoles(cat) {
+            const roles = niceV2Data[cat];
+            const contentArea = document.getElementById('nice-content-area');
+            
+            let html = `<h4 class="text-2xl font-bold text-slate-900 mb-6 border-b border-slate-200 pb-3 tracking-tight">Available Job Roles</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">`;
+            
+            roles.forEach((role, index) => {
+                html += `<button onclick="showNiceDetails('${cat}', ${index})" class="role-btn text-left p-4 rounded-xl text-slate-700 text-sm transition-all border border-slate-200 shadow-sm">
+                            ${role.title}
+                         </button>`;
+            });
+            html += `</div><div id="nice-details-panel" class="mt-8 p-6 bg-white rounded-2xl border border-cyan-200 hidden animate-fade-in shadow-md"></div>`;
+            
+            contentArea.innerHTML = html;
+        }
+
+        function showNiceDetails(cat, index) {
+            const role = niceV2Data[cat][index];
+            const panel = document.getElementById('nice-details-panel');
+            panel.innerHTML = `
+                <h5 class="text-xl font-bold text-cyan-700 mb-4 tracking-tight">${role.title}</h5>
+                <div class="text-sm text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <strong class="block text-slate-500 text-xs uppercase mb-2 tracking-widest font-mono">Skills, Knowledge & Capabilities</strong>
+                    <span class="leading-relaxed font-medium">${role.ksa}</span>
+                </div>
+            `;
+            panel.classList.remove('hidden');
+        }
+
+        function loadDcwfRoles(cat) {
+            const roles = dcwfData[cat];
+            const contentArea = document.getElementById('dcwf-content-area');
+            
+            let html = `<h4 class="text-2xl font-bold text-slate-900 mb-6 border-b border-rose-200 pb-3 tracking-tight">DCWF Qualified Roles</h4>
+                        <div class="grid grid-cols-1 gap-3">`;
+            
+            roles.forEach((role, index) => {
+                html += `<button onclick="showDcwfDetails('${cat}', ${index})" class="dcwf-btn text-left p-4 rounded-xl text-slate-700 text-sm transition-all border border-slate-200 flex justify-between items-center shadow-sm">
+                            <span class="font-medium">${role.title}</span>
+                            <span class="font-mono text-xs text-rose-700 bg-rose-50 px-3 py-1 rounded-md border border-rose-200">${role.code}</span>
+                         </button>`;
+            });
+            html += `</div><div id="dcwf-details-panel" class="mt-8 p-6 bg-white rounded-2xl border border-rose-200 hidden animate-fade-in shadow-md"></div>`;
+            
+            contentArea.innerHTML = html;
+        }
+
+        function showDcwfDetails(cat, index) {
+            const role = dcwfData[cat][index];
+            const panel = document.getElementById('dcwf-details-panel');
+            panel.innerHTML = `
+                <div class="flex items-center justify-between mb-4">
+                    <h5 class="text-xl font-bold text-rose-700 tracking-tight">${role.title}</h5>
+                    <span class="text-xs font-mono bg-rose-50 border border-rose-200 px-3 py-1 rounded-md text-rose-700">Code: ${role.code}</span>
+                </div>
+                <div class="text-sm text-slate-600 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <strong class="block text-slate-500 text-xs uppercase mb-2 tracking-widest font-mono">Required Capabilities</strong>
+                    <span class="leading-relaxed font-medium">${role.ksa}</span>
+                </div>
+            `;
+            panel.classList.remove('hidden');
+        }
 
         // Progress Bar Logic
         function updateProgressBar() {
