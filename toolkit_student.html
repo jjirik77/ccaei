@@ -434,161 +434,126 @@
                     </div>
                 </div>
 
-                <!-- Everyday Life Section -->
+                <!-- Everyday Life Section (Updated Interactive Activity) -->
                 <div class="mb-16 glass-panel rounded-3xl overflow-hidden shadow-md">
                     <div class="p-8 bg-slate-50/50 border-b border-slate-200">
-                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-city text-rose-500 mr-3"></i>How does cybersecurity show up in your day?</h3>
-                        <p class="text-slate-500 mt-2 text-base">Cybersecurity isn't only for big tech companies; it touches almost everything you and your family do with technology.</p>
+                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-city text-rose-500 mr-3"></i>“Cyber in My Day” Personal Selector</h3>
+                        <p class="text-slate-500 mt-2 text-base">Select the sectors you use personally (gaming, banking, school, etc.). Cybersecurity isn't only for big tech companies; it touches almost everything you do.</p>
                     </div>
                     <div class="p-8 bg-white/50">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-amber-50 p-3 rounded-lg mr-4"><i class="fas fa-tractor text-amber-600 text-xl"></i></div>
-                                <div><strong class="text-slate-800 block text-sm mb-1">Agriculture</strong><p class="text-xs text-slate-500 leading-relaxed">Protecting sensor data and automated equipment on modern farms.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-orange-50 p-3 rounded-lg mr-4"><i class="fas fa-industry text-orange-600 text-xl"></i></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" id="sector-grid">
+                            <button type="button" onclick="toggleSector(this, 'Agriculture', 'automated farming equipment and crop data')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-amber-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-tractor text-amber-600 text-xl w-6 text-center"></i></div>
+                                <div><strong class="text-slate-800 block text-sm mb-1">Agriculture</strong><p class="text-xs text-slate-500 leading-relaxed">Protecting sensor data and automated equipment.</p></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Manufacturing', 'robots and production lines')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-orange-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-industry text-orange-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Manufacturing</strong><p class="text-xs text-slate-500 leading-relaxed">Securing robots, production lines, and logistics systems.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-blue-50 p-3 rounded-lg mr-4"><i class="fas fa-school text-blue-600 text-xl"></i></div>
-                                <div><strong class="text-slate-800 block text-sm mb-1">Education</strong><p class="text-xs text-slate-500 leading-relaxed">Keeping student records, learning platforms, and school networks safe.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-purple-50 p-3 rounded-lg mr-4"><i class="fas fa-gamepad text-purple-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Education', 'student records and school networks')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-blue-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-school text-blue-600 text-xl w-6 text-center"></i></div>
+                                <div><strong class="text-slate-800 block text-sm mb-1">Education</strong><p class="text-xs text-slate-500 leading-relaxed">Keeping student records, learning platforms, and networks safe.</p></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Entertainment', 'saved games and streaming apps')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-purple-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-gamepad text-purple-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Entertainment</strong><p class="text-xs text-slate-500 leading-relaxed">Safeguarding online gaming accounts, streaming platforms, and apps.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-indigo-50 p-3 rounded-lg mr-4"><i class="fas fa-car text-indigo-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Transportation', 'navigation systems')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-indigo-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-car text-indigo-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Transportation</strong><p class="text-xs text-slate-500 leading-relaxed">Protecting navigation systems and connected vehicles.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-pink-50 p-3 rounded-lg mr-4"><i class="fas fa-shopping-cart text-pink-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Retail & E-commerce', 'payment cards and online shopping data')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-pink-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-shopping-cart text-pink-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Retail & E-commerce</strong><p class="text-xs text-slate-500 leading-relaxed">Securing online shopping, payment cards, and customer data.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-rose-50 p-3 rounded-lg mr-4"><i class="fas fa-heartbeat text-rose-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Healthcare', 'medical records and devices')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-rose-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-heartbeat text-rose-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Healthcare</strong><p class="text-xs text-slate-500 leading-relaxed">Protecting medical records, medical devices, and hospital systems.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-emerald-50 p-3 rounded-lg mr-4"><i class="fas fa-piggy-bank text-emerald-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Banking & Finance', 'bank accounts and ATMs')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-emerald-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-piggy-bank text-emerald-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Banking & Finance</strong><p class="text-xs text-slate-500 leading-relaxed">Keeping accounts, mobile banking apps, and ATMs secure.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-cyan-50 p-3 rounded-lg mr-4"><i class="fas fa-landmark text-cyan-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Government', 'public records and critical infrastructure')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-cyan-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-landmark text-cyan-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Government</strong><p class="text-xs text-slate-500 leading-relaxed">Defending public records, elections, and critical infrastructure.</p></div>
-                            </div>
+                            </button>
                         </div>
                         
-                        <div class="mt-8 p-6 bg-slate-100 rounded-xl border-l-4 border-cyan-500">
-                            <p class="text-slate-900 text-base font-medium mb-3">
-                                "Think about how many of these you use in a single day—your phone, your bank app, your favorite game. Cybersecurity professionals help make all of that possible and safe."
-                            </p>
-                            <p class="text-cyan-700 text-sm font-bold tracking-wide uppercase font-mono">
-                                Quick Question: <span class="text-slate-600 font-normal normal-case">Which of these areas—games, healthcare, money, transportation—interests you most? Cybersecurity has roles in all of them!</span>
-                            </p>
+                        <div class="p-6 bg-cyan-50 rounded-xl border border-cyan-200 hidden shadow-inner transition-all duration-300" id="sector-summary-box">
+                            <p class="text-slate-800 text-base font-medium mb-2" id="sector-summary-text"></p>
+                            <p class="text-cyan-700 text-sm mb-6">Cyber professionals protect your <span id="sector-protect-text" class="font-bold"></span>.</p>
+                            <div class="mt-4 pt-4 border-t border-cyan-200/50">
+                                <label class="block text-sm font-bold text-slate-700 mb-2"><i class="fas fa-pen text-cyan-600 mr-2"></i>The area I care most about protecting is...</label>
+                                <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-cyan-500 outline-none resize-none shadow-sm" rows="2" placeholder="Type your reflection here..."></textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Workforce Snapshot & Chart -->
-                <div class="mb-16 grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-2xl font-bold text-slate-900 mb-6 tracking-tight">A growing, in-demand cyber workforce</h3>
-                        <div class="space-y-4 text-slate-600 leading-relaxed">
-                            <p>Cybersecurity is a relatively new profession, but it has grown rapidly over the past 20 years as more of life and business has moved online.</p>
-                            <p>National estimates show a large and persistent gap between the number of cybersecurity jobs and the number of trained professionals to fill them, which creates strong opportunities for students entering the field.</p>
-                            <p>Cybersecurity roles are often fast-paced, problem-solving jobs with competitive median salaries and strong long-term demand.</p>
-                        </div>
-                        
-                        <div class="mt-8 pro-tip-box p-5">
-                            <strong class="pro-tip-label text-xs uppercase tracking-widest font-mono block mb-2">Why Job Demand Matters to You</strong>
-                            <p class="text-slate-600 text-sm italic">
-                                Cybersecurity is one of the few fields where there are many more jobs than people to fill them. That means with the right training, you can find opportunities in lots of different industries and locations.
-                            </p>
-                        </div>
-                    </div>
+                <!-- My First Cyber Role Snapshot -->
+                <div class="mb-16 glass-panel p-8 rounded-3xl border-t-4 border-t-purple-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-id-badge text-purple-600 mr-3"></i>My First Cyber Role Snapshot</h3>
+                    <p class="text-slate-600 text-sm mb-6">Browse these common roles and pick one that looks interesting to analyze.</p>
                     
-                    <!-- Conceptual Chart -->
-                    <div class="glass-panel rounded-2xl p-6 flex flex-col h-full justify-center relative overflow-hidden">
-                        <div class="flex justify-between items-center mb-4 z-10">
-                            <h4 class="text-slate-900 font-bold tracking-tight">Workforce vs. Demand</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <button type="button" onclick="selectRoleSnapshot(this, 'Security Analyst')" class="role-snap-btn p-4 bg-white rounded-xl border border-slate-200 hover:border-purple-400 hover:bg-purple-50 transition-all shadow-sm text-center">
+                            <i class="fas fa-search text-2xl text-purple-500 mb-2"></i>
+                            <strong class="block text-slate-800 text-sm">Security Analyst</strong>
+                        </button>
+                        <button type="button" onclick="selectRoleSnapshot(this, 'Penetration Tester')" class="role-snap-btn p-4 bg-white rounded-xl border border-slate-200 hover:border-purple-400 hover:bg-purple-50 transition-all shadow-sm text-center">
+                            <i class="fas fa-user-secret text-2xl text-purple-500 mb-2"></i>
+                            <strong class="block text-slate-800 text-sm">Pen Tester</strong>
+                        </button>
+                        <button type="button" onclick="selectRoleSnapshot(this, 'Forensics Expert')" class="role-snap-btn p-4 bg-white rounded-xl border border-slate-200 hover:border-purple-400 hover:bg-purple-50 transition-all shadow-sm text-center">
+                            <i class="fas fa-microscope text-2xl text-purple-500 mb-2"></i>
+                            <strong class="block text-slate-800 text-sm">Forensics Expert</strong>
+                        </button>
+                        <button type="button" onclick="selectRoleSnapshot(this, 'Security Architect')" class="role-snap-btn p-4 bg-white rounded-xl border border-slate-200 hover:border-purple-400 hover:bg-purple-50 transition-all shadow-sm text-center">
+                            <i class="fas fa-drafting-compass text-2xl text-purple-500 mb-2"></i>
+                            <strong class="block text-slate-800 text-sm">Security Architect</strong>
+                        </button>
+                    </div>
+
+                    <div id="role-snapshot-form" class="hidden space-y-4 bg-slate-50 p-6 rounded-xl border border-slate-200 shadow-inner">
+                        <h4 class="font-bold text-purple-700 mb-4 border-b border-slate-200 pb-2" id="selected-role-title">Selected Role</h4>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">What does this person protect or improve?</label>
+                            <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm" rows="2"></textarea>
                         </div>
-                        <div class="relative w-full h-48 z-10 mt-4">
-                            <svg class="w-full h-full overflow-visible" viewBox="0 0 300 150" preserveAspectRatio="none">
-                                <line x1="0" y1="150" x2="300" y2="150" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
-                                <line x1="0" y1="0" x2="0" y2="150" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
-                                <!-- Current Workforce Line -->
-                                <path d="M0 140 Q 150 135 300 110" fill="none" stroke="#94a3b8" stroke-width="4" stroke-linecap="round" class="line-animate drop-shadow-sm" />
-                                <!-- Available Jobs Line -->
-                                <path d="M0 140 Q 150 80 300 20" fill="none" stroke="#059669" stroke-width="4" stroke-linecap="round" class="line-animate drop-shadow-[0_0_10px_rgba(16,185,129,0.3)]" />
-                                
-                                <!-- Gap indicator -->
-                                <line x1="280" y1="108" x2="280" y2="22" stroke="#e11d48" stroke-width="2" stroke-dasharray="4" class="opacity-0" style="animation: fade-in 1s ease-in 2s forwards;" />
-                            </svg>
-                            <div class="absolute top-0 right-0 transform translate-x-4 -translate-y-4 text-xs text-emerald-700 font-bold bg-white px-2 py-1 rounded border border-emerald-200 shadow-sm">Total Open Jobs</div>
-                            <div class="absolute bottom-8 right-0 transform translate-x-4 text-xs text-slate-500 font-medium bg-white px-2 py-1 rounded border border-slate-200 shadow-sm">Current Workforce</div>
-                            <div class="absolute top-[40%] right-8 transform -translate-y-1/2 text-xs text-rose-600 font-bold opacity-0 bg-white/90 px-1 rounded" style="animation: fade-in 1s ease-in 2s forwards;">Supply Gap</div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">What seems exciting about this job?</label>
+                            <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm" rows="2"></textarea>
                         </div>
-                        <div class="absolute inset-0 z-0 flex flex-col justify-end px-6 pb-12 pointer-events-none">
-                            <div class="w-full border-t border-slate-200 mb-[25%] border-dashed"></div>
-                            <div class="w-full border-t border-slate-200 mb-[25%] border-dashed"></div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">What might be challenging?</label>
+                            <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm" rows="2"></textarea>
                         </div>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-xs text-slate-500 italic border-l-2 border-slate-300 pl-2">Pro Tip: Use <a href="https://cyber.org/career-exploration/cyber-career-profiles" target="_blank" class="text-cyan-600 hover:underline">CYBER.ORG Career Profiles</a> to help answer these questions.</p>
                     </div>
                 </div>
 
-                <!-- Career Profiles & Tools -->
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Types of cybersecurity professionals</h3>
-                    <p class="text-slate-600 mb-8 leading-relaxed max-w-4xl">
-                        "When people hear 'cybersecurity,' they often think of a single 'hacker' role, but the field actually includes a wide range of professionals: technicians, engineers, programmers, scientists, architects, auditors, administrators, executives, investigators, intelligence officers, legal experts, and educators. These roles exist across virtually every sector of the economy."
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- CYBER.ORG Profiles -->
-                        <div class="glass-panel p-8 rounded-2xl border-t-4 border-t-cyan-500 shadow-md flex flex-col h-full">
-                            <h4 class="text-xl font-bold text-slate-900 mb-4"><i class="fas fa-id-badge text-cyan-700 mr-2"></i>Explore cyber career profiles</h4>
-                            <p class="text-sm text-slate-600 mb-4">CYBER.ORG provides free "Cyber Career Profiles" that describe different cybersecurity jobs in clear, student-friendly language.</p>
-                            
-                            <div class="bg-slate-50 rounded-lg p-4 mb-6 border border-slate-200 flex-grow shadow-sm">
-                                <strong class="text-slate-900 text-sm block mb-2">Suggested Activity:</strong>
-                                <ul class="list-disc list-inside text-sm text-slate-500 space-y-1">
-                                    <li>Pick one career profile that looks interesting.</li>
-                                    <li>Identify what information is shown (tasks, skills, etc.).</li>
-                                    <li>Compare this profile to the NICE Framework (in Section 3).</li>
-                                </ul>
+                <!-- Local Demand Check -->
+                <div class="mb-16 glass-panel p-8 rounded-3xl border-t-4 border-t-rose-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-map-marked-alt text-rose-600 mr-3"></i>Local Demand Check: Just Me and My Region</h3>
+                    <p class="text-slate-600 text-sm mb-6">Use <a href="https://www.cyberseek.org/heatmap.html" target="_blank" class="text-rose-600 font-bold hover:underline"><i class="fas fa-external-link-alt mr-1"></i>CyberSeek's Interactive Map</a> to view demand in your state or nearest metro area.</p>
+                    
+                    <div class="bg-rose-50/50 p-6 rounded-xl border border-rose-200 space-y-6 shadow-inner">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Approx. number of openings shown in your area:</label>
+                                <input type="number" class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-rose-500 outline-none shadow-sm" placeholder="e.g., 5000">
                             </div>
-                            
-                            <p class="text-xs text-slate-500 italic mb-4 border-l-2 border-slate-300 pl-2">Pro Tip: Use these profiles to picture what cyber professionals actually do day to day.</p>
-                            
-                            <a href="https://cyber.org/career-exploration/cyber-career-profiles" target="_blank" class="mt-auto block text-center bg-white hover:bg-slate-50 text-cyan-700 text-sm font-bold py-3 rounded-lg transition-colors border border-slate-200 shadow-sm">
-                                Get Profiles at CYBER.ORG <i class="fas fa-external-link-alt ml-1 text-xs"></i>
-                            </a>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">Two sample job titles that appeal to you:</label>
+                                <input type="text" class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-rose-500 outline-none shadow-sm" placeholder="e.g., Cyber Analyst, Incident Responder">
+                            </div>
                         </div>
-
-                        <!-- TryCyber & CyberSeek Preview -->
-                        <div class="flex flex-col gap-6">
-                            <!-- TryCyber -->
-                            <div class="glass-panel p-6 rounded-2xl border-t-4 border-t-purple-500 shadow-md">
-                                <h4 class="text-lg font-bold text-slate-900 mb-2"><i class="fas fa-gamepad text-purple-700 mr-2"></i>TryCyber Challenges</h4>
-                                <p class="text-sm text-slate-600 mb-4">You can explore cybersecurity careers through 14 virtualized challenges which simulate different cyber tasks and environments.</p>
-                                <a href="https://trycyber.us" target="_blank" class="inline-block text-purple-700 hover:text-purple-600 text-sm font-bold transition-colors">
-                                    Launch Challenges <i class="fas fa-arrow-right ml-1 text-xs"></i>
-                                </a>
-                            </div>
-
-                            <!-- CyberSeek Preview -->
-                            <div class="glass-panel p-6 rounded-2xl border-t-4 border-t-rose-500 shadow-md flex-grow">
-                                <h4 class="text-lg font-bold text-slate-900 mb-2"><i class="fas fa-map-marked-alt text-rose-700 mr-2"></i>See real jobs with CyberSeek</h4>
-                                <p class="text-sm text-slate-600 mb-4">The Career Pathway tool connects jobs to the NICE framework. The Heat Map explores demand by state/metro area.</p>
-                                
-                                <p class="text-xs text-slate-500 italic mb-4 border-l-2 border-slate-300 pl-2">Pro Tip: Explore the Heat Map for your state or metro area to see local demand for these roles.</p>
-                                
-                                <div class="flex gap-2 mt-auto">
-                                    <a href="https://www.cyberseek.org/pathway.html" target="_blank" class="flex-1 text-center bg-white hover:bg-slate-50 text-rose-700 text-xs font-bold py-2 rounded transition-colors border border-slate-200 shadow-sm">Pathway Tool</a>
-                                    <a href="https://www.cyberseek.org/heatmap.html" target="_blank" class="flex-1 text-center bg-white hover:bg-slate-50 text-rose-700 text-xs font-bold py-2 rounded transition-colors border border-slate-200 shadow-sm">Heat Map</a>
-                                </div>
-                            </div>
+                        <div class="pt-2 border-t border-rose-200/50">
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Does this make cyber feel like a realistic option where you might live as an adult? Why or why not?</label>
+                            <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-rose-500 outline-none resize-none shadow-sm" rows="3" placeholder="Type your thoughts..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -717,24 +682,95 @@
                     </div>
                 </div>
 
-                <!-- Student Reflection Prompts -->
-                <div class="bg-cyan-50 border border-cyan-200 rounded-3xl p-10 mb-16 shadow-md relative overflow-hidden">
+                <!-- NEW: Personal Values Ranker -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 shadow-md border-t-4 border-t-emerald-500 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-balance-scale text-[200px] text-emerald-600"></i></div>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 tracking-tight relative z-10"><i class="fas fa-sliders-h text-emerald-600 mr-3"></i>"What Matters Most to Me?" Personal Values Ranker</h3>
+                    <p class="text-slate-600 text-sm mb-6 relative z-10">Adjust the sliders to rank what you value most in a future career.</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
+                        <div class="space-y-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">Service to others</label><span class="text-xs font-mono text-emerald-600" id="val-service-out">5</span></div>
+                                <input type="range" id="val-service" min="1" max="10" value="5" class="w-full accent-emerald-600" oninput="document.getElementById('val-service-out').innerText=this.value; calculateValues()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">National service</label><span class="text-xs font-mono text-blue-600" id="val-national-out">5</span></div>
+                                <input type="range" id="val-national" min="1" max="10" value="5" class="w-full accent-blue-600" oninput="document.getElementById('val-national-out').innerText=this.value; calculateValues()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">Opportunities</label><span class="text-xs font-mono text-amber-600" id="val-opp-out">5</span></div>
+                                <input type="range" id="val-opp" min="1" max="10" value="5" class="w-full accent-amber-600" oninput="document.getElementById('val-opp-out').innerText=this.value; calculateValues()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">Rewarding pay</label><span class="text-xs font-mono text-rose-600" id="val-pay-out">5</span></div>
+                                <input type="range" id="val-pay" min="1" max="10" value="5" class="w-full accent-rose-600" oninput="document.getElementById('val-pay-out').innerText=this.value; calculateValues()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">Dynamic work</label><span class="text-xs font-mono text-purple-600" id="val-dynamic-out">5</span></div>
+                                <input type="range" id="val-dynamic" min="1" max="10" value="5" class="w-full accent-purple-600" oninput="document.getElementById('val-dynamic-out').innerText=this.value; calculateValues()">
+                            </div>
+                        </div>
+                        <div class="bg-emerald-50 p-8 rounded-2xl border border-emerald-200 shadow-inner flex flex-col justify-center">
+                            <strong class="text-emerald-700 text-xs uppercase tracking-widest font-mono block mb-3"><i class="fas fa-lightbulb mr-2"></i>Your Value Profile</strong>
+                            <p id="values-result" class="text-slate-800 font-medium text-lg leading-relaxed">Adjust the sliders to see how your values align with specific cybersecurity roles and environments.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- "Is Cyber for Me?" Solo Self-Check -->
+                <div class="bg-cyan-50 border border-cyan-200 rounded-3xl p-8 lg:p-10 mb-16 shadow-md relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-8 opacity-[0.03]"><i class="fas fa-question-circle text-[200px] text-cyan-900"></i></div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-6 relative z-10 tracking-tight">"Is Cyber for Me?" Self-Reflection</h3>
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 relative z-10 tracking-tight"><i class="fas fa-check-square text-cyan-600 mr-3"></i>"Is Cyber for Me?" Solo Self-Check</h3>
+                    <p class="text-slate-600 text-sm mb-6 relative z-10">Answer these four quick questions honestly to get a personalized recommendation on your next steps.</p>
                     
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 mb-6 relative z-10 shadow-sm">
-                        <strong class="text-cyan-700 text-xs uppercase tracking-widest font-mono block mb-4">Prompts (for display or download)</strong>
-                        <ul class="space-y-4 text-slate-700 text-sm font-medium">
-                            <li class="flex items-start"><i class="fas fa-angle-right text-cyan-600 mt-1 mr-3"></i>"Do you like solving puzzles, mysteries, or problems where you have to figure out what went wrong?"</li>
-                            <li class="flex items-start"><i class="fas fa-angle-right text-cyan-600 mt-1 mr-3"></i>"Do you care about keeping people safe, protecting fairness, or defending things that matter to your community?"</li>
-                            <li class="flex items-start"><i class="fas fa-angle-right text-cyan-600 mt-1 mr-3"></i>"Are you interested in technology—computers, apps, networks, or games—even if you don't know much about how they work yet?"</li>
-                            <li class="flex items-start"><i class="fas fa-angle-right text-cyan-600 mt-1 mr-3"></i>"Would you like a career where you can keep learning new things over time and not do the exact same task every day?"</li>
-                        </ul>
+                    <div class="space-y-4 relative z-10 mb-8" id="self-check-questions">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-300 transition-colors">
+                            <p class="text-slate-700 font-medium text-sm w-full md:w-2/3">1. Do you like solving puzzles, mysteries, or problems where you have to figure out what went wrong?</p>
+                            <div class="flex gap-2 w-full md:w-auto justify-end">
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(1, 2, this)">Yes</button>
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(1, 1, this)">Maybe</button>
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(1, 0, this)">No</button>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-300 transition-colors">
+                            <p class="text-slate-700 font-medium text-sm w-full md:w-2/3">2. Do you care about keeping people safe, protecting fairness, or defending things that matter to your community?</p>
+                            <div class="flex gap-2 w-full md:w-auto justify-end">
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(2, 2, this)">Yes</button>
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(2, 1, this)">Maybe</button>
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(2, 0, this)">No</button>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-300 transition-colors">
+                            <p class="text-slate-700 font-medium text-sm w-full md:w-2/3">3. Are you interested in technology—computers, apps, networks, or games—even if you don't know much about how they work yet?</p>
+                            <div class="flex gap-2 w-full md:w-auto justify-end">
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(3, 2, this)">Yes</button>
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(3, 1, this)">Maybe</button>
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(3, 0, this)">No</button>
+                            </div>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-300 transition-colors">
+                            <p class="text-slate-700 font-medium text-sm w-full md:w-2/3">4. Would you like a career where you can keep learning new things over time and not do the exact same task every day?</p>
+                            <div class="flex gap-2 w-full md:w-auto justify-end">
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(4, 2, this)">Yes</button>
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(4, 1, this)">Maybe</button>
+                                <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(4, 0, this)">No</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="bg-white border-l-4 border-cyan-500 rounded-r-xl p-4 relative z-10 shadow-sm">
-                        <strong class="text-slate-900 text-sm block mb-1">Next Steps:</strong>
-                        <p class="text-slate-600 text-xs leading-relaxed">Take a moment to answer these questions. If you answered 'yes' to several, continue to Sections 3 and 4 to learn about credentials and specific cybersecurity majors and roles.</p>
+                    <div id="self-check-result" class="bg-white border-l-4 border-cyan-500 rounded-r-xl p-6 relative z-10 shadow-sm hidden transition-all duration-500">
+                        <strong class="text-slate-900 text-lg block mb-2">Your Recommendation</strong>
+                        <p id="self-check-feedback" class="text-slate-700 leading-relaxed text-sm"></p>
+                    </div>
+                </div>
+
+                <!-- "My Why for Cyber" Reflection -->
+                <div class="glass-panel p-8 rounded-3xl shadow-md border border-slate-200 bg-white">
+                    <h3 class="text-xl font-bold text-slate-900 mb-2 tracking-tight"><i class="fas fa-pen-fancy text-purple-600 mr-3"></i>"My Why for Cyber" Reflection</h3>
+                    <p class="text-slate-600 text-sm mb-6">In 2–4 sentences, explain why cybersecurity might matter to you, your family, or your community.</p>
+                    <div class="relative">
+                        <span class="absolute top-0 right-0 -mt-3 -mr-3 bg-purple-100 text-purple-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm border border-purple-200 z-10"><i class="fas fa-lock mr-1"></i> My Pathway Notes</span>
+                        <textarea class="w-full bg-slate-50 border border-slate-300 rounded-xl p-5 text-sm focus:ring-2 focus:ring-purple-500 focus:bg-white outline-none resize-none shadow-inner transition-all relative z-0" rows="4" placeholder="Type your personal reflection here. (Your notes stay on this screen to assist with future advising conversations)"></textarea>
                     </div>
                 </div>
 
@@ -774,6 +810,101 @@
                             <li class="flex items-start"><i class="fas fa-check-circle text-rose-600 mt-1 mr-3"></i><span><strong>Focus:</strong> Assigns Specific Codes (e.g., 411)</span></li>
                         </ul>
                         <a href="https://public.cyber.mil/wid/dcwf/" target="_blank" class="mt-10 inline-flex items-center text-rose-700 hover:text-rose-600 text-sm font-bold transition-colors pt-4 border-t border-slate-200 w-full">Visit Official Site <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                    </div>
+                </div>
+
+                <!-- NEW: "Civilian or Military?" Personal Scenario Sort -->
+                <div class="mb-16 glass-panel p-8 rounded-3xl border-t-4 border-t-blue-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-random text-blue-600 mr-3"></i>"Civilian or Military?" Personal Scenario Sort</h3>
+                    <p class="text-slate-600 text-sm mb-6">Assign each scenario to the environment you think fits best: Civilian (NICE), Military/DoD (DCWF), or Could be either.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <p class="text-slate-700 text-sm font-medium mb-4">"You are analyzing malware that targeted a local hospital's patient database."</p>
+                            <select id="scenario-1" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                                <option value="">Select...</option>
+                                <option value="civilian">Mostly Civilian (NICE)</option>
+                                <option value="military">Military/DoD (DCWF)</option>
+                                <option value="both">Could be either</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <p class="text-slate-700 text-sm font-medium mb-4">"You are setting up secure communications for a forward-deployed unit overseas."</p>
+                            <select id="scenario-2" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                                <option value="">Select...</option>
+                                <option value="civilian">Mostly Civilian (NICE)</option>
+                                <option value="military">Military/DoD (DCWF)</option>
+                                <option value="both">Could be either</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+                            <p class="text-slate-700 text-sm font-medium mb-4">"You are conducting digital forensics on a laptop confiscated in a federal investigation."</p>
+                            <select id="scenario-3" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                                <option value="">Select...</option>
+                                <option value="civilian">Mostly Civilian (NICE)</option>
+                                <option value="military">Military/DoD (DCWF)</option>
+                                <option value="both">Could be either</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button onclick="checkScenarios()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-sm mb-6">Check My Answers</button>
+                    
+                    <div id="scenario-feedback" class="hidden bg-blue-50 border border-blue-200 p-5 rounded-xl text-sm text-slate-700 leading-relaxed mb-6 shadow-inner">
+                        <strong class="text-blue-800 block mb-2">Feedback:</strong>
+                        <p class="mb-2"><strong>Hospital:</strong> Mostly Civilian. While military bases have hospitals, local community hospitals fall under civilian (NICE) guidelines.</p>
+                        <p class="mb-2"><strong>Overseas Unit:</strong> Military/DoD. This directly supports defense operations, falling strictly under DCWF rules.</p>
+                        <p><strong>Forensics:</strong> Could be either. Both civilian law enforcement (like the FBI) and military investigators use digital forensics.</p>
+                    </div>
+
+                    <div class="border-t border-slate-200 pt-6">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Right now I picture myself more in: [Civilian / Military / Not sure]. Why?</label>
+                        <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none resize-none shadow-sm" rows="2" placeholder="Type your reflection here..."></textarea>
+                    </div>
+                </div>
+
+                <!-- NEW: "Which Work Style Sounds Like Me?" Solo Checklist -->
+                <div class="mb-16 glass-panel p-8 rounded-3xl border-t-4 border-t-emerald-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-tasks text-emerald-600 mr-3"></i>"Which Work Style Sounds Like Me?" Solo Checklist</h3>
+                    <p class="text-slate-600 text-sm mb-6">Check any of the activities below that sound interesting to you. We'll map them to the NICE Framework categories.</p>
+                    
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm mb-6">
+                        <ul class="space-y-4 text-sm text-slate-700">
+                            <li>
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" id="ws-build" onchange="calculateWorkStyle()" class="mt-1 mr-3 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                                    <span class="group-hover:text-slate-900 transition-colors">Designing, coding, and building secure systems from the ground up.</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" id="ws-maintain" onchange="calculateWorkStyle()" class="mt-1 mr-3 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                                    <span class="group-hover:text-slate-900 transition-colors">Maintaining networks, running updates, and keeping the tech running smoothly every day.</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" id="ws-catch" onchange="calculateWorkStyle()" class="mt-1 mr-3 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                                    <span class="group-hover:text-slate-900 transition-colors">Monitoring screens to catch attacks in real-time and defending against active hackers.</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" id="ws-analyze" onchange="calculateWorkStyle()" class="mt-1 mr-3 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                                    <span class="group-hover:text-slate-900 transition-colors">Analyzing hidden patterns, investigating digital clues, or researching new threats.</span>
+                                </label>
+                            </li>
+                            <li>
+                                <label class="flex items-start cursor-pointer group">
+                                    <input type="checkbox" id="ws-policy" onchange="calculateWorkStyle()" class="mt-1 mr-3 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                                    <span class="group-hover:text-slate-900 transition-colors">Setting the rules, managing teams, educating others, and writing security policies.</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div id="work-style-result" class="hidden bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-xl text-slate-800 text-sm shadow-sm transition-all">
+                        <!-- Populated by JS -->
                     </div>
                 </div>
 
@@ -868,6 +999,32 @@
                     </div>
 
                 </div>
+
+                <!-- NEW: "One Category, One Role" Mini Deep-Dive -->
+                <div class="mt-16 glass-panel p-8 rounded-3xl border-t-4 border-t-purple-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-search-plus text-purple-600 mr-3"></i>"One Category, One Role" Mini Deep-Dive</h3>
+                    <p class="text-slate-600 text-sm mb-6">Using the Explorer tool above, select <strong class="text-purple-700">one NICE category</strong> that sounded interesting to you. Read through the roles and fill out the reflection below.</p>
+                    
+                    <div class="bg-purple-50/50 p-6 rounded-xl border border-purple-200 shadow-inner space-y-4">
+                        <div class="flex flex-col md:flex-row gap-4 items-center mb-2 border-b border-purple-200 pb-4">
+                            <label class="font-bold text-slate-700 whitespace-nowrap">My Selected Role:</label>
+                            <input type="text" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-purple-500 outline-none shadow-sm" placeholder="e.g. Cyber Defense Analyst">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Skills, knowledge, or tools I would need to learn:</label>
+                            <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm" rows="2"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Things I might really like about this specific work:</label>
+                            <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm" rows="2"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Things I'm not sure I'd enjoy (or might find challenging):</label>
+                            <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -1085,38 +1242,142 @@
                     </div>
                 </div>
 
-                <!-- Student Mini Activity -->
-                <div class="glass-panel p-8 rounded-3xl mb-16 border border-cyan-200 shadow-md">
-                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
-                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-search text-cyan-600 mr-3"></i>Activity: Find Cyber Credentials</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-cyan-300 transition-all flex items-center shadow-sm print:hidden">
-                            <i class="fas fa-file-download mr-2 text-cyan-600"></i> Download Worksheet
-                        </button>
-                    </div>
-                    <p class="text-slate-600 text-sm mb-6">Use your school's catalog, local community college website, or the CAE programs list to find at least four academic credentials related to cybersecurity that interest you. For each, record the details below.</p>
+                <!-- NEW: "Build My Own Education Ladder" -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-cyan-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-stream text-cyan-600 mr-3"></i>Build My Own Education Ladder</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">Map out your educational journey. Select an option for each stage to see your personalized pathway.</p>
                     
-                    <div class="overflow-x-auto bg-white rounded-xl border border-slate-200 mb-6 shadow-sm">
-                        <table class="w-full text-left text-sm text-slate-700">
-                            <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-mono">
-                                <tr>
-                                    <th class="px-6 py-4 border-b border-slate-200">Institution</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Credential Type</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Subject Area</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Years to Complete</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100">
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-4 text-slate-500 italic">Example Univ.</td><td class="px-6 py-4 text-slate-500 italic">Bachelor of Science</td><td class="px-6 py-4 text-slate-500 italic">Cybersecurity</td><td class="px-6 py-4 text-slate-500 italic">4 Years</td></tr>
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                            </tbody>
-                        </table>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <strong class="text-slate-800 text-xs uppercase tracking-widest mb-2 font-mono">1. Now</strong>
+                            <select id="ladder-now" onchange="updateLadder()" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-cyan-500 outline-none cursor-pointer">
+                                <option value="">Select...</option>
+                                <option value="finish high school">Finish High School</option>
+                                <option value="take dual credit courses">Take Dual Credit</option>
+                                <option value="earn a basic IT cert">Earn Basic IT Cert</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <strong class="text-slate-800 text-xs uppercase tracking-widest mb-2 font-mono">2. Next</strong>
+                            <select id="ladder-next" onchange="updateLadder()" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-cyan-500 outline-none cursor-pointer">
+                                <option value="">Select...</option>
+                                <option value="get a Cyber Certificate">Cyber Certificate</option>
+                                <option value="earn an AAS degree">AAS Degree (2-year)</option>
+                                <option value="start a BS degree">Start BS Degree (4-year)</option>
+                                <option value="get an entry-level job">Entry-Level IT Job</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <strong class="text-slate-800 text-xs uppercase tracking-widest mb-2 font-mono">3. Later</strong>
+                            <select id="ladder-later" onchange="updateLadder()" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-cyan-500 outline-none cursor-pointer">
+                                <option value="">Select...</option>
+                                <option value="transfer to a BS program">Transfer to BS Program</option>
+                                <option value="finish my BS degree">Finish BS Degree</option>
+                                <option value="earn an advanced cert">Advanced Industry Cert</option>
+                                <option value="work as a Cyber Analyst">Work as Cyber Analyst</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <strong class="text-slate-800 text-xs uppercase tracking-widest mb-2 font-mono">4. Long-Term</strong>
+                            <select id="ladder-long" onchange="updateLadder()" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-cyan-500 outline-none cursor-pointer">
+                                <option value="">Select...</option>
+                                <option value="earn a Master's degree">Master's Degree</option>
+                                <option value="become a Security Architect">Become Security Architect</option>
+                                <option value="lead a cybersecurity team">Lead a Cyber Team</option>
+                                <option value="specialize in Forensics/AI">Specialize in Niche Area</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="bg-white border-l-4 border-cyan-500 rounded-r-xl p-4 shadow-sm">
-                        <strong class="text-slate-900 text-sm block mb-1">Activity Goal:</strong>
-                        <p class="text-slate-600 text-xs leading-relaxed">Use this activity to compare short-term and longer-term options and to see how community college and university programs can connect in a pathway.</p>
+                    <div class="bg-cyan-50 p-5 rounded-xl border border-cyan-200 shadow-inner">
+                        <p id="ladder-output" class="text-cyan-800 font-medium text-sm leading-relaxed">My path could be: <span class="text-slate-400 italic">(Select options above to build your ladder)</span></p>
+                    </div>
+                </div>
+
+                <!-- NEW: "Find Cyber Credentials I Could Actually Attend" -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-emerald-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-search-location text-emerald-600 mr-3"></i>Find Cyber Credentials I Could Actually Attend</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                        Search college websites, transfer guides, or CAE program lists to find realistic options. Record two specific credentials below, then highlight which one is the fastest and which sounds the most interesting.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Option 1 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                            <strong class="text-slate-800 text-sm border-b border-slate-100 pb-2 block font-mono">Option 1</strong>
+                            <div><input type="text" placeholder="Institution (e.g., Local CC)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-emerald-500 bg-transparent transition-colors"></div>
+                            <div><input type="text" placeholder="Credential Type (e.g., Certificate)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-emerald-500 bg-transparent transition-colors"></div>
+                            <div><input type="text" placeholder="Subject (e.g., Network Security)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-emerald-500 bg-transparent transition-colors"></div>
+                            <div><input type="text" placeholder="Years to Complete (e.g., 1 Year)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-emerald-500 bg-transparent transition-colors"></div>
+                            <div class="pt-3 flex gap-4">
+                                <label class="flex items-center text-xs text-slate-600 cursor-pointer group hover:text-emerald-700 transition-colors"><input type="radio" name="shortest" class="mr-2 w-4 h-4 text-emerald-600 focus:ring-emerald-500 cursor-pointer accent-emerald-600"> Shortest Option</label>
+                                <label class="flex items-center text-xs text-slate-600 cursor-pointer group hover:text-emerald-700 transition-colors"><input type="radio" name="interesting" class="mr-2 w-4 h-4 text-emerald-600 focus:ring-emerald-500 cursor-pointer accent-emerald-600"> Most Interesting</label>
+                            </div>
+                        </div>
+                        <!-- Option 2 -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-4">
+                            <strong class="text-slate-800 text-sm border-b border-slate-100 pb-2 block font-mono">Option 2</strong>
+                            <div><input type="text" placeholder="Institution (e.g., State Univ)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-emerald-500 bg-transparent transition-colors"></div>
+                            <div><input type="text" placeholder="Credential Type (e.g., Bachelor's)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-emerald-500 bg-transparent transition-colors"></div>
+                            <div><input type="text" placeholder="Subject (e.g., Cyber Defense)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-emerald-500 bg-transparent transition-colors"></div>
+                            <div><input type="text" placeholder="Years to Complete (e.g., 4 Years)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-emerald-500 bg-transparent transition-colors"></div>
+                            <div class="pt-3 flex gap-4">
+                                <label class="flex items-center text-xs text-slate-600 cursor-pointer group hover:text-emerald-700 transition-colors"><input type="radio" name="shortest" class="mr-2 w-4 h-4 text-emerald-600 focus:ring-emerald-500 cursor-pointer accent-emerald-600"> Shortest Option</label>
+                                <label class="flex items-center text-xs text-slate-600 cursor-pointer group hover:text-emerald-700 transition-colors"><input type="radio" name="interesting" class="mr-2 w-4 h-4 text-emerald-600 focus:ring-emerald-500 cursor-pointer accent-emerald-600"> Most Interesting</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW: "Role-Level Reality Check" -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-purple-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-balance-scale text-purple-600 mr-3"></i>Role-Level Reality Check</h3>
+                    <p class="text-slate-600 text-sm mb-6">Match the cybersecurity role to its minimum typical credential level.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <strong class="text-slate-800 text-sm mb-3">Cyber Technician / Help Desk</strong>
+                            <select id="reality-1" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-purple-500 outline-none mb-2 cursor-pointer transition-all">
+                                <option value="">Select minimum credential...</option>
+                                <option value="cert_assoc">Certificate / Associate</option>
+                                <option value="bs">Bachelor's Degree</option>
+                                <option value="ms_phd">Master's / Doctorate</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <strong class="text-slate-800 text-sm mb-3">Security Engineer / SOC Analyst</strong>
+                            <select id="reality-2" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-purple-500 outline-none mb-2 cursor-pointer transition-all">
+                                <option value="">Select minimum credential...</option>
+                                <option value="cert_assoc">Certificate / Associate</option>
+                                <option value="bs">Bachelor's Degree</option>
+                                <option value="ms_phd">Master's / Doctorate</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <strong class="text-slate-800 text-sm mb-3">Cyber Researcher / CISO</strong>
+                            <select id="reality-3" class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-purple-500 outline-none mb-2 cursor-pointer transition-all">
+                                <option value="">Select minimum credential...</option>
+                                <option value="cert_assoc">Certificate / Associate</option>
+                                <option value="bs">Bachelor's Degree</option>
+                                <option value="ms_phd">Master's / Doctorate</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button onclick="checkReality()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-sm mb-6">Check My Answers</button>
+                    
+                    <div id="reality-feedback" class="hidden bg-purple-50 border border-purple-200 p-5 rounded-xl text-sm text-slate-700 leading-relaxed mb-6 shadow-inner animate-fade-in">
+                        <strong class="text-purple-800 block mb-2">Feedback:</strong>
+                        <ul class="space-y-1">
+                            <li><i class="fas fa-arrow-right text-purple-400 mr-2 text-xs"></i><strong>Technician/Help Desk:</strong> Typically requires a <span class="font-bold">Certificate or Associate Degree</span> (plus some industry certs like Security+).</li>
+                            <li><i class="fas fa-arrow-right text-purple-400 mr-2 text-xs"></i><strong>Security Engineer/Analyst:</strong> The most common baseline is a <span class="font-bold">Bachelor's Degree</span>.</li>
+                            <li><i class="fas fa-arrow-right text-purple-400 mr-2 text-xs"></i><strong>Researcher/CISO:</strong> Advanced roles and leadership heavily favor <span class="font-bold">Master's or Doctoral Degrees</span>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-t border-slate-200 pt-6">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Based on this, which credential level feels like a realistic <span class="italic">first target</span> for you after high school?</label>
+                        <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm" rows="2" placeholder="Type your reflection here..."></textarea>
                     </div>
                 </div>
 
@@ -1202,141 +1463,121 @@
                     </div>
                 </div>
 
-                <!-- Matching Majors & Comparison -->
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-slate-900 mb-6 tracking-tight">Which Cyber Major Fits Me?</h3>
-                    <p class="text-slate-600 text-base mb-6 leading-relaxed">
-                        Different cybersecurity programs emphasize different strengths: hands-on technical work, coding, investigation, or policy and management. Use this guide to see which majors might fit your interests and skills.
-                    </p>
+                <!-- NEW: "Which Cyber Major Fits Me?" Individual Selector -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 shadow-md border-t-4 border-t-emerald-500">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-compass text-emerald-600 mr-3"></i>"Which Cyber Major Fits Me?" Personal Selector</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">Choose the activities you enjoy most to see which cybersecurity majors align with your interests.</p>
                     
-                    <div class="overflow-x-auto bg-white rounded-2xl border border-slate-200 mb-6 shadow-sm">
-                        <table class="w-full text-left text-sm text-slate-700">
-                            <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-mono">
-                                <tr>
-                                    <th class="px-6 py-4 border-b border-slate-200 w-1/2">If you enjoy…</th>
-                                    <th class="px-6 py-4 border-b border-slate-200 w-1/2">Consider majors like…</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100">
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="px-6 py-4 leading-relaxed font-medium text-slate-800">Building, configuring, and troubleshooting computers and networks</td>
-                                    <td class="px-6 py-4 text-emerald-700 font-medium">Cybersecurity / Cyber Defense; IT with Security Emphasis.</td>
-                                </tr>
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="px-6 py-4 leading-relaxed font-medium text-slate-800">Solving logical puzzles, programming, and creating software</td>
-                                    <td class="px-6 py-4 text-cyan-700 font-medium">Computer Science or Software Engineering with a Cybersecurity concentration.</td>
-                                </tr>
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="px-6 py-4 leading-relaxed font-medium text-slate-800">Investigating what went wrong, analyzing evidence, and telling the story</td>
-                                    <td class="px-6 py-4 text-purple-700 font-medium">Digital Forensics / Cyber Crime.</td>
-                                </tr>
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="px-6 py-4 leading-relaxed font-medium text-slate-800">Thinking about rules, fairness, policy, and how organizations manage risk</td>
-                                    <td class="px-6 py-4 text-amber-700 font-medium">Information Assurance / Cybersecurity Management / GRC.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                        <p class="text-slate-600 text-sm italic">After you complete the career interest assessment (Part X), come back to this table and highlight 1–2 majors that align with your profile.</p>
-                    </div>
-                </div>
-
-                <!-- Starting Points & Evaluation Checklist Grid -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-                    <!-- Starting Points -->
-                    <div class="glass-panel p-8 rounded-3xl shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-map-signs text-emerald-600 mr-3"></i>Starting Points: Community Colleges and Universities</h3>
-                        <div class="space-y-4 text-slate-600 text-sm leading-relaxed mb-6">
-                            <p>Students can begin their cybersecurity education at different types of institutions and levels.</p>
-                            <p>Community colleges often offer certificates and associate degrees that lead to entry-level roles or transfer into bachelor's programs.</p>
-                            <p>Universities typically offer bachelor's and graduate degrees that open broader career paths and leadership opportunities.</p>
-                        </div>
-                        <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-                            <p class="text-slate-700 text-sm italic">Both paths are valid: You might start with a 2-year Cybersecurity AAS at a community college and then transfer into a 4-year BS at a university, or you might enter a 4-year program directly if that fits your situation.</p>
-                        </div>
-                    </div>
-
-                    <!-- Program Evaluation Checklist -->
-                    <div class="glass-panel p-8 rounded-3xl shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-clipboard-check text-rose-600 mr-3"></i>How to Compare Programs</h3>
-                        <ul class="space-y-3 text-sm text-slate-600 leading-relaxed mb-6">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm mb-6">
+                        <ul class="space-y-4 text-sm text-slate-700">
                             <li>
                                 <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">Is the program aligned with national standards (e.g., designated as a Center of Academic Excellence in Cyber Defense)?</span>
+                                    <input type="checkbox" id="mj-build" onchange="calculateMajorFit()" class="mt-1 mr-3 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                                    <span class="group-hover:text-slate-900 transition-colors">Building, configuring, and troubleshooting computers and networks</span>
                                 </label>
                             </li>
                             <li>
                                 <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">Does the curriculum include a mix of technical courses (networking, OS, security) and broader topics (policy, risk, ethics)?</span>
+                                    <input type="checkbox" id="mj-code" onchange="calculateMajorFit()" class="mt-1 mr-3 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                                    <span class="group-hover:text-slate-900 transition-colors">Solving logical puzzles, programming, and creating software</span>
                                 </label>
                             </li>
                             <li>
                                 <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">Are there opportunities for hands-on labs, projects, competitions, or internships?</span>
+                                    <input type="checkbox" id="mj-investigate" onchange="calculateMajorFit()" class="mt-1 mr-3 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                                    <span class="group-hover:text-slate-900 transition-colors">Investigating what went wrong, analyzing evidence, and telling the story</span>
                                 </label>
                             </li>
                             <li>
                                 <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">Does the program offer stackable certificates or transfer pathways to bachelor's degrees?</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">What percentage of graduates find jobs in cybersecurity or related fields, and in what types of roles?</span>
+                                    <input type="checkbox" id="mj-policy" onchange="calculateMajorFit()" class="mt-1 mr-3 w-4 h-4 text-emerald-600 rounded border-slate-300 focus:ring-emerald-500 cursor-pointer accent-emerald-600">
+                                    <span class="group-hover:text-slate-900 transition-colors">Thinking about rules, fairness, policy, and how organizations manage risk</span>
                                 </label>
                             </li>
                         </ul>
-                        <div class="pro-tip-box p-4">
-                            <strong class="pro-tip-label text-xs uppercase tracking-widest font-mono block mb-1">Pro Tip</strong>
-                            <p class="text-slate-700 text-sm italic">Talk with program coordinators, ask about graduate outcomes, and review course lists—not just marketing materials.</p>
-                        </div>
+                    </div>
+                    
+                    <div id="major-fit-result" class="hidden bg-emerald-50 border border-emerald-200 p-5 rounded-xl text-slate-800 text-sm shadow-inner transition-all mb-6">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="border-t border-slate-200 pt-6">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">Which of these majors sounds most like you right now? Why?</label>
+                        <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none resize-none shadow-sm" rows="2" placeholder="Type your reflection here..."></textarea>
                     </div>
                 </div>
 
-                <!-- Student Mini Activity -->
-                <div class="glass-panel p-8 rounded-3xl mb-16 border border-cyan-200 shadow-md">
-                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
-                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-search text-cyan-600 mr-3"></i>Activity: Find Cybersecurity Majors</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-cyan-300 transition-all flex items-center shadow-sm print:hidden">
-                            <i class="fas fa-file-download mr-2 text-cyan-600"></i> Download Worksheet
-                        </button>
-                    </div>
-                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-                        Using college websites, transfer guides, and CAE program lists, identify:<br>
-                        • One community college program with a security certificate or cyber-related associate degree.<br>
-                        • One 4-year institution with a cybersecurity or related major (such as Cybersecurity, Information Assurance, or IT with Security).<br>
-                        • If possible, one program recognized as a Center of Academic Excellence (CAE).
-                    </p>
-                    
-                    <div class="overflow-x-auto bg-white rounded-xl border border-slate-200 mb-6 shadow-sm">
-                        <table class="w-full text-left text-sm text-slate-700">
-                            <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-mono">
-                                <tr>
-                                    <th class="px-6 py-4 border-b border-slate-200">Institution</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Program Name</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Credential Type</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">CAE-Designated?</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Notes</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100">
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                            </tbody>
-                        </table>
+                <!-- NEW: "My Starting Point Decision" & "Compare Two Programs for Me" -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                    <!-- Starting Point Decision -->
+                    <div class="glass-panel p-8 rounded-3xl shadow-md lg:col-span-1 flex flex-col">
+                        <h3 class="text-xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-map-signs text-blue-600 mr-3"></i>My Starting Point Decision</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed mb-6">You can begin your cybersecurity education at different types of institutions. Think about what fits your life best.</p>
+                        
+                        <div class="space-y-4 flex-grow">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">I most likely will start in:</label>
+                                <select class="w-full bg-white border border-slate-300 text-slate-700 text-sm rounded-lg p-3 focus:ring-2 focus:ring-blue-500 outline-none shadow-sm cursor-pointer">
+                                    <option value="">Select...</option>
+                                    <option value="dual-credit">Dual credit only (for now)</option>
+                                    <option value="community-college">Community college</option>
+                                    <option value="university">4-year university</option>
+                                    <option value="not-sure">Not sure yet</option>
+                                </select>
+                            </div>
+                            <div class="pt-2">
+                                <label class="block text-sm font-bold text-slate-700 mb-2">What makes this feel like the best starting point <span class="italic">for you</span> right now?</label>
+                                <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none resize-none shadow-sm h-32" placeholder="Cost, location, timeline, etc..."></textarea>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="bg-white border-l-4 border-cyan-500 rounded-r-xl p-4 shadow-sm">
-                        <strong class="text-slate-900 text-sm block mb-1">Activity Goal:</strong>
-                        <p class="text-slate-600 text-xs leading-relaxed">Use this activity to discover multiple on-ramps to cyber—close to home, at community colleges and universities.</p>
+                    <!-- Compare Two Programs -->
+                    <div class="glass-panel p-8 rounded-3xl shadow-md lg:col-span-2">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
+                            <h3 class="text-xl font-bold text-slate-900 tracking-tight"><i class="fas fa-clipboard-check text-rose-600 mr-3"></i>"Compare Two Programs for Me"</h3>
+                            <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2 px-3 rounded-lg border border-slate-200 hover:border-rose-300 transition-all flex items-center shadow-sm print:hidden">
+                                <i class="fas fa-print mr-2 text-rose-600"></i> Print
+                            </button>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6">Pick two real programs (e.g., local CC vs nearby University) and check off what they offer to see how they stack up.</p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <input type="text" id="prog-a-name" placeholder="Program A Name..." class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-rose-500 outline-none shadow-sm mb-4 font-bold text-center" oninput="comparePrograms()">
+                                <ul class="space-y-3 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-inner">
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-1" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> CAE Designated?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-2" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> Tech & Policy Mix?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-3" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> Hands-on Labs/Projects?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-4" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> Stackable / Transferable?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-5" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> Clear Job Outcomes?</label></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <input type="text" id="prog-b-name" placeholder="Program B Name..." class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none shadow-sm mb-4 font-bold text-center" oninput="comparePrograms()">
+                                <ul class="space-y-3 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-inner">
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-1" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> CAE Designated?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-2" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> Tech & Policy Mix?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-3" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> Hands-on Labs/Projects?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-4" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> Stackable / Transferable?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-5" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> Clear Job Outcomes?</label></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-center gap-6 bg-slate-100 p-4 rounded-xl border border-slate-200 shadow-sm mb-6">
+                            <strong class="text-slate-800 text-sm">Your Tally:</strong>
+                            <div class="text-sm font-bold bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
+                                <span class="text-rose-600" id="tally-a">Program A: 0</span>
+                                <span class="mx-3 text-slate-300">|</span>
+                                <span class="text-indigo-600" id="tally-b">Program B: 0</span>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-200 pt-6">
+                            <label class="block text-sm font-bold text-slate-700 mb-2">Given this comparison, which are you more interested in and why?</label>
+                            <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-rose-500 outline-none resize-none shadow-sm" rows="2" placeholder="Type your reflection here..."></textarea>
+                        </div>
                     </div>
                 </div>
 
@@ -1607,40 +1848,163 @@
                     </div>
                 </div>
 
-                <!-- Student Mini Activity -->
-                <div class="mt-16 glass-panel p-8 rounded-3xl mb-16 border border-emerald-200 shadow-md">
-                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
-                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-search text-emerald-600 mr-3"></i>Activity: Research Certifications</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center shadow-sm print:hidden">
-                            <i class="fas fa-file-download mr-2 text-emerald-600"></i> Download Worksheet
-                        </button>
-                    </div>
-                    <div class="space-y-3 text-slate-600 text-sm mb-6 leading-relaxed">
-                        <p>Use the CyberSeek Certifications Tool at <a href="https://www.cyberseek.org/certifications.html" target="_blank" class="text-emerald-600 hover:underline">cyberseek.org/certifications.html</a> to see which certifications are most requested for common cybersecurity roles.</p>
-                        <p>Open the Security Certification Roadmap (<a href="https://pauljerimy.com/security-certification-roadmap/" target="_blank" class="text-emerald-600 hover:underline">pauljerimy.com</a>) and/or the interactive GitHub version (<a href="https://github.com/PaulJerimy/SecCertRoadmap" target="_blank" class="text-emerald-600 hover:underline">github.com</a>).</p>
-                        <p>Pick one entry-level and one intermediate certification that match your interests (for example, network defense, forensics, or governance).</p>
-                    </div>
+                <!-- NEW: "Is a Certification a Near-Term Goal for Me?" Personal Readiness Check -->
+                <div class="mt-16 glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-emerald-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-clipboard-check text-emerald-600 mr-3"></i>"Is a Certification a Near-Term Goal for Me?" Personal Readiness Check</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">Answer these quick questions about your current coursework and hands-on experience to see if a certification should be an immediate focus.</p>
                     
-                    <div class="overflow-x-auto bg-white rounded-xl border border-slate-200 mb-6 shadow-sm">
-                        <table class="w-full text-left text-sm text-slate-700">
-                            <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-mono">
-                                <tr>
-                                    <th class="px-6 py-4 border-b border-slate-200">Target Job Title</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Top Certifications (from CyberSeek)</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Domain (from roadmap)</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Level (Entry/Intermediate/Advanced)</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100">
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                            </tbody>
-                        </table>
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4 transition-colors hover:border-emerald-300">
+                            <span class="text-sm text-slate-700 font-medium">1. Have you completed at least one full semester of an IT or cybersecurity class?</span>
+                            <select id="cert-ready-1" onchange="checkCertReadiness()" class="w-full md:w-auto bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-emerald-500 outline-none cursor-pointer shrink-0">
+                                <option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4 transition-colors hover:border-emerald-300">
+                            <span class="text-sm text-slate-700 font-medium">2. Do you regularly practice with hands-on labs (like TryHackMe, CyberPatriot, or class labs)?</span>
+                            <select id="cert-ready-2" onchange="checkCertReadiness()" class="w-full md:w-auto bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-emerald-500 outline-none cursor-pointer shrink-0">
+                                <option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between md:items-center gap-4 transition-colors hover:border-emerald-300">
+                            <span class="text-sm text-slate-700 font-medium">3. Are you actively preparing for an entry-level IT job or internship right now?</span>
+                            <select id="cert-ready-3" onchange="checkCertReadiness()" class="w-full md:w-auto bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-emerald-500 outline-none cursor-pointer shrink-0">
+                                <option value="">Select...</option><option value="yes">Yes</option><option value="no">No</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="bg-white border-l-4 border-emerald-500 rounded-r-xl p-4 shadow-sm">
-                        <strong class="text-slate-900 text-sm block mb-1">Activity Goal:</strong>
-                        <p class="text-slate-600 text-xs leading-relaxed">Use this activity to see the connection between specific job titles, requested certifications, and where those certs sit on the overall roadmap.</p>
+                    <div id="cert-readiness-result" class="hidden bg-emerald-50 border-l-4 border-emerald-500 p-5 rounded-r-xl text-sm text-slate-800 shadow-sm transition-all">
+                    </div>
+                </div>
+
+                <!-- NEW: "My Personal Certification Roadmap Snapshot" -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-cyan-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-map-signs text-cyan-600 mr-3"></i>"My Personal Certification Roadmap Snapshot"</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">Choose up to two certifications per timeline column. Keep in mind that advanced certs require years of verified on-the-job experience!</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <!-- 1-2 Years -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                            <strong class="text-slate-800 text-sm mb-3 border-b border-slate-100 pb-2 relative z-10">1–2 Years (Foundational)</strong>
+                            <select id="rm-1a" onchange="checkRoadmapWarn('rm-1a')" class="w-full bg-white border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-cyan-500 outline-none mb-3 cursor-pointer relative z-10 shadow-sm">
+                                <option value="">Select 1st Cert...</option>
+                                <option value="ITF+">CompTIA ITF+</option>
+                                <option value="A+">CompTIA A+</option>
+                                <option value="Network+">CompTIA Network+</option>
+                                <option value="Security+">CompTIA Security+</option>
+                                <option value="CC">ISC2 CC</option>
+                            </select>
+                            <select id="rm-1b" onchange="checkRoadmapWarn('rm-1b')" class="w-full bg-white border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-cyan-500 outline-none cursor-pointer relative z-10 shadow-sm">
+                                <option value="">Select 2nd Cert (Optional)...</option>
+                                <option value="ITF+">CompTIA ITF+</option>
+                                <option value="A+">CompTIA A+</option>
+                                <option value="Network+">CompTIA Network+</option>
+                                <option value="Security+">CompTIA Security+</option>
+                                <option value="CC">ISC2 CC</option>
+                            </select>
+                            <p id="warn-rm-1a" class="text-xs text-rose-600 mt-2 hidden font-medium relative z-10"></p>
+                            <p id="warn-rm-1b" class="text-xs text-rose-600 mt-1 hidden font-medium relative z-10"></p>
+                        </div>
+                        
+                        <!-- 3-5 Years -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-blue-50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                            <strong class="text-slate-800 text-sm mb-3 border-b border-slate-100 pb-2 relative z-10">3–5 Years (Intermediate)</strong>
+                            <select id="rm-3a" onchange="checkRoadmapWarn('rm-3a')" class="w-full bg-white border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-blue-500 outline-none mb-3 cursor-pointer relative z-10 shadow-sm">
+                                <option value="">Select 1st Cert...</option>
+                                <option value="Security+">CompTIA Security+</option>
+                                <option value="CySA+">CompTIA CySA+</option>
+                                <option value="CEH">EC-Council CEH</option>
+                                <option value="CND">EC-Council CND</option>
+                                <option value="GSEC">GIAC GSEC</option>
+                                <option value="CISA">ISACA CISA</option>
+                            </select>
+                            <select id="rm-3b" onchange="checkRoadmapWarn('rm-3b')" class="w-full bg-white border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-blue-500 outline-none cursor-pointer relative z-10 shadow-sm">
+                                <option value="">Select 2nd Cert (Optional)...</option>
+                                <option value="Security+">CompTIA Security+</option>
+                                <option value="CySA+">CompTIA CySA+</option>
+                                <option value="CEH">EC-Council CEH</option>
+                                <option value="CND">EC-Council CND</option>
+                                <option value="GSEC">GIAC GSEC</option>
+                                <option value="CISA">ISACA CISA</option>
+                            </select>
+                            <p id="warn-rm-3a" class="text-xs text-rose-600 mt-2 hidden font-medium relative z-10"></p>
+                            <p id="warn-rm-3b" class="text-xs text-rose-600 mt-1 hidden font-medium relative z-10"></p>
+                        </div>
+                        
+                        <!-- 5+ Years -->
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col relative overflow-hidden group">
+                            <div class="absolute inset-0 bg-purple-50 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+                            <strong class="text-slate-800 text-sm mb-3 border-b border-slate-100 pb-2 relative z-10">5+ Years (Advanced)</strong>
+                            <select id="rm-5a" onchange="checkRoadmapWarn('rm-5a')" class="w-full bg-white border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-purple-500 outline-none mb-3 cursor-pointer relative z-10 shadow-sm">
+                                <option value="">Select 1st Cert...</option>
+                                <option value="CISSP">ISC2 CISSP</option>
+                                <option value="CISM">ISACA CISM</option>
+                                <option value="CASP+">CompTIA CASP+</option>
+                                <option value="GCFA">GIAC GCFA</option>
+                            </select>
+                            <select id="rm-5b" onchange="checkRoadmapWarn('rm-5b')" class="w-full bg-white border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-purple-500 outline-none cursor-pointer relative z-10 shadow-sm">
+                                <option value="">Select 2nd Cert (Optional)...</option>
+                                <option value="CISSP">ISC2 CISSP</option>
+                                <option value="CISM">ISACA CISM</option>
+                                <option value="CASP+">CompTIA CASP+</option>
+                                <option value="GCFA">GIAC GCFA</option>
+                            </select>
+                            <p id="warn-rm-5a" class="text-xs text-rose-600 mt-2 hidden font-medium relative z-10"></p>
+                            <p id="warn-rm-5b" class="text-xs text-rose-600 mt-1 hidden font-medium relative z-10"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW: "Who Offers Which Cert?" Solo Match -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-purple-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-puzzle-piece text-purple-600 mr-3"></i>"Who Offers Which Cert?" Solo Match</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">Drag the certification acronyms into the box of the organization that offers them. (Or tap a cert, then tap a box!)</p>
+
+                    <!-- Draggables Pool -->
+                    <div class="bg-slate-100 p-4 rounded-xl border border-slate-200 shadow-inner mb-8 min-h-[70px]" id="cert-draggables" ondragover="allowDrop(event)" ondrop="dropCert(event, 'pool')" onclick="handlePoolClick()">
+                        <div class="flex flex-wrap gap-3 pointer-events-none" id="draggable-inner-container">
+                            <div id="cert-secplus" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="comptia" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">Security+</div>
+                            <div id="cert-cissp" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="isc2" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">CISSP</div>
+                            <div id="cert-ceh" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="eccouncil" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">CEH</div>
+                            <div id="cert-gsec" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="giac" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">GSEC</div>
+                            <div id="cert-cisa" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="isaca" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">CISA</div>
+                        </div>
+                    </div>
+
+                    <!-- Dropzones -->
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+                        <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'comptia')" onclick="handleZoneClick('comptia')">
+                            <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">CompTIA</strong>
+                            <div id="zone-comptia" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                        </div>
+                        <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'isc2')" onclick="handleZoneClick('isc2')">
+                            <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">ISC2</strong>
+                            <div id="zone-isc2" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                        </div>
+                        <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'eccouncil')" onclick="handleZoneClick('eccouncil')">
+                            <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">EC-Council</strong>
+                            <div id="zone-eccouncil" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                        </div>
+                        <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'giac')" onclick="handleZoneClick('giac')">
+                            <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">GIAC</strong>
+                            <div id="zone-giac" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                        </div>
+                        <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'isaca')" onclick="handleZoneClick('isaca')">
+                            <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">ISACA</strong>
+                            <div id="zone-isaca" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                        </div>
+                    </div>
+
+                    <button onclick="checkCertMatch()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-sm mb-6">Check Matches</button>
+                    
+                    <div id="match-feedback" class="hidden bg-purple-50 border border-purple-200 p-4 rounded-xl text-sm text-purple-800 shadow-sm mb-6 transition-all"></div>
+
+                    <div class="border-t border-slate-200 pt-6">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">A certification I might consider someday and why:</label>
+                        <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm" rows="2" placeholder="Type your reflection here..."></textarea>
                     </div>
                 </div>
 
@@ -1705,6 +2069,92 @@
                     <!-- Scholarship Grid (Target for JS Injection) -->
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="scholarship-grid-container">
                         <!-- Cards will be populated by JS here -->
+                    </div>
+                </div>
+
+                <!-- NEW: "Find One Scholarship I Could Apply For" & "Align My Story" -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-blue-500 shadow-md mt-12">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4">
+                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-search-dollar text-blue-600 mr-3"></i>Activity: Find & Align with a Scholarship</h3>
+                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-blue-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-blue-600"></i> Download Worksheet
+                        </button>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-8 leading-relaxed">Use the directory above to find one scholarship you could actually apply for, then build your strategy below.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Left Column: Scholarship Details -->
+                        <div class="bg-blue-50/50 p-6 rounded-xl border border-blue-200 shadow-inner space-y-4">
+                            <strong class="text-blue-800 text-sm border-b border-blue-200/50 pb-2 block font-mono">1. Scholarship Details</strong>
+                            <div><input type="text" placeholder="Scholarship Name" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-blue-500 bg-white rounded-t-md transition-colors shadow-sm"></div>
+                            <div><input type="text" placeholder="Who is eligible? (e.g., High School Seniors)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-blue-500 bg-white rounded-t-md transition-colors shadow-sm"></div>
+                            <div><input type="text" placeholder="Deadline (approximate)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-blue-500 bg-white rounded-t-md transition-colors shadow-sm"></div>
+                            <div><input type="text" placeholder="What does it fund? (Tuition, stipends, certs)" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-blue-500 bg-white rounded-t-md transition-colors shadow-sm"></div>
+                        </div>
+                        
+                        <!-- Right Column: Alignment & Strategy -->
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-5">
+                            <strong class="text-slate-800 text-sm border-b border-slate-100 pb-2 block font-mono">2. My Application Strategy</strong>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-2">What would be your first step if you decided to apply?</label>
+                                <textarea class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none resize-none shadow-sm" rows="2" placeholder="e.g., Talk to my counselor, draft an essay..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-2">Align My Story: How does my interest in cyber and my background match what this scholarship wants?</label>
+                                <textarea class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none resize-none shadow-sm" rows="3" placeholder="Explain your background, goals, and why you are a good fit..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW: "Funding My Path" Personal View -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-amber-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-coins text-amber-500 mr-3"></i>"Funding My Path" Personal View</h3>
+                    <p class="text-slate-600 text-sm mb-6">Map these funding supports to when you might use them. Select "Now (HS/Early College)" or "Later (University/Grad)".</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-amber-300 transition-colors">
+                            <span class="text-sm font-medium text-slate-800 mb-3">Dual-credit K-12 resources (Free college credits)</span>
+                            <select class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-amber-500 outline-none cursor-pointer transition-all" onchange="this.classList.add('ring-2', 'ring-amber-400')">
+                                <option value="">When will I use this?</option>
+                                <option value="now">Now (High School/Early College)</option>
+                                <option value="later">Later (University/Grad)</option>
+                                <option value="never">Probably won't use</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-amber-300 transition-colors">
+                            <span class="text-sm font-medium text-slate-800 mb-3">Local Community College Grants</span>
+                            <select class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-amber-500 outline-none cursor-pointer transition-all" onchange="this.classList.add('ring-2', 'ring-amber-400')">
+                                <option value="">When will I use this?</option>
+                                <option value="now">Now (High School/Early College)</option>
+                                <option value="later">Later (University/Grad)</option>
+                                <option value="never">Probably won't use</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-amber-300 transition-colors">
+                            <span class="text-sm font-medium text-slate-800 mb-3">Federal Service Programs (CyberCorps/DoD CySP)</span>
+                            <select class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-amber-500 outline-none cursor-pointer transition-all" onchange="this.classList.add('ring-2', 'ring-amber-400')">
+                                <option value="">When will I use this?</option>
+                                <option value="now">Now (High School/Early College)</option>
+                                <option value="later">Later (University/Grad)</option>
+                                <option value="never">Probably won't use</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between hover:border-amber-300 transition-colors">
+                            <span class="text-sm font-medium text-slate-800 mb-3">Industry Organization Scholarships (ISC2, SWSIS)</span>
+                            <select class="w-full bg-slate-50 border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-amber-500 outline-none cursor-pointer transition-all" onchange="this.classList.add('ring-2', 'ring-amber-400')">
+                                <option value="">When will I use this?</option>
+                                <option value="now">Now (High School/Early College)</option>
+                                <option value="later">Later (University/Grad)</option>
+                                <option value="never">Probably won't use</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 border border-amber-200 p-6 rounded-xl shadow-inner">
+                        <label class="block text-sm font-bold text-slate-800 mb-2"><i class="fas fa-check-circle text-amber-600 mr-2"></i>My Short-Term Funding Action:</label>
+                        <p class="text-xs text-slate-600 mb-3">What is one thing you can do this month? (e.g., "Ask my counselor about dual-credit", "Set a calendar reminder for the ISC2 deadline")</p>
+                        <input type="text" placeholder="I will..." class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-amber-500 outline-none shadow-sm transition-all">
                     </div>
                 </div>
 
@@ -1945,54 +2395,102 @@
                     </div>
                 </div>
 
-                <!-- Worksheet Mini Activity -->
-                <div class="glass-panel p-8 rounded-3xl mb-16 border border-purple-200 shadow-md">
+                <!-- NEW: "My Cyber Pathway Map (Solo)" & "Balance Check" -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-purple-500 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
-                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-edit text-purple-600 mr-3"></i>Activity: Build Your Career Pathway</h3>
+                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-map-signs text-purple-600 mr-3"></i>"My Cyber Pathway Map" (Solo)</h3>
                         <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all flex items-center shadow-sm print:hidden">
-                            <i class="fas fa-file-download mr-2 text-purple-600"></i> Download Worksheet
+                            <i class="fas fa-file-download mr-2 text-purple-600"></i> Download Plan
                         </button>
                     </div>
-                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-                        Using the steps above, create your own career pathway plan. Fill out the sections below to outline your roadmap.
+                    <p class="text-slate-600 text-sm mb-8 leading-relaxed">
+                        Build your visual roadmap. Fill in the blanks below to create a direct path from where you are now to your future cybersecurity career.
                     </p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">1. Self-Evaluate</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">Strengths & Interests:</p>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
+                    <div class="space-y-4 mb-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px before:h-full before:w-[2px] before:bg-gradient-to-b before:from-purple-500/20 before:via-purple-500/50 before:to-transparent">
+                        <!-- Step 1 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-school text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Finish HS with:</span>
+                                <input type="text" placeholder="e.g., AP Comp Sci or Dual Credit Networking" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">2. Explore</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">2-3 Potential Cyber Roles:</p>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
+                        <!-- Step 2 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-university text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Enroll in:</span>
+                                <input type="text" placeholder="e.g., Local CC Cyber AAS or IT Certificate" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">3. Plan</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">Courses, Credentials, Activities:</p>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
+                        <!-- Step 3 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-exchange-alt text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Transfer / Continue to:</span>
+                                <input type="text" placeholder="e.g., State University for BS in Cyber Defense" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">4. Support Network</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">Key People & Mentors:</p>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
+                        <!-- Step 4 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-briefcase text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Aim for entry role:</span>
+                                <input type="text" placeholder="e.g., SOC Analyst or IT Help Desk" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 lg:col-span-2 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">5. Goals & Progress Check</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">Two SMART Goals:</p>
-                            <div class="flex items-center gap-3 mb-4"><div class="w-4 h-4 border border-slate-300 rounded"></div><div class="w-full border-b border-slate-200 border-dashed"></div></div>
-                            <div class="flex items-center gap-3"><div class="w-4 h-4 border border-slate-300 rounded"></div><div class="w-full border-b border-slate-200 border-dashed"></div></div>
+                        <!-- Step 5 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-certificate text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Consider future cert:</span>
+                                <input type="text" placeholder="e.g., Security+ or CySA+" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="bg-white border-l-4 border-purple-500 rounded-r-xl p-4 shadow-sm">
+                    <!-- "Pathway Balance Check" & "Next Step" Split -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-4">
+                        <!-- Balance Check -->
+                        <div class="bg-purple-50/50 p-6 rounded-xl border border-purple-200 shadow-inner">
+                            <strong class="text-purple-800 text-sm block mb-4 border-b border-purple-200 pb-2"><i class="fas fa-balance-scale mr-2 text-purple-600"></i>"Pathway Balance Check - Just Me"</strong>
+                            <p class="text-xs text-slate-600 mb-4">Check the boxes where you currently have at least one concrete step planned:</p>
+                            <ul class="space-y-3 text-sm text-slate-700 mb-6">
+                                <li><label class="flex items-center cursor-pointer group hover:text-purple-700"><input type="checkbox" class="mr-3 w-4 h-4 text-purple-600 focus:ring-purple-500 cursor-pointer accent-purple-600"> Education (Classes/Degrees)</label></li>
+                                <li><label class="flex items-center cursor-pointer group hover:text-purple-700"><input type="checkbox" class="mr-3 w-4 h-4 text-purple-600 focus:ring-purple-500 cursor-pointer accent-purple-600"> Experience (Labs/Clubs/Comps)</label></li>
+                                <li><label class="flex items-center cursor-pointer group hover:text-purple-700"><input type="checkbox" class="mr-3 w-4 h-4 text-purple-600 focus:ring-purple-500 cursor-pointer accent-purple-600"> Credentials (Certifications)</label></li>
+                                <li><label class="flex items-center cursor-pointer group hover:text-purple-700"><input type="checkbox" class="mr-3 w-4 h-4 text-purple-600 focus:ring-purple-500 cursor-pointer accent-purple-600"> Financial Support (Scholarships/Grants)</label></li>
+                            </ul>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-2">Which area is weakest for me right now and what is one thing I can do this year?</label>
+                                <textarea class="w-full bg-white border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm" rows="2" placeholder="e.g., I have no experience yet, I will join the cyber club."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Concrete Next Step -->
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                            <strong class="text-slate-800 text-sm block mb-4 border-b border-slate-100 pb-2"><i class="fas fa-shoe-prints text-emerald-600 mr-2"></i>"My One Concrete Next Step"</strong>
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-2">1. The specific action I will take:</label>
+                                    <input type="text" placeholder="e.g., Talk to counselor about CC cyber AAS" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-2">2. When I plan to do it by:</label>
+                                    <input type="text" placeholder="e.g., Friday next week" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-2">3. Where I’ll record proof of doing it:</label>
+                                    <input type="text" placeholder="e.g., In my advising notes, portfolio, or calendar" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm transition-all">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border-l-4 border-purple-500 rounded-r-xl p-4 shadow-sm mt-8">
                         <strong class="text-slate-900 text-sm block mb-1">Activity Goal:</strong>
-                        <p class="text-slate-600 text-xs leading-relaxed">Use this activity to create a written pathway plan you can bring to future advising meetings.</p>
+                        <p class="text-slate-600 text-xs leading-relaxed">Bring this completed map to your next advising meeting. It shows exactly what you want to achieve and your next immediate step.</p>
                     </div>
                 </div>
             </div>
@@ -2070,48 +2568,120 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
                 </div>
 
-                <!-- Mini-Activity: Choose your activity -->
-                <div class="glass-panel p-8 rounded-3xl mb-16 border border-emerald-200 shadow-md">
+                <!-- NEW: "Pick My Next Three Individual Actions" -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-cyan-500 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
-                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-edit text-emerald-600 mr-3"></i>Activity: Pick a Cyber Activity to Join</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center shadow-sm print:hidden">
-                            <i class="fas fa-file-download mr-2 text-emerald-600"></i> Download Worksheet
+                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-tasks text-cyan-600 mr-3"></i>"Pick My Next Three Individual Actions"</h3>
+                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-cyan-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-print mr-2 text-cyan-600"></i> Print Plan
                         </button>
                     </div>
                     <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-                        Based on your interests and current skill level, choose at least one cyber club or competition to participate in this term. Use the table below to plan your involvement.
+                        Select up to three solo-friendly activities to kickstart your experience, and set a personal target date for each.
                     </p>
                     
-                    <div class="overflow-x-auto bg-white rounded-xl border border-slate-200 mb-6 shadow-sm">
-                        <table class="w-full text-left text-sm text-slate-700">
-                            <thead class="bg-slate-50 text-xs uppercase text-slate-500 font-mono">
-                                <tr>
-                                    <th class="px-6 py-4 border-b border-slate-200">Activity Name</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Type (Club/Comp)</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Level</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Time Commitment</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Skills You Want to Practice</th>
-                                    <th class="px-6 py-4 border-b border-slate-200">Registration Link/Contact</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-slate-100">
-                                <tr class="hover:bg-slate-50 transition-colors">
-                                    <td class="px-6 py-4 text-slate-500 italic">Example: NCL</td>
-                                    <td class="px-6 py-4 text-slate-500 italic">Competition</td>
-                                    <td class="px-6 py-4 text-slate-500 italic">HS/College</td>
-                                    <td class="px-6 py-4 text-slate-500 italic">Weekends</td>
-                                    <td class="px-6 py-4 text-slate-500 italic">Log Analysis</td>
-                                    <td class="px-6 py-4 text-slate-500 italic">nationalcyberleague.org</td>
-                                </tr>
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                                <tr class="hover:bg-slate-50 transition-colors"><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td><td class="px-6 py-5"></td></tr>
-                            </tbody>
-                        </table>
+                    <div class="space-y-3 mb-6" id="solo-actions-list">
+                        <label class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-cyan-400 transition-all cursor-pointer shadow-sm group">
+                            <div class="flex items-center mb-2 md:mb-0">
+                                <input type="checkbox" onchange="toggleActionSelection(this)" class="w-5 h-5 text-cyan-600 rounded border-slate-300 focus:ring-cyan-500 cursor-pointer accent-cyan-600 mr-4">
+                                <span class="text-sm font-medium text-slate-700 group-hover:text-cyan-800 transition-colors">Complete a beginner room on TryHackMe or PicoCTF</span>
+                            </div>
+                            <input type="date" class="hidden text-sm border-b border-slate-300 p-1 text-slate-600 outline-none focus:border-cyan-500 bg-transparent transition-colors md:ml-4 w-full md:w-36">
+                        </label>
+                        <label class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-cyan-400 transition-all cursor-pointer shadow-sm group">
+                            <div class="flex items-center mb-2 md:mb-0">
+                                <input type="checkbox" onchange="toggleActionSelection(this)" class="w-5 h-5 text-cyan-600 rounded border-slate-300 focus:ring-cyan-500 cursor-pointer accent-cyan-600 mr-4">
+                                <span class="text-sm font-medium text-slate-700 group-hover:text-cyan-800 transition-colors">Read two CYBER.ORG role profiles and write down questions</span>
+                            </div>
+                            <input type="date" class="hidden text-sm border-b border-slate-300 p-1 text-slate-600 outline-none focus:border-cyan-500 bg-transparent transition-colors md:ml-4 w-full md:w-36">
+                        </label>
+                        <label class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-cyan-400 transition-all cursor-pointer shadow-sm group">
+                            <div class="flex items-center mb-2 md:mb-0">
+                                <input type="checkbox" onchange="toggleActionSelection(this)" class="w-5 h-5 text-cyan-600 rounded border-slate-300 focus:ring-cyan-500 cursor-pointer accent-cyan-600 mr-4">
+                                <span class="text-sm font-medium text-slate-700 group-hover:text-cyan-800 transition-colors">Email a faculty member or counselor about cyber programs</span>
+                            </div>
+                            <input type="date" class="hidden text-sm border-b border-slate-300 p-1 text-slate-600 outline-none focus:border-cyan-500 bg-transparent transition-colors md:ml-4 w-full md:w-36">
+                        </label>
+                        <label class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-cyan-400 transition-all cursor-pointer shadow-sm group">
+                            <div class="flex items-center mb-2 md:mb-0">
+                                <input type="checkbox" onchange="toggleActionSelection(this)" class="w-5 h-5 text-cyan-600 rounded border-slate-300 focus:ring-cyan-500 cursor-pointer accent-cyan-600 mr-4">
+                                <span class="text-sm font-medium text-slate-700 group-hover:text-cyan-800 transition-colors">Listen to a cybersecurity podcast episode (e.g., Darknet Diaries)</span>
+                            </div>
+                            <input type="date" class="hidden text-sm border-b border-slate-300 p-1 text-slate-600 outline-none focus:border-cyan-500 bg-transparent transition-colors md:ml-4 w-full md:w-36">
+                        </label>
+                        <label class="flex flex-col md:flex-row md:items-center justify-between p-4 bg-white border border-slate-200 rounded-xl hover:border-cyan-400 transition-all cursor-pointer shadow-sm group">
+                            <div class="flex items-center mb-2 md:mb-0">
+                                <input type="checkbox" onchange="toggleActionSelection(this)" class="w-5 h-5 text-cyan-600 rounded border-slate-300 focus:ring-cyan-500 cursor-pointer accent-cyan-600 mr-4">
+                                <span class="text-sm font-medium text-slate-700 group-hover:text-cyan-800 transition-colors">Watch a YouTube tutorial on basic network security</span>
+                            </div>
+                            <input type="date" class="hidden text-sm border-b border-slate-300 p-1 text-slate-600 outline-none focus:border-cyan-500 bg-transparent transition-colors md:ml-4 w-full md:w-36">
+                        </label>
                     </div>
+                </div>
 
-                    <div class="bg-white border-l-4 border-emerald-500 rounded-r-xl p-4 shadow-sm">
-                        <strong class="text-slate-900 text-sm block mb-1">Activity Goal:</strong>
-                        <p class="text-slate-600 text-xs leading-relaxed">Leave with a specific activity and a next step (for example, emailing a club advisor or registering for a competition).</p>
+                <!-- NEW: "Experience Log - My Activities Only" -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-emerald-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-list-alt text-emerald-600 mr-3"></i>"Experience Log - My Activities Only"</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                        Maintain a private log of any cyber-related experience you do on your own. Tracking this helps build your resume and identify what you truly enjoy.
+                    </p>
+                    
+                    <div id="experience-log-container" class="space-y-6 mb-6">
+                        <!-- Log Entry 1 -->
+                        <div class="bg-emerald-50/50 p-6 rounded-xl border border-emerald-200 shadow-inner relative">
+                            <span class="absolute top-4 right-4 text-emerald-600/50 font-mono text-xs font-bold">ENTRY 01</span>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">What I Did (Activity/Event):</label>
+                                    <input type="text" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm" placeholder="e.g., Completed TryHackMe Linux Fundamentals">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-slate-700 mb-1">Date Completed:</label>
+                                    <input type="date" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm text-slate-600 focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm">
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Skills Used or Learned:</label>
+                                <input type="text" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm" placeholder="e.g., Command line navigation, basic permissions">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Impact on my interest in Cyber:</label>
+                                <select class="w-full bg-white border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-emerald-500 outline-none cursor-pointer shadow-sm">
+                                    <option value="">Select...</option>
+                                    <option value="increased">Increased my interest significantly</option>
+                                    <option value="somewhat">Somewhat increased my interest</option>
+                                    <option value="neutral">Stayed the same / Neutral</option>
+                                    <option value="decreased">Decreased my interest (Not for me)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="addExperienceLog()" class="text-emerald-700 font-bold text-sm flex items-center hover:text-emerald-500 transition-colors">
+                        <i class="fas fa-plus-circle mr-2"></i> Add Another Entry
+                    </button>
+                </div>
+
+                <!-- NEW: "Post-Activity Reflection (Solo)" -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-purple-500 shadow-md">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-brain text-purple-600 mr-3"></i>"Post-Activity Reflection" (Solo)</h3>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+                        After finishing a lab, competition, or reading, answer these three prompts to process what you learned.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <label class="block text-sm font-bold text-purple-800 mb-3 border-b border-slate-100 pb-2">1. What I Enjoyed</label>
+                            <textarea class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm flex-grow min-h-[100px]" placeholder="What parts of this activity felt fun or rewarding?"></textarea>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <label class="block text-sm font-bold text-purple-800 mb-3 border-b border-slate-100 pb-2">2. What Was Hard</label>
+                            <textarea class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm flex-grow min-h-[100px]" placeholder="What challenged you or felt frustrating?"></textarea>
+                        </div>
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col">
+                            <label class="block text-sm font-bold text-purple-800 mb-3 border-b border-slate-100 pb-2">3. The Impact</label>
+                            <textarea class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-purple-500 outline-none resize-none shadow-sm flex-grow min-h-[100px]" placeholder="Did this make you want to learn more about cyber? Why?"></textarea>
+                        </div>
                     </div>
                 </div>
 
@@ -2253,6 +2823,382 @@
             { term: "SFS", def: "Scholarship for Service (CyberCorps). A federal program funding degrees in exchange for government work." },
             { term: "SOC", def: "Security Operations Center. The centralized team/facility that monitors and defends an organization's network." }
         ];
+
+        // --- Interactive State Logic (Part 1) ---
+        let selectedSectors = [];
+        let selectedProtections = [];
+
+        function toggleSector(btn, sectorName, protection) {
+            btn.classList.toggle('border-cyan-400');
+            btn.classList.toggle('bg-cyan-50');
+            btn.classList.toggle('shadow-md');
+            btn.classList.toggle('ring-2');
+            btn.classList.toggle('ring-cyan-400');
+            
+            if (selectedSectors.includes(sectorName)) {
+                selectedSectors = selectedSectors.filter(s => s !== sectorName);
+                selectedProtections = selectedProtections.filter(p => p !== protection);
+            } else {
+                selectedSectors.push(sectorName);
+                selectedProtections.push(protection);
+            }
+
+            const summaryBox = document.getElementById('sector-summary-box');
+            const summaryText = document.getElementById('sector-summary-text');
+            const protectText = document.getElementById('sector-protect-text');
+
+            if (selectedSectors.length > 0) {
+                summaryBox.classList.remove('hidden');
+                summaryText.innerText = `You use cyber in: ${selectedSectors.join(', ')}.`;
+                protectText.innerText = selectedProtections.join(', ');
+            } else {
+                summaryBox.classList.add('hidden');
+            }
+        }
+
+        function selectRoleSnapshot(btn, roleName) {
+            document.querySelectorAll('.role-snap-btn').forEach(b => {
+                b.classList.remove('border-purple-500', 'bg-purple-100', 'shadow-md', 'ring-2', 'ring-purple-400');
+            });
+            btn.classList.add('border-purple-500', 'bg-purple-100', 'shadow-md', 'ring-2', 'ring-purple-400');
+            
+            document.getElementById('role-snapshot-form').classList.remove('hidden');
+            document.getElementById('selected-role-title').innerHTML = `<i class="fas fa-check-circle mr-2"></i>Analyzing: ${roleName}`;
+        }
+
+        // --- Interactive State Logic (Part 2) ---
+        function calculateValues() {
+            const valSvc = parseInt(document.getElementById('val-service').value);
+            const valNat = parseInt(document.getElementById('val-national').value);
+            const valOpp = parseInt(document.getElementById('val-opp').value);
+            const valPay = parseInt(document.getElementById('val-pay').value);
+            const valDyn = parseInt(document.getElementById('val-dynamic').value);
+
+            const values = [
+                { name: 'service to others', score: valSvc, role: 'hospitals, schools, and local government' },
+                { name: 'national service', score: valNat, role: 'defense, intelligence, and federal agencies' },
+                { name: 'abundant opportunities', score: valOpp, role: 'rapidly growing tech hubs and remote positions' },
+                { name: 'rewarding pay', score: valPay, role: 'the private sector and enterprise security' },
+                { name: 'dynamic work', score: valDyn, role: 'incident response and threat hunting' }
+            ];
+
+            // Sort descending
+            values.sort((a, b) => b.score - a.score);
+            const top1 = values[0];
+            const top2 = values[1];
+
+            const resultText = `You value <strong class="text-emerald-800">${top1.name}</strong> and <strong class="text-emerald-800">${top2.name}</strong> most. Cyber roles in ${top1.role} or ${top2.role} can perfectly match these values.`;
+            document.getElementById('values-result').innerHTML = resultText;
+        }
+
+        let selfCheckScores = { q1: -1, q2: -1, q3: -1, q4: -1 };
+        function setScore(qNum, score, btn) {
+            selfCheckScores[`q${qNum}`] = score;
+            
+            // Reset siblings
+            const parent = btn.parentElement;
+            parent.querySelectorAll('button').forEach(b => {
+                b.classList.remove('bg-cyan-600', 'bg-cyan-500', 'bg-slate-500', 'text-white', 'shadow-md', 'ring-2', 'ring-offset-1', 'ring-cyan-500', 'ring-cyan-400');
+                b.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            
+            // Set active styling based on score
+            btn.classList.remove('bg-slate-100', 'text-slate-600');
+            if(score === 2) {
+                btn.classList.add('bg-cyan-600', 'text-white', 'shadow-md', 'ring-2', 'ring-offset-1', 'ring-cyan-500');
+            } else if(score === 1) {
+                btn.classList.add('bg-cyan-500', 'text-white', 'shadow-md', 'ring-2', 'ring-offset-1', 'ring-cyan-400');
+            } else {
+                btn.classList.add('bg-slate-500', 'text-white', 'shadow-md');
+            }
+
+            checkAllAnswered();
+        }
+
+        function checkAllAnswered() {
+            if(selfCheckScores.q1 > -1 && selfCheckScores.q2 > -1 && selfCheckScores.q3 > -1 && selfCheckScores.q4 > -1) {
+                const total = selfCheckScores.q1 + selfCheckScores.q2 + selfCheckScores.q3 + selfCheckScores.q4;
+                const resultBox = document.getElementById('self-check-result');
+                const feedback = document.getElementById('self-check-feedback');
+                
+                resultBox.classList.remove('hidden');
+                
+                if(total >= 6) {
+                    feedback.innerHTML = "<strong class='text-cyan-700 text-base mb-1 block'>High Match</strong> Continue through Parts III–VI of this toolkit and begin building your path. Your interests align strongly with the mindset needed for cybersecurity.";
+                } else if (total >= 3) {
+                    feedback.innerHTML = "<strong class='text-cyan-700 text-base mb-1 block'>Medium Match</strong> Explore 1–2 roles and majors more deeply. See if the specific day-to-day tasks described in this toolkit sound exciting to you.";
+                } else {
+                    feedback.innerHTML = "<strong class='text-cyan-700 text-base mb-1 block'>Exploratory Match</strong> Use this toolkit mainly to learn; cyber could become a great backup plan or an add-on skill to your main career interests.";
+                }
+            }
+            if(s3.value === 'both') s3.classList.add('ring-2', 'ring-emerald-400');
+            else if(s3.value !== '') s3.classList.add('ring-2', 'ring-rose-400');
+        }
+
+        // --- Interactive State Logic (Part 4) ---
+        function updateLadder() {
+            const now = document.getElementById('ladder-now').value;
+            const next = document.getElementById('ladder-next').value;
+            const later = document.getElementById('ladder-later').value;
+            const long = document.getElementById('ladder-long').value;
+
+            const out = document.getElementById('ladder-output');
+            
+            if (!now && !next && !later && !long) {
+                out.innerHTML = `My path could be: <span class="text-slate-400 italic">(Select options above to build your ladder)</span>`;
+                return;
+            }
+
+            let pathParts = [];
+            if (now) pathParts.push(`<strong class="text-cyan-900">${now}</strong>`);
+            if (next) pathParts.push(`then <strong class="text-cyan-900">${next}</strong>`);
+            if (later) pathParts.push(`then maybe <strong class="text-cyan-900">${later}</strong>`);
+            if (long) pathParts.push(`ultimately aiming to <strong class="text-cyan-900">${long}</strong>`);
+
+            out.innerHTML = "My path could be: " + pathParts.join(', ') + ".";
+        }
+
+        function checkReality() {
+            const fb = document.getElementById('reality-feedback');
+            fb.classList.remove('hidden');
+            
+            const s1 = document.getElementById('reality-1');
+            const s2 = document.getElementById('reality-2');
+            const s3 = document.getElementById('reality-3');
+            
+            s1.classList.remove('ring-2', 'ring-emerald-400', 'ring-rose-400');
+            s2.classList.remove('ring-2', 'ring-emerald-400', 'ring-rose-400');
+            s3.classList.remove('ring-2', 'ring-emerald-400', 'ring-rose-400');
+            
+            if(s1.value === 'cert_assoc') s1.classList.add('ring-2', 'ring-emerald-400');
+            else if(s1.value !== '') s1.classList.add('ring-2', 'ring-rose-400');
+            
+            if(s2.value === 'bs') s2.classList.add('ring-2', 'ring-emerald-400');
+            else if(s2.value !== '') s2.classList.add('ring-2', 'ring-rose-400');
+            
+            if(s3.value === 'ms_phd') s3.classList.add('ring-2', 'ring-emerald-400');
+            else if(s3.value !== '') s3.classList.add('ring-2', 'ring-rose-400');
+        }
+
+        // --- Interactive State Logic (Part 5) ---
+        function calculateMajorFit() {
+            const map = {
+                'mj-build': { major: 'Cybersecurity / Cyber Defense; IT with Security', roles: 'Security Operations Center (SOC) Analyst, IT Support Technician' },
+                'mj-code': { major: 'Computer Science / Software Engineering with Security focus', roles: 'Software Developer, Application Security Engineer' },
+                'mj-investigate': { major: 'Digital Forensics / Cyber Crime', roles: 'Digital Forensics Technician, Incident Response Specialist' },
+                'mj-policy': { major: 'Information Assurance / Cybersecurity Management / GRC', roles: 'Governance, Risk, and Compliance (GRC) Analyst, Policy Analyst' }
+            };
+            
+            let matches = [];
+            for (let id in map) {
+                if (document.getElementById(id).checked) {
+                    matches.push(`<li class="mb-3"><strong class="text-emerald-700">${map[id].major}</strong> <br><span class="text-xs text-slate-600 font-medium">Roles: ${map[id].roles}</span></li>`);
+                }
+            }
+            
+            const resultBox = document.getElementById('major-fit-result');
+            if (matches.length > 0) {
+                resultBox.innerHTML = `<strong class="block mb-3 text-emerald-900 border-b border-emerald-200 pb-2">Based on your interests, consider these paths:</strong><ul class="pl-4 list-disc marker:text-emerald-400">${matches.join('')}</ul>`;
+                resultBox.classList.remove('hidden');
+            } else {
+                resultBox.classList.add('hidden');
+            }
+        }
+
+        function comparePrograms() {
+            let tallyA = 0;
+            let tallyB = 0;
+            
+            for(let i=1; i<=5; i++) {
+                if(document.getElementById(`pa-${i}`).checked) tallyA++;
+                if(document.getElementById(`pb-${i}`).checked) tallyB++;
+            }
+            
+            const nameA = document.getElementById('prog-a-name').value || 'Program A';
+            const nameB = document.getElementById('prog-b-name').value || 'Program B';
+            
+            document.getElementById('tally-a').innerText = `${nameA}: ${tallyA}`;
+            document.getElementById('tally-b').innerText = `${nameB}: ${tallyB}`;
+        }
+
+        // --- Interactive State Logic (Part 6) ---
+        function checkCertReadiness() {
+            const q1 = document.getElementById('cert-ready-1').value;
+            const q2 = document.getElementById('cert-ready-2').value;
+            const q3 = document.getElementById('cert-ready-3').value;
+            const resultBox = document.getElementById('cert-readiness-result');
+            
+            if (q1 && q2 && q3) {
+                let score = 0;
+                if (q1 === 'yes') score++;
+                if (q2 === 'yes') score++;
+                if (q3 === 'yes') score++;
+                
+                resultBox.classList.remove('hidden');
+                if (score <= 1) {
+                    resultBox.innerHTML = `<strong class="block mb-1 text-emerald-900">Recommendation: Build Foundation First</strong> Focus on IT/cyber coursework and hands-on labs first; revisit certifications in 1–2 years once you feel comfortable with the basics.`;
+                } else {
+                    resultBox.innerHTML = `<strong class="block mb-1 text-emerald-900">Recommendation: Ready to Explore</strong> You are building a solid foundation. We recommend exploring 1–2 foundational certs (like ITF+ or Security+) as <em>future</em> goals to work towards.`;
+                }
+            }
+        }
+
+        function checkRoadmapWarn(selectId) {
+            const val = document.getElementById(selectId).value;
+            const warnEl = document.getElementById('warn-' + selectId);
+            
+            const advCerts = ['CISSP', 'CISM', 'CASP+', 'GCFA'];
+            
+            if (advCerts.includes(val)) {
+                warnEl.innerText = `Note: ${val} typically requires 5+ years of verified work experience!`;
+                warnEl.classList.remove('hidden');
+            } else {
+                warnEl.classList.add('hidden');
+            }
+        }
+
+        // Match Game Logic (Supports Drag-and-Drop and Tap-to-Move)
+        let selectedCertElement = null;
+
+        function dragCert(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        
+        function dropCert(ev, targetOrg) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var el = document.getElementById(data);
+            
+            if (targetOrg === 'pool') {
+                document.getElementById('draggable-inner-container').appendChild(el);
+            } else {
+                const zone = document.getElementById('zone-' + targetOrg);
+                if (zone) zone.appendChild(el);
+            }
+        }
+
+        function handleCertClick(ev) {
+            if (selectedCertElement) {
+                selectedCertElement.classList.remove('ring-4', 'ring-purple-400');
+            }
+            selectedCertElement = ev.target;
+            selectedCertElement.classList.add('ring-4', 'ring-purple-400');
+        }
+
+        function handleZoneClick(orgName) {
+            if (selectedCertElement) {
+                const zone = document.getElementById('zone-' + orgName);
+                if (zone) zone.appendChild(selectedCertElement);
+                selectedCertElement.classList.remove('ring-4', 'ring-purple-400');
+                selectedCertElement = null;
+            }
+        }
+
+        function handlePoolClick() {
+            if (selectedCertElement) {
+                document.getElementById('draggable-inner-container').appendChild(selectedCertElement);
+                selectedCertElement.classList.remove('ring-4', 'ring-purple-400');
+                selectedCertElement = null;
+            }
+        }
+
+        function checkCertMatch() {
+            const draggables = document.querySelectorAll('#draggable-inner-container > div').length;
+            const feedback = document.getElementById('match-feedback');
+            
+            if (draggables > 0) {
+                feedback.innerText = "Please place all certifications into an organization box before checking.";
+                feedback.classList.remove('hidden', 'text-emerald-700', 'bg-emerald-50', 'border-emerald-200');
+                feedback.classList.add('text-purple-800', 'bg-purple-50', 'border-purple-200');
+                return;
+            }
+
+            let allCorrect = true;
+            const certs = ['cert-secplus', 'cert-cissp', 'cert-ceh', 'cert-gsec', 'cert-cisa'];
+            
+            certs.forEach(id => {
+                const el = document.getElementById(id);
+                const correctOrg = el.getAttribute('data-org');
+                const parentZone = el.parentElement.id; 
+                
+                if (parentZone !== 'zone-' + correctOrg) {
+                    allCorrect = false;
+                    el.classList.add('border-red-400', 'bg-red-50');
+                    el.classList.remove('border-slate-300', 'border-green-400', 'bg-green-50');
+                } else {
+                    el.classList.remove('border-red-400', 'border-slate-300', 'bg-red-50');
+                    el.classList.add('border-green-400', 'bg-green-50');
+                }
+            });
+
+            feedback.classList.remove('hidden');
+            if (allCorrect) {
+                feedback.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Excellent! You matched all the certifications to their correct organizations.';
+                feedback.classList.remove('text-purple-800', 'bg-purple-50', 'border-purple-200');
+                feedback.classList.add('text-emerald-700', 'bg-emerald-50', 'border-emerald-200');
+            } else {
+                feedback.innerHTML = '<i class="fas fa-times-circle mr-2"></i> Some matches are incorrect (highlighted in red). Try moving them and check again!';
+                feedback.classList.remove('text-emerald-700', 'bg-emerald-50', 'border-emerald-200');
+                feedback.classList.add('text-purple-800', 'bg-purple-50', 'border-purple-200');
+            }
+        }
+
+        // --- Interactive State Logic (Part 9) ---
+        function toggleActionSelection(checkbox) {
+            const dateInput = checkbox.parentElement.nextElementSibling;
+            const container = checkbox.closest('label');
+            if (checkbox.checked) {
+                dateInput.classList.remove('hidden');
+                container.classList.add('bg-cyan-50', 'border-cyan-400', 'ring-1', 'ring-cyan-400');
+            } else {
+                dateInput.classList.add('hidden');
+                container.classList.remove('bg-cyan-50', 'border-cyan-400', 'ring-1', 'ring-cyan-400');
+            }
+        }
+
+        let expLogCount = 1;
+        function addExperienceLog() {
+            expLogCount++;
+            const container = document.getElementById('experience-log-container');
+            const newLog = document.createElement('div');
+            newLog.className = 'bg-emerald-50/50 p-6 rounded-xl border border-emerald-200 shadow-inner relative animate-fade-in mt-6';
+            
+            // Format number to have leading zero
+            const formattedCount = expLogCount < 10 ? `0${expLogCount}` : expLogCount;
+            
+            newLog.innerHTML = `
+                <span class="absolute top-4 right-4 text-emerald-600/50 font-mono text-xs font-bold">ENTRY ${formattedCount}</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">What I Did (Activity/Event):</label>
+                        <input type="text" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm" placeholder="e.g., Completed TryHackMe Linux Fundamentals">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Date Completed:</label>
+                        <input type="date" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm text-slate-600 focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm">
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Skills Used or Learned:</label>
+                    <input type="text" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm" placeholder="e.g., Command line navigation, basic permissions">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Impact on my interest in Cyber:</label>
+                    <select class="w-full bg-white border border-slate-300 text-slate-700 text-sm rounded-lg p-2 focus:ring-emerald-500 outline-none cursor-pointer shadow-sm">
+                        <option value="">Select...</option>
+                        <option value="increased">Increased my interest significantly</option>
+                        <option value="somewhat">Somewhat increased my interest</option>
+                        <option value="neutral">Stayed the same / Neutral</option>
+                        <option value="decreased">Decreased my interest (Not for me)</option>
+                    </select>
+                </div>
+            `;
+            container.appendChild(newLog);
+        }
 
         // --- Render Functions ---
         function renderScholarships() {
