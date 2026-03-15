@@ -155,8 +155,8 @@
         .cia-triangle-container {
             position: relative;
             width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
+            max-width: 300px;
+            margin: 3rem auto 2rem auto;
             aspect-ratio: 1.15;
         }
         .cia-node {
@@ -165,26 +165,23 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 120px;
-            height: 120px;
+            width: clamp(5.5rem, 20vw, 7.5rem);
+            height: clamp(5.5rem, 20vw, 7.5rem);
             border-radius: 50%;
             background: #ffffff;
             border: 2px solid;
             z-index: 10;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .cia-node:hover {
-            transform: scale(1.05);
-        }
-        .cia-node-c { top: 0; left: 50%; transform: translateX(-50%); border-color: var(--neon-blue); }
-        .cia-node-i { bottom: 0; left: 0; border-color: var(--neon-green); }
-        .cia-node-a { bottom: 0; right: 0; border-color: var(--neon-purple); }
-        .cia-line {
-            position: absolute;
-            background: #cbd5e1;
-            z-index: 5;
-        }
+        .cia-node-c { top: 0; left: 50%; transform: translate(-50%, -50%); border-color: var(--neon-blue); }
+        .cia-node-c:hover { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 15px 30px -5px rgba(2, 132, 199, 0.3); }
+        
+        .cia-node-i { bottom: 0; left: 0; transform: translate(-35%, 35%); border-color: var(--neon-green); }
+        .cia-node-i:hover { transform: translate(-35%, 35%) scale(1.05); box-shadow: 0 15px 30px -5px rgba(5, 150, 105, 0.3); }
+        
+        .cia-node-a { bottom: 0; right: 0; transform: translate(35%, 35%); border-color: var(--neon-purple); }
+        .cia-node-a:hover { transform: translate(35%, 35%) scale(1.05); box-shadow: 0 15px 30px -5px rgba(124, 58, 237, 0.3); }
 
         /* Pro Tip Visual Cues (Student version of Advisor Notes) */
         .pro-tip-box {
@@ -400,35 +397,35 @@
                         <h3 class="text-2xl font-bold text-slate-900 mb-8 tracking-tight text-center">The three big goals of cybersecurity (CIA)</h3>
                         
                         <div class="cia-triangle-container">
-                            <!-- Lines connecting the nodes -->
-                            <div class="cia-line" style="top: 60px; left: 50%; width: 2px; height: 100%; transform-origin: top center; transform: rotate(30deg);"></div>
-                            <div class="cia-line" style="top: 60px; left: 50%; width: 2px; height: 100%; transform-origin: top center; transform: rotate(-30deg);"></div>
-                            <div class="cia-line" style="bottom: 60px; left: 60px; width: calc(100% - 120px); height: 2px;"></div>
+                            <!-- Responsive SVG Lines connecting the centers -->
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 5;" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <polygon points="50,0 0,100 100,100" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4" />
+                            </svg>
                             
                             <!-- Nodes -->
                             <div class="cia-node cia-node-c group">
-                                <i class="fas fa-user-secret text-2xl text-cyan-700 mb-2"></i>
-                                <strong class="text-slate-900 text-sm">Confidentiality</strong>
+                                <i class="fas fa-user-secret text-xl sm:text-2xl text-cyan-700 mb-1 sm:mb-2"></i>
+                                <strong class="text-slate-900 text-xs sm:text-sm">Confidentiality</strong>
                                 <!-- Tooltip -->
-                                <div class="absolute -top-16 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
+                                <div class="absolute -top-20 left-1/2 -translate-x-1/2 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-20">
                                     Keeping information private and only visible to the people who are supposed to see it.
                                 </div>
                             </div>
                             
                             <div class="cia-node cia-node-i group">
-                                <i class="fas fa-check-double text-2xl text-emerald-700 mb-2"></i>
-                                <strong class="text-slate-900 text-sm">Integrity</strong>
+                                <i class="fas fa-check-double text-xl sm:text-2xl text-emerald-700 mb-1 sm:mb-2"></i>
+                                <strong class="text-slate-900 text-xs sm:text-sm">Integrity</strong>
                                 <!-- Tooltip -->
-                                <div class="absolute -bottom-16 -left-10 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
+                                <div class="absolute -bottom-20 left-1/2 -translate-x-1/2 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-20">
                                     Keeping information accurate and unchanged unless an authorized person updates it.
                                 </div>
                             </div>
                             
                             <div class="cia-node cia-node-a group">
-                                <i class="fas fa-server text-2xl text-purple-700 mb-2"></i>
-                                <strong class="text-slate-900 text-sm">Availability</strong>
+                                <i class="fas fa-server text-xl sm:text-2xl text-purple-700 mb-1 sm:mb-2"></i>
+                                <strong class="text-slate-900 text-xs sm:text-sm">Availability</strong>
                                 <!-- Tooltip -->
-                                <div class="absolute -bottom-16 -right-10 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
+                                <div class="absolute -bottom-20 left-1/2 -translate-x-1/2 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-20">
                                     Making sure systems and information are up and running when people need them.
                                 </div>
                             </div>
