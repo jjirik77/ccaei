@@ -255,6 +255,23 @@
             a[href^="#"] {
                 display: none !important;
             }
+
+            /* NEW: Sectional Printing & Input Formatting */
+            body.print-section-only header {
+                display: none !important;
+            }
+            body.print-section-only section:not(.print-target) {
+                display: none !important;
+            }
+            textarea, input {
+                border: 1px solid #ccc !important;
+                background: transparent !important;
+                color: #000 !important;
+            }
+            textarea {
+                overflow: visible !important;
+                white-space: pre-wrap !important;
+            }
         }
     </style>
 </head>
@@ -272,9 +289,24 @@
             <i class="fas fa-book text-xl group-hover:scale-110 transition-transform"></i>
         </button>
         <!-- Print PDF Button -->
-        <button onclick="window.print()" class="w-14 h-14 bg-gradient-to-tr from-cyan-600 to-cyan-500 rounded-full text-white shadow-[0_4px_15px_rgba(6,182,212,0.3)] hover:shadow-[0_6px_20px_rgba(6,182,212,0.4)] hover:scale-105 transition-all flex items-center justify-center group" title="Print / Save as PDF">
+        <button onclick="printFullToolkit()" class="w-14 h-14 bg-gradient-to-tr from-cyan-600 to-cyan-500 rounded-full text-white shadow-[0_4px_15px_rgba(6,182,212,0.3)] hover:shadow-[0_6px_20px_rgba(6,182,212,0.4)] hover:scale-105 transition-all flex items-center justify-center group" title="Print / Save as PDF">
             <i class="fas fa-print text-xl group-hover:scale-110 transition-transform"></i>
         </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+
+            <i class="fas fa-print text-xl group-hover:scale-110 transition-transform"></i>
+                <!-- Student Mini Activity -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border border-cyan-200 shadow-md">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
+                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-search text-cyan-600 mr-3"></i>Activity: Find Cyber Credentials</h3>
+                        <button onclick="printSection('part4')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-cyan-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-cyan-600"></i> Download Worksheet
+                        </button>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-6">Use your school's catalog, local community college website, or the CAE programs list to find at least four academic credentials related to cybersecurity that interest you. For each, record the details below.</p>
+
     </div>
 
     <!-- Sidebar Navigation -->
@@ -1536,14 +1568,23 @@
                     <div class="glass-panel p-8 rounded-3xl shadow-md lg:col-span-2">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
                             <h3 class="text-xl font-bold text-slate-900 tracking-tight"><i class="fas fa-clipboard-check text-rose-600 mr-3"></i>"Compare Two Programs for Me"</h3>
-                            <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2 px-3 rounded-lg border border-slate-200 hover:border-rose-300 transition-all flex items-center shadow-sm print:hidden">
+                            <button onclick="printSection('part5')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2 px-3 rounded-lg border border-slate-200 hover:border-rose-300 transition-all flex items-center shadow-sm print:hidden">
                                 <i class="fas fa-print mr-2 text-rose-600"></i> Print
                             </button>
                         </div>
                         <p class="text-slate-600 text-sm mb-6">Pick two real programs (e.g., local CC vs nearby University) and check off what they offer to see how they stack up.</p>
 
                         <div class="grid grid-cols-2 gap-4 mb-6">
-                            <div>
+                <!-- Student Mini Activity -->
+                <div class="mt-16 glass-panel p-8 rounded-3xl mb-16 border border-emerald-200 shadow-md">
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
+                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-search text-emerald-600 mr-3"></i>Activity: Research Certifications</h3>
+                        <button onclick="printSection('part6')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-emerald-600"></i> Download Worksheet
+                        </button>
+                    </div>
+                    <div class="space-y-3 text-slate-600 text-sm mb-6 leading-relaxed">
+
                                 <input type="text" id="prog-a-name" placeholder="Program A Name..." class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-rose-500 outline-none shadow-sm mb-4 font-bold text-center" oninput="comparePrograms()">
                                 <ul class="space-y-3 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-inner">
                                     <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-1" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> CAE Designated?</label></li>
@@ -2076,7 +2117,12 @@
                 <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-blue-500 shadow-md mt-12">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4">
                         <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-search-dollar text-blue-600 mr-3"></i>Activity: Find & Align with a Scholarship</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-blue-300 transition-all flex items-center shadow-sm print:hidden">
+                        <button onclick="printSection('part7')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-blue-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-blue-600"></i> Download Worksheet
+                        </button>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-8 leading-relaxed">Use the directory above to find one scholarship you could actually apply for, then build your strategy below.</p>
+
                             <i class="fas fa-file-download mr-2 text-blue-600"></i> Download Worksheet
                         </button>
                     </div>
@@ -2399,7 +2445,14 @@
                 <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-purple-500 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
                         <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-map-signs text-purple-600 mr-3"></i>"My Cyber Pathway Map" (Solo)</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all flex items-center shadow-sm print:hidden">
+                        <button onclick="printSection('part8')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-purple-600"></i> Download Plan
+                        </button>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-8 leading-relaxed">
+                        Build your visual roadmap. Fill in the blanks below to create a direct path from where you are now to your future cybersecurity career.
+                    </p>
+
                             <i class="fas fa-file-download mr-2 text-purple-600"></i> Download Plan
                         </button>
                     </div>
@@ -2572,7 +2625,12 @@
                 <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-cyan-500 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
                         <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-tasks text-cyan-600 mr-3"></i>"Pick My Next Three Individual Actions"</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-cyan-300 transition-all flex items-center shadow-sm print:hidden">
+                        <button onclick="printSection('part9')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-cyan-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-print mr-2 text-cyan-600"></i> Print Plan
+                        </button>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">
+
                             <i class="fas fa-print mr-2 text-cyan-600"></i> Print Plan
                         </button>
                     </div>
@@ -2701,7 +2759,13 @@
                 <div class="glass-panel border-l-4 border-l-purple-500 p-8 rounded-2xl mb-12 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
                         <h3 class="text-xl font-bold text-slate-900 mb-3"><i class="fas fa-clipboard-list text-purple-600 mr-3"></i>Why Assessment Matters</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all flex items-center shadow-sm print:hidden">
+                        <button onclick="printSection('part10')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-purple-600"></i> Download Assessment
+                        </button>
+                    </div>
+                    <p class="text-slate-600 text-base leading-relaxed">Navigating the cybersecurity landscape can be overwhelming given the variety of roles available. A professional career assessment helps you identify your cognitive strengths, interests, and potential fit within the industry. By aligning your natural aptitudes with specific work roles (like those in the NICE or DCWF frameworks), you can make informed decisions about your education and career path.</p>
+                </div>
+
                             <i class="fas fa-file-download mr-2 text-purple-600"></i> Download Assessment
                         </button>
                     </div>
@@ -2799,6 +2863,7 @@
         const glossaryData = [
             { term: "AAS", def: "Associate of Applied Science. A 2-year degree designed for immediate entry into the workforce." },
             { term: "AP", def: "Advanced Placement. High school courses that can grant college credit based on exam scores." },
+            { term: "Articulation Agreement", def: "Formal agreements between schools (e.g., high school to college, or community college to university) detailing how credits transfer." },
             { term: "AS", def: "Associate of Science. A 2-year degree designed to transfer to a 4-year university bachelor's program." },
             { term: "CAE", def: "Center of Academic Excellence. A designation awarded to college cyber programs by the NSA/DHS." },
             { term: "CASP+", def: "CompTIA Advanced Security Practitioner. An advanced-level industry certification." },
@@ -2809,19 +2874,35 @@
             { term: "CISM", def: "Certified Information Security Manager. An ISACA cert focused on enterprise security management." },
             { term: "CISSP", def: "Certified Information Systems Security Professional. A globally recognized advanced/expert cert by ISC2." },
             { term: "CND", def: "Certified Network Defender. An EC-Council certification for network protection." },
+            { term: "Cryptography", def: "The practice and study of techniques for secure communication to protect data from unauthorized access." },
             { term: "CTF", def: "Capture The Flag. A cybersecurity competition where participants solve puzzles to find 'flags'." },
             { term: "CySA+", def: "CompTIA Cybersecurity Analyst. An intermediate defensive (blue team) certification." },
             { term: "DCWF", def: "DoD Cyber Workforce Framework. The military's framework for categorizing cyber roles." },
+            { term: "Dual Enrollment", def: "Programs allowing students to enroll in college courses and earn college credit while still in high school." },
+            { term: "Exploit", def: "Code or a technique that takes advantage of a vulnerability to compromise a system or network." },
+            { term: "Forensics", def: "The application of investigation and analysis techniques to gather and preserve digital evidence." },
             { term: "GCFA", def: "GIAC Certified Forensic Analyst. An advanced certification for digital forensics and incident response." },
             { term: "GIAC", def: "Global Information Assurance Certification. Certifications closely aligned with SANS Institute training." },
             { term: "GRC", def: "Governance, Risk, and Compliance. The policy and management side of cybersecurity." },
             { term: "GSEC", def: "GIAC Security Essentials. A highly respected foundational security certification." },
+            { term: "IDS/IPS", def: "Intrusion Detection System / Intrusion Prevention System. Network security tools that monitor and block malicious activity." },
             { term: "ITF+", def: "IT Fundamentals+. CompTIA's most basic, exploratory IT certification." },
+            { term: "Malware", def: "Malicious software designed to disrupt, damage, or gain unauthorized access to a computer system." },
             { term: "NCL", def: "National Cyber League. A popular collegiate and high school cyber competition." },
             { term: "NICE", def: "National Initiative for Cybersecurity Education. The civilian framework mapping cyber jobs and skills." },
             { term: "OSINT", def: "Open Source Intelligence. Gathering data from publicly available sources." },
+            { term: "Packet Analysis", def: "The process of intercepting and examining data packets that are transmitted across a network." },
+            { term: "Penetration Testing (Pen Test)", def: "An authorized simulated cyberattack on a computer system to evaluate its security." },
+            { term: "PII", def: "Personally Identifiable Information. Any data that could potentially identify a specific individual." },
+            { term: "PKI", def: "Public Key Infrastructure. The framework of roles, policies, and hardware used to manage digital certificates and public-key encryption." },
+            { term: "Risk Management", def: "The ongoing process of identifying, assessing, and responding to cybersecurity risks." },
+            { term: "Root Cause Analysis", def: "A method of problem-solving used for identifying the fundamental origin of a fault or security incident." },
             { term: "SFS", def: "Scholarship for Service (CyberCorps). A federal program funding degrees in exchange for government work." },
-            { term: "SOC", def: "Security Operations Center. The centralized team/facility that monitors and defends an organization's network." }
+            { term: "SIEM", def: "Security Information and Event Management. Software products that combine security information management and security event monitoring." },
+            { term: "SOC", def: "Security Operations Center. The centralized team/facility that monitors and defends an organization's network." },
+            { term: "Stackable Credentials", def: "A sequence of credentials (like certificates) that can be accumulated over time to build up toward a degree." },
+            { term: "Threat Modeling", def: "A process by which potential threats and vulnerabilities can be identified, enumerated, and prioritized." },
+            { term: "Vulnerability", def: "A weakness in an information system, security procedure, or internal control that could be exploited." }
         ];
 
         // --- Interactive State Logic (Part 1) ---
@@ -3198,6 +3279,43 @@
                 </div>
             `;
             container.appendChild(newLog);
+        }
+
+        // --- Printing Logic ---
+        function prepareForPrint() {
+            // Expand textareas so all content is visible on the printed page
+            document.querySelectorAll('textarea').forEach(ta => {
+                ta.style.height = 'auto';
+                ta.style.height = (ta.scrollHeight + 10) + 'px'; 
+            });
+            
+            // Ensure inputs explicitly set their attribute values for the print buffer
+            document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(inp => {
+                inp.setAttribute('value', inp.value);
+            });
+        }
+
+        function printFullToolkit() {
+            prepareForPrint();
+            window.print();
+        }
+
+        function printSection(sectionId) {
+            prepareForPrint();
+            
+            // Add isolation classes
+            document.body.classList.add('print-section-only');
+            const target = document.getElementById(sectionId);
+            if (target) target.classList.add('print-target');
+            
+            // Short timeout to allow DOM to recalculate before triggering print dialog
+            setTimeout(() => {
+                window.print();
+                
+                // Cleanup isolation classes after print dialog closes
+                document.body.classList.remove('print-section-only');
+                if (target) target.classList.remove('print-target');
+            }, 100);
         }
 
         // --- Render Functions ---
