@@ -201,10 +201,12 @@
                 background-color: #fff !important;
                 margin: 0 !important;
                 padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             
             /* Hide the entire interactive web application */
-            main, nav, header, .fixed, button, #sidebar, #mobile-menu-btn, .glass-panel {
+            main, nav, header, .fixed, button, #sidebar, #mobile-menu-btn, .glass-panel, .print\:hidden {
                 display: none !important;
             }
             
@@ -212,6 +214,19 @@
             #print-summary-report {
                 display: block !important;
                 width: 100% !important;
+            }
+
+            /* NEW: Override Animations for Print (Fallback Safeguard) */
+            .fade-in-section {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .bar-animate {
+                height: var(--target-height) !important;
+                opacity: 1 !important;
+            }
+            .line-animate {
+                stroke-dashoffset: 0 !important;
             }
         }
     </style>
@@ -3687,19 +3702,24 @@
             const date = new Date().toLocaleDateString();
             
             // Extract Student Inputs & Results
-            const valuesResult = document.getElementById('values-result')?.innerText || "Values not ranked yet.";
-            const selfCheck = document.getElementById('self-check-feedback')?.innerText || "Assessment not completed.";
+            let valuesResult = document.getElementById('values-result')?.textContent || "Values not ranked yet.";
+            if (valuesResult.includes("Adjust the sliders")) valuesResult = "Values not ranked yet.";
+            
+            const selfCheckEl = document.getElementById('self-check-result');
+            const selfCheck = (selfCheckEl && !selfCheckEl.classList.contains('hidden')) 
+                ? document.getElementById('self-check-feedback')?.textContent 
+                : "Assessment not completed.";
 
             const progA = document.getElementById('prog-a-name')?.value || "Program A";
             const progB = document.getElementById('prog-b-name')?.value || "Program B";
-            const tallyA = document.getElementById('tally-a')?.innerText || "0";
-            const tallyB = document.getElementById('tally-b')?.innerText || "0";
+            const tallyA = document.getElementById('tally-a')?.textContent || "0";
+            const tallyB = document.getElementById('tally-b')?.textContent || "0";
             
             const taVal = tallyA.split(':').length > 1 ? tallyA.split(':')[1].trim() : "0";
             const tbVal = tallyB.split(':').length > 1 ? tallyB.split(':')[1].trim() : "0";
 
             const certFeedback = document.getElementById('match-feedback');
-            const certResult = certFeedback && !certFeedback.classList.contains('hidden') ? certFeedback.innerText : "Not checked yet.";
+            const certResult = certFeedback && !certFeedback.classList.contains('hidden') ? certFeedback.textContent : "Not checked yet.";
 
             // Extract Hidden Strengths Result
             const hiddenStrengthsEl = document.getElementById('hidden-strengths-result');
@@ -3718,10 +3738,10 @@
             const nextStepAction = document.querySelector('#part8 input[placeholder*="Talk to counselor"]')?.value || "______________________";
             const nextStepDate = document.querySelector('#part8 input[placeholder*="Friday next week"]')?.value || "______________________";
 
-            // NEW: Portfolio Strategy Input
+            // Portfolio Strategy Input
             const portfolioStrategy = document.querySelector('#part9 input[placeholder*="I plan to post my work on"]')?.value || "______________________";
 
-            // NEW: Family Script Input
+            // Family Script Input
             const familyOpener = document.getElementById('family-opener-input')?.value || "I wanted to share a career path I'm really excited about exploring...";
 
             // Generate Clean Plain Text HTML Document
@@ -3778,10 +3798,47 @@
             // Dynamically clone, strip, and append all tool content as plain text
             const mainClone = document.querySelector('main').cloneNode(true);
             
-            // 1. Remove all non-text, interactive, or purely visual elements
-            mainClone.querySelectorAll('header, button, iframe, svg, input, select, textarea, .print\\:hidden, .absolute, .cia-triangle-container, img').forEach(el => el.remove());
+            // 1. Copy values from original DOM to clone so user inputs are preserved in the text dump
+            const originalInputs = document.querySelector('main').querySelectorAll('input, textarea, select');
+            const clonedInputs = mainClone.querySelectorAll('input, textarea, select');
             
-            // 2. Strip all classes, inline styles, and event listeners to force a raw text layout
+            originalInputs.forEach((orig, index) => {
+                const clone = clonedInputs[index];
+                if (!clone) return;
+                
+                if (orig.tagName === 'INPUT' && (orig.type === 'checkbox' || orig.type === 'radio')) {
+                    if (orig.checked) clone.setAttribute('checked', 'checked');
+                } else if (orig.tagName === 'SELECT') {
+                    const val = orig.options[orig.selectedIndex]?.text || '';
+                    if (!val.includes('Select')) clone.setAttribute('data-value', val);
+                } else {
+                    clone.setAttribute('data-value', orig.value || '');
+                }
+            });
+
+            // 2. Replace inputs/selects/textareas with text nodes/spans in the clone
+            mainClone.querySelectorAll('input, textarea, select').forEach(el => {
+                if (el.tagName === 'INPUT' && (el.type === 'checkbox' || el.type === 'radio')) {
+                    const icon = el.hasAttribute('checked') ? '[X]' : '[ ]';
+                    const textNode = document.createTextNode(icon + ' ');
+                    el.parentNode.insertBefore(textNode, el);
+                } else {
+                    const val = el.getAttribute('data-value');
+                    const textDiv = document.createElement('div');
+                    textDiv.style.fontWeight = 'bold';
+                    textDiv.style.color = '#000'; 
+                    textDiv.style.padding = '2px 0';
+                    textDiv.style.fontStyle = 'italic';
+                    textDiv.innerText = val ? '> ' + val : '> _________________________';
+                    el.parentNode.insertBefore(textDiv, el);
+                }
+                el.remove(); // Safely remove the original input element
+            });
+
+            // 3. Remove all non-text, interactive, or purely visual elements
+            mainClone.querySelectorAll('header, button, iframe, svg, .print\\:hidden, .absolute, .cia-triangle-container, img').forEach(el => el.remove());
+            
+            // 4. Strip all classes, inline styles, and event listeners to force a raw text layout
             mainClone.querySelectorAll('*').forEach(el => {
                 el.removeAttribute('class');
                 el.removeAttribute('style');
@@ -3790,22 +3847,24 @@
                 el.removeAttribute('onchange');
             });
 
-            // 3. Append the text-only reference guide to the report
+            // 5. Append the text-only reference guide to the report with Advanced Pagination
             report.innerHTML += `
                 <style>
-                    #plain-text-dump h2 { font-size: 22px; margin-top: 30px; border-bottom: 2px solid #ccc; padding-bottom: 5px; }
-                    #plain-text-dump h3 { font-size: 18px; margin-top: 25px; font-weight: bold; }
-                    #plain-text-dump h4 { font-size: 16px; margin-top: 20px; font-weight: bold; }
-                    #plain-text-dump p { margin-bottom: 12px; }
+                    #plain-text-dump { page-break-inside: auto; }
+                    #plain-text-dump h2 { font-size: 22px; margin-top: 30px; border-bottom: 2px solid #ccc; padding-bottom: 5px; page-break-after: avoid; break-after: avoid; }
+                    #plain-text-dump h3 { font-size: 18px; margin-top: 25px; font-weight: bold; page-break-after: avoid; break-after: avoid; }
+                    #plain-text-dump h4 { font-size: 16px; margin-top: 20px; font-weight: bold; page-break-after: avoid; break-after: avoid; }
+                    #plain-text-dump p { margin-bottom: 12px; page-break-inside: avoid; break-inside: avoid; }
                     #plain-text-dump ul, #plain-text-dump ol { margin-bottom: 12px; padding-left: 20px; }
-                    #plain-text-dump li { margin-bottom: 4px; list-style: disc; }
-                    #plain-text-dump table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                    #plain-text-dump li { margin-bottom: 4px; list-style: disc; page-break-inside: avoid; break-inside: avoid; }
+                    #plain-text-dump table { width: 100%; border-collapse: collapse; margin-bottom: 20px; page-break-inside: avoid; break-inside: avoid; }
                     #plain-text-dump th, #plain-text-dump td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+                    #plain-text-dump > div > div { page-break-inside: avoid; break-inside: avoid; margin-bottom: 15px; }
                 </style>
-                <div style="font-family: Arial, sans-serif; color: #000; max-width: 800px; margin: 60px auto 0 auto; line-height: 1.6; border-top: 4px solid #000; padding-top: 40px; page-break-before: always;">
-                    <div style="text-align: center; margin-bottom: 40px;">
-                        <h1 style="font-size: 28px; margin: 0 0 10px 0;">Complete Toolkit Reference</h1>
-                        <p style="margin: 0; font-style: italic; color: #555;">Text-only documentation of all modules and information.</p>
+                <div style="font-family: Arial, sans-serif; color: #000; max-width: 800px; margin: 60px auto 0 auto; line-height: 1.6; border-top: 4px solid #000; padding-top: 40px; page-break-before: always; break-before: page;">
+                    <div style="text-align: center; margin-bottom: 40px; page-break-after: avoid; break-after: avoid;">
+                        <h1 style="font-size: 28px; margin: 0 0 10px 0;">Completed Toolkit Reference</h1>
+                        <p style="margin: 0; font-style: italic; color: #555;">Text-only documentation of all modules and your inputted reflections.</p>
                     </div>
                     <div id="plain-text-dump">
                         ${mainClone.innerHTML}
