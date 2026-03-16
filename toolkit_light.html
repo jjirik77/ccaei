@@ -154,9 +154,9 @@
         /* CIA Triad specific styles (Light Mode) */
         .cia-triangle-container {
             position: relative;
-            width: 100%;
-            max-width: 400px;
-            margin: 0 auto;
+            width: calc(100% - 8rem);
+            max-width: 240px;
+            margin: 4rem auto 7rem auto;
             aspect-ratio: 1.15;
         }
         .cia-node {
@@ -165,26 +165,23 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 120px;
-            height: 120px;
+            width: clamp(5.5rem, 18vw, 7.5rem);
+            height: clamp(5.5rem, 18vw, 7.5rem);
             border-radius: 50%;
             background: #ffffff;
             border: 2px solid;
             z-index: 10;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .cia-node:hover {
-            transform: scale(1.05);
-        }
-        .cia-node-c { top: 0; left: 50%; transform: translateX(-50%); border-color: var(--neon-blue); }
-        .cia-node-i { bottom: 0; left: 0; border-color: var(--neon-green); }
-        .cia-node-a { bottom: 0; right: 0; border-color: var(--neon-purple); }
-        .cia-line {
-            position: absolute;
-            background: #cbd5e1;
-            z-index: 5;
-        }
+        .cia-node-c { top: 0; left: 50%; transform: translate(-50%, -50%); border-color: var(--neon-blue); }
+        .cia-node-c:hover { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 15px 30px -5px rgba(2, 132, 199, 0.3); }
+        
+        .cia-node-i { bottom: 0; left: 0; transform: translate(-50%, 50%); border-color: var(--neon-green); }
+        .cia-node-i:hover { transform: translate(-50%, 50%) scale(1.05); box-shadow: 0 15px 30px -5px rgba(5, 150, 105, 0.3); }
+        
+        .cia-node-a { bottom: 0; right: 0; transform: translate(50%, 50%); border-color: var(--neon-purple); }
+        .cia-node-a:hover { transform: translate(50%, 50%) scale(1.05); box-shadow: 0 15px 30px -5px rgba(124, 58, 237, 0.3); }
 
         /* Advisor Visual Cues (Light Mode) */
         .advisor-note-box {
@@ -205,6 +202,9 @@
 
         /* Print-Optimized Stylesheet (Ink-Saver Mode) */
         @media print {
+            html, body {
+                zoom: 0.7; /* Scales the entire print layout to 70% */
+            }
             * {
                 background: transparent !important;
                 color: #000 !important;
@@ -264,6 +264,23 @@
             a[href^="#"] {
                 display: none !important;
             }
+
+            /* NEW: Sectional Printing & Input Formatting */
+            body.print-section-only header {
+                display: none !important;
+            }
+            body.print-section-only section:not(.print-target) {
+                display: none !important;
+            }
+            textarea, input {
+                border: 1px solid #ccc !important;
+                background: transparent !important;
+                color: #000 !important;
+            }
+            textarea {
+                overflow: visible !important;
+                white-space: pre-wrap !important;
+            }
         }
     </style>
 </head>
@@ -281,7 +298,7 @@
             <i class="fas fa-book text-xl group-hover:scale-110 transition-transform"></i>
         </button>
         <!-- Print PDF Button -->
-        <button onclick="window.print()" class="w-14 h-14 bg-gradient-to-tr from-cyan-600 to-cyan-500 rounded-full text-white shadow-[0_4px_15px_rgba(6,182,212,0.3)] hover:shadow-[0_6px_20px_rgba(6,182,212,0.4)] hover:scale-105 transition-all flex items-center justify-center group" title="Print / Save as PDF">
+        <button onclick="printFullToolkit()" class="w-14 h-14 bg-gradient-to-tr from-cyan-600 to-cyan-500 rounded-full text-white shadow-[0_4px_15px_rgba(6,182,212,0.3)] hover:shadow-[0_6px_20px_rgba(6,182,212,0.4)] hover:scale-105 transition-all flex items-center justify-center group" title="Print / Save as PDF">
             <i class="fas fa-print text-xl group-hover:scale-110 transition-transform"></i>
         </button>
     </div>
@@ -424,44 +441,44 @@
                     </div>
 
                     <!-- CIA Triad Panel -->
-                    <div class="glass-panel p-8 rounded-2xl">
-                        <h3 class="text-2xl font-bold text-slate-900 mb-8 tracking-tight text-center">The three big goals of cybersecurity (CIA)</h3>
+                    <div class="glass-panel p-6 sm:p-8 rounded-2xl">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4 sm:mb-8 tracking-tight text-center">The three big goals of cybersecurity (CIA)</h3>
                         
                         <div class="cia-triangle-container">
-                            <!-- Lines connecting the nodes -->
-                            <div class="cia-line" style="top: 60px; left: 50%; width: 2px; height: 100%; transform-origin: top center; transform: rotate(30deg);"></div>
-                            <div class="cia-line" style="top: 60px; left: 50%; width: 2px; height: 100%; transform-origin: top center; transform: rotate(-30deg);"></div>
-                            <div class="cia-line" style="bottom: 60px; left: 60px; width: calc(100% - 120px); height: 2px;"></div>
+                            <!-- Responsive SVG Lines connecting the centers -->
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none" style="z-index: 5;" viewBox="0 0 100 100" preserveAspectRatio="none">
+                                <polygon points="50,0 0,100 100,100" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4" />
+                            </svg>
                             
                             <!-- Nodes -->
                             <div class="cia-node cia-node-c group">
-                                <i class="fas fa-user-secret text-2xl text-cyan-700 mb-2"></i>
-                                <strong class="text-slate-900 text-sm">Confidentiality</strong>
+                                <i class="fas fa-user-secret text-xl sm:text-2xl text-cyan-700 mb-1 sm:mb-2"></i>
+                                <strong class="text-slate-900 text-xs sm:text-sm">Confidentiality</strong>
                                 <!-- Tooltip -->
-                                <div class="absolute -top-16 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
+                                <div class="absolute bottom-[110%] left-1/2 -translate-x-1/2 bg-white border border-slate-200 text-xs text-slate-600 p-3 rounded w-40 sm:w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-20">
                                     Keeping information private and only visible to the people who are supposed to see it.
                                 </div>
                             </div>
                             
                             <div class="cia-node cia-node-i group">
-                                <i class="fas fa-check-double text-2xl text-emerald-700 mb-2"></i>
-                                <strong class="text-slate-900 text-sm">Integrity</strong>
+                                <i class="fas fa-check-double text-xl sm:text-2xl text-emerald-700 mb-1 sm:mb-2"></i>
+                                <strong class="text-slate-900 text-xs sm:text-sm">Integrity</strong>
                                 <!-- Tooltip -->
-                                <div class="absolute -bottom-16 -left-10 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
+                                <div class="absolute top-[110%] left-0 sm:left-1/2 sm:-translate-x-1/2 bg-white border border-slate-200 text-xs text-slate-600 p-3 rounded w-40 sm:w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-20">
                                     Keeping information accurate and unchanged unless an authorized person updates it.
                                 </div>
                             </div>
                             
                             <div class="cia-node cia-node-a group">
-                                <i class="fas fa-server text-2xl text-purple-700 mb-2"></i>
-                                <strong class="text-slate-900 text-sm">Availability</strong>
+                                <i class="fas fa-server text-xl sm:text-2xl text-purple-700 mb-1 sm:mb-2"></i>
+                                <strong class="text-slate-900 text-xs sm:text-sm">Availability</strong>
                                 <!-- Tooltip -->
-                                <div class="absolute -bottom-16 -right-10 bg-white border border-slate-200 text-xs text-slate-600 p-2 rounded w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-lg z-20">
+                                <div class="absolute top-[110%] right-0 sm:right-auto sm:left-1/2 sm:-translate-x-1/2 bg-white border border-slate-200 text-xs text-slate-600 p-3 rounded w-40 sm:w-48 text-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-20">
                                     Making sure systems and information are up and running when people need them.
                                 </div>
                             </div>
                         </div>
-                        <p class="text-center text-xs text-slate-500 mt-6 font-medium uppercase tracking-widest">Hover over circles for definitions</p>
+                        <p class="text-center text-xs text-slate-500 mt-2 font-medium uppercase tracking-widest">Hover over circles for definitions</p>
                     </div>
                 </div>
 
@@ -472,43 +489,48 @@
                         <p class="text-slate-500 mt-2 text-base">Cybersecurity isn't only for big tech companies; it touches almost everything you and your family do with technology.</p>
                     </div>
                     <div class="p-8 bg-white/50">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-amber-50 p-3 rounded-lg mr-4"><i class="fas fa-tractor text-amber-600 text-xl"></i></div>
-                                <div><strong class="text-slate-800 block text-sm mb-1">Agriculture</strong><p class="text-xs text-slate-500 leading-relaxed">Protecting sensor data and automated equipment on modern farms.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-orange-50 p-3 rounded-lg mr-4"><i class="fas fa-industry text-orange-600 text-xl"></i></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8" id="sector-grid">
+                            <button type="button" onclick="toggleSector(this, 'Agriculture', 'automated farming equipment and crop data')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-amber-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-tractor text-amber-600 text-xl w-6 text-center"></i></div>
+                                <div><strong class="text-slate-800 block text-sm mb-1">Agriculture</strong><p class="text-xs text-slate-500 leading-relaxed">Protecting sensor data and automated equipment.</p></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Manufacturing', 'robots and production lines')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-orange-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-industry text-orange-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Manufacturing</strong><p class="text-xs text-slate-500 leading-relaxed">Securing robots, production lines, and logistics systems.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-blue-50 p-3 rounded-lg mr-4"><i class="fas fa-school text-blue-600 text-xl"></i></div>
-                                <div><strong class="text-slate-800 block text-sm mb-1">Education</strong><p class="text-xs text-slate-500 leading-relaxed">Keeping student records, learning platforms, and school networks safe.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-purple-50 p-3 rounded-lg mr-4"><i class="fas fa-gamepad text-purple-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Education', 'student records and school networks')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-blue-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-school text-blue-600 text-xl w-6 text-center"></i></div>
+                                <div><strong class="text-slate-800 block text-sm mb-1">Education</strong><p class="text-xs text-slate-500 leading-relaxed">Keeping student records, learning platforms, and networks safe.</p></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Entertainment', 'saved games and streaming apps')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-purple-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-gamepad text-purple-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Entertainment</strong><p class="text-xs text-slate-500 leading-relaxed">Safeguarding online gaming accounts, streaming platforms, and apps.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-indigo-50 p-3 rounded-lg mr-4"><i class="fas fa-car text-indigo-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Transportation', 'navigation systems')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-indigo-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-car text-indigo-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Transportation</strong><p class="text-xs text-slate-500 leading-relaxed">Protecting navigation systems and connected vehicles.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-pink-50 p-3 rounded-lg mr-4"><i class="fas fa-shopping-cart text-pink-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Retail & E-commerce', 'payment cards and online shopping data')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-pink-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-shopping-cart text-pink-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Retail & E-commerce</strong><p class="text-xs text-slate-500 leading-relaxed">Securing online shopping, payment cards, and customer data.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-rose-50 p-3 rounded-lg mr-4"><i class="fas fa-heartbeat text-rose-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Healthcare', 'medical records and devices')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-rose-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-heartbeat text-rose-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Healthcare</strong><p class="text-xs text-slate-500 leading-relaxed">Protecting medical records, medical devices, and hospital systems.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-emerald-50 p-3 rounded-lg mr-4"><i class="fas fa-piggy-bank text-emerald-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Banking & Finance', 'bank accounts and ATMs')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-emerald-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-piggy-bank text-emerald-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Banking & Finance</strong><p class="text-xs text-slate-500 leading-relaxed">Keeping accounts, mobile banking apps, and ATMs secure.</p></div>
-                            </div>
-                            <div class="flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                                <div class="bg-cyan-50 p-3 rounded-lg mr-4"><i class="fas fa-landmark text-cyan-600 text-xl"></i></div>
+                            </button>
+                            <button type="button" onclick="toggleSector(this, 'Government', 'public records and critical infrastructure')" class="w-full flex items-start p-4 bg-white rounded-xl border border-slate-200 hover:border-cyan-400 transition-all shadow-sm text-left">
+                                <div class="bg-cyan-50 p-3 rounded-lg mr-4 shrink-0"><i class="fas fa-landmark text-cyan-600 text-xl w-6 text-center"></i></div>
                                 <div><strong class="text-slate-800 block text-sm mb-1">Government</strong><p class="text-xs text-slate-500 leading-relaxed">Defending public records, elections, and critical infrastructure.</p></div>
-                            </div>
+                            </button>
+                        </div>
+
+                        <div class="p-6 bg-cyan-50 rounded-xl border border-cyan-200 hidden shadow-inner transition-all duration-300" id="sector-summary-box">
+                            <p class="text-slate-800 text-base font-medium mb-2" id="sector-summary-text"></p>
+                            <p class="text-cyan-700 text-sm mb-0">Cyber professionals protect your <span id="sector-protect-text" class="font-bold"></span>.</p>
                         </div>
                         
                         <div class="mt-8 p-6 bg-slate-100 rounded-xl border-l-4 border-cyan-500">
@@ -516,7 +538,7 @@
                                 "Think about how many of these you use in a single day—your phone, your bank app, your favorite game. Cybersecurity professionals help make all of that possible and safe."
                             </p>
                             <p class="text-cyan-700 text-sm font-bold tracking-wide uppercase font-mono">
-                                Advisor Prompt: <span class="text-slate-600 font-normal normal-case">"Ask students: 'Which of these areas—games, healthcare, money, transportation—interests you most? Cybersecurity has roles in all of them.'"</span>
+                                Advisor Prompt: <span class="text-slate-600 font-normal normal-case">"Project this tool and ask students: 'Which of these areas interests you most?' Click their choices to show them the direct impact."</span>
                             </p>
                         </div>
                     </div>
@@ -785,24 +807,92 @@
                     </div>
                 </div>
 
-                <!-- Student Reflection Prompts -->
-                <div class="bg-cyan-50 border border-cyan-200 rounded-3xl p-10 mb-16 shadow-md relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-8 opacity-[0.03]"><i class="fas fa-question-circle text-[200px] text-cyan-900"></i></div>
-                    <h3 class="text-2xl font-bold text-slate-900 mb-6 relative z-10 tracking-tight">"Is Cyber for Me?" Student Reflection</h3>
-                    
-                    <div class="bg-white p-6 rounded-2xl border border-slate-200 mb-6 relative z-10 shadow-sm">
-                        <strong class="text-cyan-700 text-xs uppercase tracking-widest font-mono block mb-4">Prompts (for display or download)</strong>
-                        <ul class="space-y-4 text-slate-700 text-sm font-medium">
-                            <li class="flex items-start"><i class="fas fa-angle-right text-cyan-600 mt-1 mr-3"></i>"Do you like solving puzzles, mysteries, or problems where you have to figure out what went wrong?"</li>
-                            <li class="flex items-start"><i class="fas fa-angle-right text-cyan-600 mt-1 mr-3"></i>"Do you care about keeping people safe, protecting fairness, or defending things that matter to your community?"</li>
-                            <li class="flex items-start"><i class="fas fa-angle-right text-cyan-600 mt-1 mr-3"></i>"Are you interested in technology—computers, apps, networks, or games—even if you don't know much about how they work yet?"</li>
-                            <li class="flex items-start"><i class="fas fa-angle-right text-cyan-600 mt-1 mr-3"></i>"Would you like a career where you can keep learning new things over time and not do the exact same task every day?"</li>
-                        </ul>
+                <!-- NEW: Personal Values Ranker & "Is Cyber for Me?" Scorer -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 shadow-md border-t-4 border-t-emerald-500 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-balance-scale text-[200px] text-emerald-600"></i></div>
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-6 gap-4 relative z-10">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-sliders-h text-emerald-600 mr-3"></i>"What Matters Most to Me?" Values Ranker</h3>
+                            <p class="text-slate-600 text-sm mt-2">Adjust the sliders with the student to rank what they value most in a future career.</p>
+                        </div>
+                        <button onclick="printSection('part2')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-print mr-2 text-emerald-600"></i> Print Intake
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10 mb-12">
+                        <div class="space-y-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">Service to others</label><span class="text-xs font-mono text-emerald-600" id="val-service-out">5</span></div>
+                                <input type="range" id="val-service" min="1" max="10" value="5" class="w-full accent-emerald-600" oninput="document.getElementById('val-service-out').innerText=this.value; calculateValues()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">National service</label><span class="text-xs font-mono text-blue-600" id="val-national-out">5</span></div>
+                                <input type="range" id="val-national" min="1" max="10" value="5" class="w-full accent-blue-600" oninput="document.getElementById('val-national-out').innerText=this.value; calculateValues()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">Opportunities</label><span class="text-xs font-mono text-amber-600" id="val-opp-out">5</span></div>
+                                <input type="range" id="val-opp" min="1" max="10" value="5" class="w-full accent-amber-600" oninput="document.getElementById('val-opp-out').innerText=this.value; calculateValues()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">Rewarding pay</label><span class="text-xs font-mono text-rose-600" id="val-pay-out">5</span></div>
+                                <input type="range" id="val-pay" min="1" max="10" value="5" class="w-full accent-rose-600" oninput="document.getElementById('val-pay-out').innerText=this.value; calculateValues()">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-1"><label class="text-sm font-bold text-slate-700">Dynamic work</label><span class="text-xs font-mono text-purple-600" id="val-dynamic-out">5</span></div>
+                                <input type="range" id="val-dynamic" min="1" max="10" value="5" class="w-full accent-purple-600" oninput="document.getElementById('val-dynamic-out').innerText=this.value; calculateValues()">
+                            </div>
+                        </div>
+                        <div class="bg-emerald-50 p-8 rounded-2xl border border-emerald-200 shadow-inner flex flex-col justify-center">
+                            <strong class="text-emerald-700 text-xs uppercase tracking-widest font-mono block mb-3"><i class="fas fa-lightbulb mr-2"></i>Student Value Profile</strong>
+                            <p id="values-result" class="text-slate-800 font-medium text-lg leading-relaxed">Adjust the sliders to see how their values align with specific cybersecurity roles and environments.</p>
+                        </div>
                     </div>
 
-                    <div class="bg-white border-l-4 border-cyan-500 rounded-r-xl p-4 relative z-10 shadow-sm">
-                        <strong class="text-slate-900 text-sm block mb-1">Advisor Instructions:</strong>
-                        <p class="text-slate-600 text-xs leading-relaxed">Ask students to answer these questions (on their own or in a group). If they answer 'yes' to several, suggest they continue to Sections 3 and 4 to learn about credentials and specific cybersecurity majors and roles.</p>
+                    <!-- "Is Cyber for Me?" Joint Self-Check -->
+                    <div class="bg-cyan-50 border border-cyan-200 rounded-3xl p-8 lg:p-10 shadow-md relative overflow-hidden">
+                        <div class="absolute top-0 right-0 p-8 opacity-[0.03]"><i class="fas fa-question-circle text-[200px] text-cyan-900"></i></div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-6 relative z-10 tracking-tight"><i class="fas fa-check-square text-cyan-600 mr-3"></i>"Is Cyber for Me?" Intake Questionnaire</h3>
+                        <p class="text-slate-600 text-sm mb-6 relative z-10">Ask the student these four quick questions to gauge their initial fit.</p>
+                        
+                        <div class="space-y-4 relative z-10 mb-8" id="self-check-questions">
+                            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-300 transition-colors">
+                                <p class="text-slate-700 font-medium text-sm w-full md:w-2/3">1. Do you like solving puzzles, mysteries, or problems where you have to figure out what went wrong?</p>
+                                <div class="flex gap-2 w-full md:w-auto justify-end">
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(1, 2, this)">Yes</button>
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(1, 1, this)">Maybe</button>
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(1, 0, this)">No</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-300 transition-colors">
+                                <p class="text-slate-700 font-medium text-sm w-full md:w-2/3">2. Do you care about keeping people safe, protecting fairness, or defending things that matter to your community?</p>
+                                <div class="flex gap-2 w-full md:w-auto justify-end">
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(2, 2, this)">Yes</button>
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(2, 1, this)">Maybe</button>
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(2, 0, this)">No</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-300 transition-colors">
+                                <p class="text-slate-700 font-medium text-sm w-full md:w-2/3">3. Are you interested in technology—computers, apps, networks, or games—even if you don't know much about how they work yet?</p>
+                                <div class="flex gap-2 w-full md:w-auto justify-end">
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(3, 2, this)">Yes</button>
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(3, 1, this)">Maybe</button>
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(3, 0, this)">No</button>
+                                </div>
+                            </div>
+                            <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4 hover:border-cyan-300 transition-colors">
+                                <p class="text-slate-700 font-medium text-sm w-full md:w-2/3">4. Would you like a career where you can keep learning new things over time and not do the exact same task every day?</p>
+                                <div class="flex gap-2 w-full md:w-auto justify-end">
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(4, 2, this)">Yes</button>
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(4, 1, this)">Maybe</button>
+                                    <button type="button" class="px-5 py-2 rounded-lg bg-slate-100 hover:bg-cyan-50 text-slate-600 font-medium transition-all text-sm" onclick="setScore(4, 0, this)">No</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="self-check-result" class="bg-white border-l-4 border-cyan-500 rounded-r-xl p-6 relative z-10 shadow-sm hidden transition-all duration-500">
+                            <strong class="text-slate-900 text-lg block mb-2">Advising Recommendation</strong>
+                            <p id="self-check-feedback" class="text-slate-700 leading-relaxed text-sm"></p>
+                        </div>
                     </div>
                 </div>
 
@@ -830,6 +920,142 @@
                             <p class="text-sm text-slate-600 leading-relaxed italic">
                                 "If you don't want a boring job, cyber might fit you. Threats change constantly, so cyber professionals are always learning, solving new problems, and working in teams to protect systems."
                             </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NEW: Combatting Imposter Syndrome & Broadening Inclusion -->
+                <div class="glass-panel p-8 rounded-3xl mt-16 shadow-md border-t-4 border-t-pink-500 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-users text-[200px] text-pink-600"></i></div>
+                    
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-4 relative z-10">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-door-open text-pink-600 mr-3"></i>Who Belongs in Cyber? (Busting Myths)</h3>
+                            <p class="text-slate-600 text-sm mt-2 leading-relaxed max-w-3xl">Many students—especially women, neurodivergent students, and underrepresented minorities—self-select out of cyber because they don't fit the "hoodie-wearing hacker" stereotype. Use these flip-cards to bust common myths and broaden your student pipeline.</p>
+                        </div>
+                        <button onclick="printSection('part2')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-pink-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-print mr-2 text-pink-600"></i> Print Handout
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 mb-8">
+                        <!-- Card 1 -->
+                        <div class="group h-56 perspective-1000 cursor-pointer">
+                            <div class="relative w-full h-full transition-transform duration-500 preserve-3d group-hover:rotate-y-180">
+                                <!-- Front -->
+                                <div class="absolute inset-0 backface-hidden bg-white border border-slate-200 rounded-xl shadow-sm p-6 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-calculator text-4xl text-slate-300 mb-4"></i>
+                                    <strong class="text-slate-800 text-sm">Myth: "I need to be a math or coding genius."</strong>
+                                    <span class="text-xs text-slate-400 mt-3 uppercase tracking-widest font-mono">Hover to flip <i class="fas fa-sync-alt ml-1"></i></span>
+                                </div>
+                                <!-- Back -->
+                                <div class="absolute inset-0 backface-hidden rotate-y-180 bg-pink-50 border border-pink-200 rounded-xl shadow-sm p-6 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-check-circle text-2xl text-pink-600 mb-2"></i>
+                                    <strong class="text-pink-800 text-sm mb-2">Reality</strong>
+                                    <p class="text-xs text-slate-700 leading-relaxed">Cyber needs communicators, policy writers, and creative thinkers. Many critical roles (like GRC or auditing) involve zero coding or advanced math.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="group h-56 perspective-1000 cursor-pointer">
+                            <div class="relative w-full h-full transition-transform duration-500 preserve-3d group-hover:rotate-y-180">
+                                <!-- Front -->
+                                <div class="absolute inset-0 backface-hidden bg-white border border-slate-200 rounded-xl shadow-sm p-6 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-user-secret text-4xl text-slate-300 mb-4"></i>
+                                    <strong class="text-slate-800 text-sm">Myth: "I don't fit the 'hacker' stereotype."</strong>
+                                    <span class="text-xs text-slate-400 mt-3 uppercase tracking-widest font-mono">Hover to flip <i class="fas fa-sync-alt ml-1"></i></span>
+                                </div>
+                                <!-- Back -->
+                                <div class="absolute inset-0 backface-hidden rotate-y-180 bg-pink-50 border border-pink-200 rounded-xl shadow-sm p-6 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-check-circle text-2xl text-pink-600 mb-2"></i>
+                                    <strong class="text-pink-800 text-sm mb-2">Reality</strong>
+                                    <p class="text-xs text-slate-700 leading-relaxed">The industry thrives on diversity of thought. Neurodivergent individuals, women, and people from diverse backgrounds are highly sought after to outsmart diverse threats.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="group h-56 perspective-1000 cursor-pointer">
+                            <div class="relative w-full h-full transition-transform duration-500 preserve-3d group-hover:rotate-y-180">
+                                <!-- Front -->
+                                <div class="absolute inset-0 backface-hidden bg-white border border-slate-200 rounded-xl shadow-sm p-6 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-laptop-code text-4xl text-slate-300 mb-4"></i>
+                                    <strong class="text-slate-800 text-sm">Myth: "I'm not 'techy' enough to start."</strong>
+                                    <span class="text-xs text-slate-400 mt-3 uppercase tracking-widest font-mono">Hover to flip <i class="fas fa-sync-alt ml-1"></i></span>
+                                </div>
+                                <!-- Back -->
+                                <div class="absolute inset-0 backface-hidden rotate-y-180 bg-pink-50 border border-pink-200 rounded-xl shadow-sm p-6 flex flex-col items-center justify-center text-center">
+                                    <i class="fas fa-check-circle text-2xl text-pink-600 mb-2"></i>
+                                    <strong class="text-pink-800 text-sm mb-2">Reality</strong>
+                                    <p class="text-xs text-slate-700 leading-relaxed">Technical skills can be taught. Curiosity, perseverance, and a willingness to learn are the true prerequisites for success in cybersecurity.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="advisor-script-box rounded-2xl p-6 relative z-10">
+                        <h4 class="font-bold advisor-note-label mb-3 text-sm"><i class="fas fa-comments mr-2"></i>Micro-Script: Broadening Inclusion</h4>
+                        <p class="text-sm text-slate-700 leading-relaxed italic mb-0">
+                            "The cybersecurity industry is realizing that if everyone thinks exactly the same way, we can't stop creative attacks. We desperately need creative thinkers, communicators, rule-followers, and rule-breakers alike. Your unique perspective is actually your biggest advantage in this field."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- NEW: Parent & Guardian Engagement Tools -->
+                <div id="family-engagement" class="glass-panel p-8 rounded-3xl mt-16 shadow-md border-t-4 border-t-amber-500 relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 opacity-5"><i class="fas fa-home text-[200px] text-amber-600"></i></div>
+                    
+                    <div class="flex flex-col md:flex-row md:items-start justify-between mb-8 gap-4 relative z-10">
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-user-friends text-amber-600 mr-3"></i>Engaging Parents & Guardians</h3>
+                            <p class="text-slate-600 text-sm mt-2 leading-relaxed max-w-3xl">Parents and guardians are often the biggest influencers in a student's career choice. Use this section to address common family concerns about cybersecurity—like job security, the 'hacker' stigma, and college costs.</p>
+                        </div>
+                        <button onclick="printSection('part2')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-amber-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-print mr-2 text-amber-600"></i> Print Section
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10 mb-8">
+                        <!-- ROI & Cost -->
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col hover:-translate-y-1 transition-transform duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-amber-50 p-3 rounded-full mr-3 border border-amber-100"><i class="fas fa-piggy-bank text-amber-600 text-lg"></i></div>
+                                <strong class="text-slate-800 text-sm">Strong ROI & Low Debt</strong>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">Show families that cyber doesn't require $100k in student loans. Community college pathways, stackable certificates, and federal scholarships make this one of the highest ROI fields available.</p>
+                        </div>
+                        
+                        <!-- Job Security -->
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col hover:-translate-y-1 transition-transform duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-amber-50 p-3 rounded-full mr-3 border border-amber-100"><i class="fas fa-shield-alt text-amber-600 text-lg"></i></div>
+                                <strong class="text-slate-800 text-sm">Future-Proof Stability</strong>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">Parents worry about AI replacing tech jobs. Explain that AI actually <em>increases</em> the need for human cyber professionals to defend against automated attacks. It's a highly resilient, recession-resistant career.</p>
+                        </div>
+
+                        <!-- Ethics & "Hacking" -->
+                        <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col hover:-translate-y-1 transition-transform duration-300">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-amber-50 p-3 rounded-full mr-3 border border-amber-100"><i class="fas fa-balance-scale-right text-amber-600 text-lg"></i></div>
+                                <strong class="text-slate-800 text-sm">Ethical Boundaries</strong>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-relaxed">Address the 'hacker' stigma head-on. Emphasize that cyber education is rooted in ethics, law, and policy. Students are trained to be the 'good guys' (white hats) protecting critical infrastructure.</p>
+                        </div>
+                    </div>
+
+                    <div class="advisor-script-box rounded-2xl p-8 relative z-10">
+                        <h4 class="font-bold advisor-note-label mb-5 text-sm"><i class="fas fa-comments mr-2"></i>Micro-Scripts: Speaking to Families</h4>
+                        <div class="space-y-6">
+                            <div>
+                                <strong class="text-slate-800 text-xs uppercase tracking-widest font-mono block mb-2">On the "Hacker" Stigma</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed italic border-l-2 border-amber-300 pl-4 bg-white/50 py-2 rounded-r-lg">"I know the word 'cybersecurity' sometimes makes parents think of hackers in dark rooms. But in reality, your student is learning how to be a digital first responder. They are being trained in strict ethics to protect the systems we all rely on—like local hospitals, schools, and banks."</p>
+                            </div>
+                            <div>
+                                <strong class="text-slate-800 text-xs uppercase tracking-widest font-mono block mb-2">On College Costs & ROI</strong>
+                                <p class="text-sm text-slate-700 leading-relaxed italic border-l-2 border-amber-300 pl-4 bg-white/50 py-2 rounded-r-lg">"The great thing about this field is that you don't need to go into massive debt. We can start them at the local community college, or even get dual-credit right now in high school. Once they enter the workforce, many employers will actually pay for them to finish their bachelor's degree later."</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1422,44 +1648,46 @@
                         </div>
                     </div>
 
-                    <!-- Program Evaluation Checklist -->
+                    <!-- Compare Two Programs -->
                     <div class="glass-panel p-8 rounded-3xl shadow-md">
-                        <h3 class="text-xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-clipboard-check text-rose-600 mr-3"></i>How to Compare Programs</h3>
-                        <ul class="space-y-3 text-sm text-slate-600 leading-relaxed mb-6">
-                            <li>
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">Is the program aligned with national standards (e.g., designated as a Center of Academic Excellence in Cyber Defense)?</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">Does the curriculum include a mix of technical courses (networking, OS, security) and broader topics (policy, risk, ethics)?</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">Are there opportunities for hands-on labs, projects, competitions, or internships?</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">Does the program offer stackable certificates or transfer pathways to bachelor's degrees?</span>
-                                </label>
-                            </li>
-                            <li>
-                                <label class="flex items-start cursor-pointer group">
-                                    <input type="checkbox" class="mt-1 mr-3 w-4 h-4 text-rose-600 rounded border-slate-300 focus:ring-rose-500 cursor-pointer accent-rose-600">
-                                    <span class="group-hover:text-slate-900 transition-colors">What percentage of graduates find jobs in cybersecurity or related fields, and in what types of roles?</span>
-                                </label>
-                            </li>
-                        </ul>
-                        <div class="advisor-note-box p-4">
-                            <strong class="advisor-note-label text-xs uppercase tracking-widest font-mono block mb-1">Advisor Note</strong>
-                            <p class="text-slate-700 text-sm italic">"Encourage students to talk with program coordinators, ask about graduate outcomes, and review course lists—not just marketing materials."</p>
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-4">
+                            <h3 class="text-xl font-bold text-slate-900 tracking-tight"><i class="fas fa-clipboard-check text-rose-600 mr-3"></i>"Compare Two Programs"</h3>
+                            <button onclick="printSection('part5')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2 px-3 rounded-lg border border-slate-200 hover:border-rose-300 transition-all flex items-center shadow-sm print:hidden">
+                                <i class="fas fa-print mr-2 text-rose-600"></i> Print
+                            </button>
+                        </div>
+                        <p class="text-slate-600 text-sm mb-6">Evaluate two local programs together by checking off what they offer to see how they stack up.</p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div>
+                                <input type="text" id="prog-a-name" placeholder="Program A Name..." class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-rose-500 outline-none shadow-sm mb-4 font-bold text-center" oninput="comparePrograms()">
+                                <ul class="space-y-3 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-inner">
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-1" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> CAE Designated?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-2" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> Tech & Policy Mix?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-3" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> Hands-on Labs/Projects?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-4" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> Stackable / Transferable?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-rose-700"><input type="checkbox" id="pa-5" onchange="comparePrograms()" class="mr-2 accent-rose-600 w-4 h-4 cursor-pointer"> Clear Job Outcomes?</label></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <input type="text" id="prog-b-name" placeholder="Program B Name..." class="w-full bg-white border border-slate-300 rounded-lg p-2 text-sm focus:ring-2 focus:ring-indigo-500 outline-none shadow-sm mb-4 font-bold text-center" oninput="comparePrograms()">
+                                <ul class="space-y-3 text-xs text-slate-700 bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-inner">
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-1" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> CAE Designated?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-2" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> Tech & Policy Mix?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-3" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> Hands-on Labs/Projects?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-4" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> Stackable / Transferable?</label></li>
+                                    <li><label class="flex items-center cursor-pointer group hover:text-indigo-700"><input type="checkbox" id="pb-5" onchange="comparePrograms()" class="mr-2 accent-indigo-600 w-4 h-4 cursor-pointer"> Clear Job Outcomes?</label></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-center gap-6 bg-slate-100 p-4 rounded-xl border border-slate-200 shadow-sm">
+                            <strong class="text-slate-800 text-sm">Comparison Tally:</strong>
+                            <div class="text-sm font-bold bg-white px-4 py-2 rounded-lg border border-slate-200 shadow-sm">
+                                <span class="text-rose-600" id="tally-a">Program A: 0</span>
+                                <span class="mx-3 text-slate-300">|</span>
+                                <span class="text-indigo-600" id="tally-b">Program B: 0</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1468,7 +1696,7 @@
                 <div class="glass-panel p-8 rounded-3xl mb-16 border border-cyan-200 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
                         <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-search text-cyan-600 mr-3"></i>Activity: Find Cybersecurity Majors</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-cyan-300 transition-all flex items-center shadow-sm print:hidden">
+                        <button onclick="printSection('part5')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-cyan-300 transition-all flex items-center shadow-sm print:hidden">
                             <i class="fas fa-file-download mr-2 text-cyan-600"></i> Download Worksheet
                         </button>
                     </div>
@@ -1819,7 +2047,7 @@
                 <div class="mt-16 glass-panel p-8 rounded-3xl mb-16 border border-emerald-200 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
                         <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-search text-emerald-600 mr-3"></i>Activity: Research Certifications</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center shadow-sm print:hidden">
+                        <button onclick="printSection('part6')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center shadow-sm print:hidden">
                             <i class="fas fa-file-download mr-2 text-emerald-600"></i> Download Worksheet
                         </button>
                     </div>
@@ -1860,6 +2088,52 @@
                             To successfully navigate the complex ecosystem of cybersecurity credentials, use this interactive explorer. By categorizing exams across distinct difficulty tiers and domains, this tool allows you to systematically scaffold your credentials. Filter by <strong>Difficulty Level</strong>, <strong>Knowledge Domain</strong>, and <strong>Vendor</strong> to map the exact certifications you need to transition from a beginner to an expert in your chosen pathway.
                         </p>
                     </div>
+                    
+                    <!-- NEW: "Who Offers Which Cert?" Match Game -->
+                    <div class="glass-panel p-8 rounded-3xl mb-12 border-t-4 border-t-purple-500 shadow-md">
+                        <h4 class="text-xl font-bold text-slate-900 mb-4 tracking-tight"><i class="fas fa-puzzle-piece text-purple-600 mr-3"></i>"Who Offers Which Cert?" Match Game</h4>
+                        <p class="text-slate-600 text-sm mb-6 leading-relaxed">Drag the certification acronyms into the box of the organization that offers them to help students learn the landscape. (Or tap a cert, then tap a box!)</p>
+
+                        <!-- Draggables Pool -->
+                        <div class="bg-slate-100 p-4 rounded-xl border border-slate-200 shadow-inner mb-8 min-h-[70px]" id="cert-draggables" ondragover="allowDrop(event)" ondrop="dropCert(event, 'pool')" onclick="handlePoolClick()">
+                            <div class="flex flex-wrap gap-3 pointer-events-none" id="draggable-inner-container">
+                                <div id="cert-secplus" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="comptia" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">Security+</div>
+                                <div id="cert-cissp" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="isc2" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">CISSP</div>
+                                <div id="cert-ceh" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="eccouncil" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">CEH</div>
+                                <div id="cert-gsec" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="giac" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">GSEC</div>
+                                <div id="cert-cisa" draggable="true" ondragstart="dragCert(event)" onclick="handleCertClick(event)" data-org="isaca" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-4 py-2 rounded-lg shadow-sm cursor-grab active:cursor-grabbing hover:border-purple-400 transition-all pointer-events-auto">CISA</div>
+                            </div>
+                        </div>
+
+                        <!-- Dropzones -->
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
+                            <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'comptia')" onclick="handleZoneClick('comptia')">
+                                <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">CompTIA</strong>
+                                <div id="zone-comptia" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                            </div>
+                            <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'isc2')" onclick="handleZoneClick('isc2')">
+                                <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">ISC2</strong>
+                                <div id="zone-isc2" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                            </div>
+                            <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'eccouncil')" onclick="handleZoneClick('eccouncil')">
+                                <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">EC-Council</strong>
+                                <div id="zone-eccouncil" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                            </div>
+                            <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'giac')" onclick="handleZoneClick('giac')">
+                                <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">GIAC</strong>
+                                <div id="zone-giac" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                            </div>
+                            <div class="bg-white border-2 border-dashed border-slate-300 hover:border-purple-400 transition-colors rounded-xl p-4 flex flex-col items-center min-h-[120px] cursor-pointer" ondragover="allowDrop(event)" ondrop="dropCert(event, 'isaca')" onclick="handleZoneClick('isaca')">
+                                <strong class="text-slate-500 text-xs uppercase mb-3 pointer-events-none">ISACA</strong>
+                                <div id="zone-isaca" class="w-full flex flex-col gap-2 flex-grow pointer-events-none"></div>
+                            </div>
+                        </div>
+
+                        <button onclick="checkCertMatch()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition-colors shadow-sm">Check Matches</button>
+                        
+                        <div id="match-feedback" class="hidden mt-4 bg-purple-50 border border-purple-200 p-4 rounded-xl text-sm text-purple-800 shadow-sm transition-all"></div>
+                    </div>
+
                     <div class="glass-panel rounded-3xl overflow-hidden relative w-full h-[850px] shadow-md border-slate-200 p-2">
                         <div class="bg-slate-50 rounded-2xl w-full h-full overflow-hidden border border-slate-200 relative">
                             <iframe src="https://sands-mvcc.github.io/MVCC/cybercerts.html" class="w-full h-full border-none relative z-10" title="Certification Explorer"></iframe>
@@ -2242,54 +2516,69 @@
                     </div>
                 </div>
 
-                <!-- Worksheet Mini Activity -->
-                <div class="glass-panel p-8 rounded-3xl mb-16 border border-purple-200 shadow-md">
+                <!-- NEW: "My Cyber Pathway Map" (Advising Version) -->
+                <div class="glass-panel p-8 rounded-3xl mb-16 border-t-4 border-t-purple-500 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
-                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-edit text-purple-600 mr-3"></i>Activity: Build Your Career Pathway</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all flex items-center shadow-sm print:hidden">
-                            <i class="fas fa-file-download mr-2 text-purple-600"></i> Download Worksheet
+                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-map-signs text-purple-600 mr-3"></i>"My Cyber Pathway Map" (Advising Roadmap)</h3>
+                        <button onclick="printSection('part8')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all flex items-center shadow-sm print:hidden">
+                            <i class="fas fa-file-download mr-2 text-purple-600"></i> Print Plan for Student
                         </button>
                     </div>
-                    <p class="text-slate-600 text-sm mb-6 leading-relaxed">
-                        Using the steps above, create your own career pathway plan. Fill out the sections below to outline your roadmap.
+                    <p class="text-slate-600 text-sm mb-8 leading-relaxed">
+                        Work with the student to fill in the blanks below, creating a direct visual roadmap from where they are now to their future cybersecurity career.
                     </p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">1. Self-Evaluate</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">Strengths & Interests:</p>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
+                    <div class="space-y-4 mb-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px before:h-full before:w-[2px] before:bg-gradient-to-b before:from-purple-500/20 before:via-purple-500/50 before:to-transparent">
+                        <!-- Step 1 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-school text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Finish HS with:</span>
+                                <input type="text" placeholder="e.g., AP Comp Sci or Dual Credit Networking" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">2. Explore</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">2-3 Potential Cyber Roles:</p>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
+                        <!-- Step 2 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-university text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Enroll in:</span>
+                                <input type="text" placeholder="e.g., Local CC Cyber AAS or IT Certificate" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">3. Plan</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">Courses, Credentials, Activities:</p>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
+                        <!-- Step 3 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-exchange-alt text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Transfer / Continue to:</span>
+                                <input type="text" placeholder="e.g., State University for BS in Cyber Defense" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">4. Support Network</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">Key People & Mentors:</p>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
-                            <div class="w-full border-b border-slate-200 border-dashed mb-4"></div>
+                        <!-- Step 4 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-briefcase text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Aim for entry role:</span>
+                                <input type="text" placeholder="e.g., SOC Analyst or IT Help Desk" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
-                        <div class="bg-white rounded-xl border border-slate-200 p-5 lg:col-span-2 shadow-sm">
-                            <strong class="text-purple-700 block text-xs uppercase font-mono mb-3">5. Goals & Progress Check</strong>
-                            <p class="text-slate-400 text-xs italic mb-2">Two SMART Goals:</p>
-                            <div class="flex items-center gap-3 mb-4"><div class="w-4 h-4 border border-slate-300 rounded"></div><div class="w-full border-b border-slate-200 border-dashed"></div></div>
-                            <div class="flex items-center gap-3"><div class="w-4 h-4 border border-slate-300 rounded"></div><div class="w-full border-b border-slate-200 border-dashed"></div></div>
+                        <!-- Step 5 -->
+                        <div class="relative flex items-center gap-4 group">
+                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-slate-200 bg-white group-hover:border-purple-400 transition-colors shadow-sm shrink-0 z-10"><i class="fas fa-certificate text-slate-500 group-hover:text-purple-600"></i></div>
+                            <div class="w-full bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center gap-3 hover:border-purple-300 transition-colors">
+                                <span class="text-sm font-bold text-slate-700 whitespace-nowrap min-w-[150px]">Consider future cert:</span>
+                                <input type="text" placeholder="e.g., Security+ or CySA+" class="w-full text-sm border-b border-slate-300 p-2 outline-none focus:border-purple-500 transition-colors bg-transparent">
+                            </div>
                         </div>
                     </div>
 
-                    <div class="advisor-note-box p-4">
-                        <strong class="advisor-note-label text-sm block mb-1">Advisor Usage:</strong>
-                        <p class="text-slate-700 text-xs leading-relaxed">"Use this activity in classroom presentations or small groups to help students leave with a written pathway plan they can bring to future advising meetings."</p>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm mt-4">
+                        <strong class="text-slate-800 text-sm block mb-4 border-b border-slate-100 pb-2"><i class="fas fa-shoe-prints text-emerald-600 mr-2"></i>"One Concrete Next Step"</strong>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-2">What is the very next action the student will take?</label>
+                                <input type="text" placeholder="e.g., Sign up for Intro to IT next semester" class="w-full bg-slate-50 border border-slate-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-emerald-500 outline-none shadow-sm transition-all">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2415,7 +2704,7 @@
                 <div class="glass-panel p-8 rounded-3xl mb-16 border border-emerald-200 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
                         <h3 class="text-2xl font-bold text-slate-900 tracking-tight"><i class="fas fa-edit text-emerald-600 mr-3"></i>Activity: Pick a Cyber Activity to Join</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center shadow-sm print:hidden">
+                        <button onclick="printSection('part9')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-emerald-300 transition-all flex items-center shadow-sm print:hidden">
                             <i class="fas fa-file-download mr-2 text-emerald-600"></i> Download Worksheet
                         </button>
                     </div>
@@ -2501,7 +2790,7 @@
                 <div class="glass-panel border-l-4 border-l-purple-500 p-8 rounded-2xl mb-12 shadow-md">
                     <div class="flex flex-col md:flex-row md:items-start justify-between mb-4 gap-4">
                         <h3 class="text-xl font-bold text-slate-900 mb-3"><i class="fas fa-clipboard-list text-purple-600 mr-3"></i>Why Assessment Matters</h3>
-                        <button onclick="window.print()" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all flex items-center shadow-sm print:hidden">
+                        <button onclick="printSection('part10')" class="shrink-0 bg-white hover:bg-slate-50 text-slate-600 hover:text-slate-900 text-xs font-bold py-2.5 px-4 rounded-xl border border-slate-200 hover:border-purple-300 transition-all flex items-center shadow-sm print:hidden">
                             <i class="fas fa-file-download mr-2 text-purple-600"></i> Download Assessment
                         </button>
                     </div>
@@ -2599,6 +2888,7 @@
         const glossaryData = [
             { term: "AAS", def: "Associate of Applied Science. A 2-year degree designed for immediate entry into the workforce." },
             { term: "AP", def: "Advanced Placement. High school courses that can grant college credit based on exam scores." },
+            { term: "Articulation Agreement", def: "Formal agreements between schools (e.g., high school to college, or community college to university) detailing how credits transfer." },
             { term: "AS", def: "Associate of Science. A 2-year degree designed to transfer to a 4-year university bachelor's program." },
             { term: "CAE", def: "Center of Academic Excellence. A designation awarded to college cyber programs by the NSA/DHS." },
             { term: "CASP+", def: "CompTIA Advanced Security Practitioner. An advanced-level industry certification." },
@@ -2609,19 +2899,35 @@
             { term: "CISM", def: "Certified Information Security Manager. An ISACA cert focused on enterprise security management." },
             { term: "CISSP", def: "Certified Information Systems Security Professional. A globally recognized advanced/expert cert by ISC2." },
             { term: "CND", def: "Certified Network Defender. An EC-Council certification for network protection." },
+            { term: "Cryptography", def: "The practice and study of techniques for secure communication to protect data from unauthorized access." },
             { term: "CTF", def: "Capture The Flag. A cybersecurity competition where participants solve puzzles to find 'flags'." },
             { term: "CySA+", def: "CompTIA Cybersecurity Analyst. An intermediate defensive (blue team) certification." },
             { term: "DCWF", def: "DoD Cyber Workforce Framework. The military's framework for categorizing cyber roles." },
+            { term: "Dual Enrollment", def: "Programs allowing students to enroll in college courses and earn college credit while still in high school." },
+            { term: "Exploit", def: "Code or a technique that takes advantage of a vulnerability to compromise a system or network." },
+            { term: "Forensics", def: "The application of investigation and analysis techniques to gather and preserve digital evidence." },
             { term: "GCFA", def: "GIAC Certified Forensic Analyst. An advanced certification for digital forensics and incident response." },
             { term: "GIAC", def: "Global Information Assurance Certification. Certifications closely aligned with SANS Institute training." },
             { term: "GRC", def: "Governance, Risk, and Compliance. The policy and management side of cybersecurity." },
             { term: "GSEC", def: "GIAC Security Essentials. A highly respected foundational security certification." },
+            { term: "IDS/IPS", def: "Intrusion Detection System / Intrusion Prevention System. Network security tools that monitor and block malicious activity." },
             { term: "ITF+", def: "IT Fundamentals+. CompTIA's most basic, exploratory IT certification." },
+            { term: "Malware", def: "Malicious software designed to disrupt, damage, or gain unauthorized access to a computer system." },
             { term: "NCL", def: "National Cyber League. A popular collegiate and high school cyber competition." },
             { term: "NICE", def: "National Initiative for Cybersecurity Education. The civilian framework mapping cyber jobs and skills." },
             { term: "OSINT", def: "Open Source Intelligence. Gathering data from publicly available sources." },
+            { term: "Packet Analysis", def: "The process of intercepting and examining data packets that are transmitted across a network." },
+            { term: "Penetration Testing (Pen Test)", def: "An authorized simulated cyberattack on a computer system to evaluate its security." },
+            { term: "PII", def: "Personally Identifiable Information. Any data that could potentially identify a specific individual." },
+            { term: "PKI", def: "Public Key Infrastructure. The framework of roles, policies, and hardware used to manage digital certificates and public-key encryption." },
+            { term: "Risk Management", def: "The ongoing process of identifying, assessing, and responding to cybersecurity risks." },
+            { term: "Root Cause Analysis", def: "A method of problem-solving used for identifying the fundamental origin of a fault or security incident." },
             { term: "SFS", def: "Scholarship for Service (CyberCorps). A federal program funding degrees in exchange for government work." },
-            { term: "SOC", def: "Security Operations Center. The centralized team/facility that monitors and defends an organization's network." }
+            { term: "SIEM", def: "Security Information and Event Management. Software products that combine security information management and security event monitoring." },
+            { term: "SOC", def: "Security Operations Center. The centralized team/facility that monitors and defends an organization's network." },
+            { term: "Stackable Credentials", def: "A sequence of credentials (like certificates) that can be accumulated over time to build up toward a degree." },
+            { term: "Threat Modeling", def: "A process by which potential threats and vulnerabilities can be identified, enumerated, and prioritized." },
+            { term: "Vulnerability", def: "A weakness in an information system, security procedure, or internal control that could be exploited." }
         ];
 
         // --- Render Functions ---
@@ -2740,6 +3046,210 @@
                 closeModal();
             }
         });
+
+        // --- NEW: Interactive State Logic ---
+        
+        // Part 1: Sector Toggle
+        let selectedSectors = [];
+        let selectedProtections = [];
+
+        function toggleSector(btn, sectorName, protection) {
+            btn.classList.toggle('border-cyan-400');
+            btn.classList.toggle('bg-cyan-50');
+            btn.classList.toggle('shadow-md');
+            btn.classList.toggle('ring-2');
+            btn.classList.toggle('ring-cyan-400');
+            
+            if (selectedSectors.includes(sectorName)) {
+                selectedSectors = selectedSectors.filter(s => s !== sectorName);
+                selectedProtections = selectedProtections.filter(p => p !== protection);
+            } else {
+                selectedSectors.push(sectorName);
+                selectedProtections.push(protection);
+            }
+
+            const summaryBox = document.getElementById('sector-summary-box');
+            const summaryText = document.getElementById('sector-summary-text');
+            const protectText = document.getElementById('sector-protect-text');
+
+            if (selectedSectors.length > 0) {
+                summaryBox.classList.remove('hidden');
+                summaryText.innerText = `They use cyber in: ${selectedSectors.join(', ')}.`;
+                protectText.innerText = selectedProtections.join(', ');
+            } else {
+                summaryBox.classList.add('hidden');
+            }
+        }
+
+        // Part 2: Values Calculator
+        function calculateValues() {
+            const valSvc = parseInt(document.getElementById('val-service').value);
+            const valNat = parseInt(document.getElementById('val-national').value);
+            const valOpp = parseInt(document.getElementById('val-opp').value);
+            const valPay = parseInt(document.getElementById('val-pay').value);
+            const valDyn = parseInt(document.getElementById('val-dynamic').value);
+
+            const values = [
+                { name: 'service to others', score: valSvc, role: 'hospitals, schools, and local government' },
+                { name: 'national service', score: valNat, role: 'defense, intelligence, and federal agencies' },
+                { name: 'abundant opportunities', score: valOpp, role: 'rapidly growing tech hubs and remote positions' },
+                { name: 'rewarding pay', score: valPay, role: 'the private sector and enterprise security' },
+                { name: 'dynamic work', score: valDyn, role: 'incident response and threat hunting' }
+            ];
+
+            values.sort((a, b) => b.score - a.score);
+            const top1 = values[0];
+            const top2 = values[1];
+
+            const resultText = `The student values <strong class="text-emerald-800">${top1.name}</strong> and <strong class="text-emerald-800">${top2.name}</strong> most. Cyber roles in ${top1.role} or ${top2.role} can perfectly match these values.`;
+            document.getElementById('values-result').innerHTML = resultText;
+        }
+
+        // Part 2: Self-Check Scorer
+        let selfCheckScores = { q1: -1, q2: -1, q3: -1, q4: -1 };
+        function setScore(qNum, score, btn) {
+            selfCheckScores[`q${qNum}`] = score;
+            
+            const parent = btn.parentElement;
+            parent.querySelectorAll('button').forEach(b => {
+                b.classList.remove('bg-cyan-600', 'bg-cyan-500', 'bg-slate-500', 'text-white', 'shadow-md', 'ring-2', 'ring-offset-1', 'ring-cyan-500', 'ring-cyan-400');
+                b.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            
+            btn.classList.remove('bg-slate-100', 'text-slate-600');
+            if(score === 2) {
+                btn.classList.add('bg-cyan-600', 'text-white', 'shadow-md', 'ring-2', 'ring-offset-1', 'ring-cyan-500');
+            } else if(score === 1) {
+                btn.classList.add('bg-cyan-500', 'text-white', 'shadow-md', 'ring-2', 'ring-offset-1', 'ring-cyan-400');
+            } else {
+                btn.classList.add('bg-slate-500', 'text-white', 'shadow-md');
+            }
+
+            checkAllAnswered();
+        }
+
+        function checkAllAnswered() {
+            if(selfCheckScores.q1 > -1 && selfCheckScores.q2 > -1 && selfCheckScores.q3 > -1 && selfCheckScores.q4 > -1) {
+                const total = selfCheckScores.q1 + selfCheckScores.q2 + selfCheckScores.q3 + selfCheckScores.q4;
+                const resultBox = document.getElementById('self-check-result');
+                const feedback = document.getElementById('self-check-feedback');
+                
+                resultBox.classList.remove('hidden');
+                
+                if(total >= 6) {
+                    feedback.innerHTML = "<strong class='text-cyan-700 text-base mb-1 block'>High Match</strong> Encourage them to continue through Parts III–VI of this toolkit and begin building a pathway. Their interests align strongly with the mindset needed for cybersecurity.";
+                } else if (total >= 3) {
+                    feedback.innerHTML = "<strong class='text-cyan-700 text-base mb-1 block'>Medium Match</strong> Help them explore 1–2 roles and majors more deeply. See if specific day-to-day tasks sound exciting to them.";
+                } else {
+                    feedback.innerHTML = "<strong class='text-cyan-700 text-base mb-1 block'>Exploratory Match</strong> Cyber could become a great backup plan or an add-on skill to their main career interests. Keep it open as an option.";
+                }
+            }
+        }
+
+        // Part 5: Compare Programs
+        function comparePrograms() {
+            let tallyA = 0;
+            let tallyB = 0;
+            
+            for(let i=1; i<=5; i++) {
+                if(document.getElementById(`pa-${i}`).checked) tallyA++;
+                if(document.getElementById(`pb-${i}`).checked) tallyB++;
+            }
+            
+            const nameA = document.getElementById('prog-a-name').value || 'Program A';
+            const nameB = document.getElementById('prog-b-name').value || 'Program B';
+            
+            document.getElementById('tally-a').innerText = `${nameA}: ${tallyA}`;
+            document.getElementById('tally-b').innerText = `${nameB}: ${tallyB}`;
+        }
+
+        // Part 6: Cert Match Game
+        let selectedCertElement = null;
+
+        function dragCert(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        function dropCert(ev, targetOrg) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var el = document.getElementById(data);
+            
+            if (targetOrg === 'pool') {
+                document.getElementById('draggable-inner-container').appendChild(el);
+            } else {
+                const zone = document.getElementById('zone-' + targetOrg);
+                if (zone) zone.appendChild(el);
+            }
+        }
+
+        function handleCertClick(ev) {
+            if (selectedCertElement) {
+                selectedCertElement.classList.remove('ring-4', 'ring-purple-400');
+            }
+            selectedCertElement = ev.target;
+            selectedCertElement.classList.add('ring-4', 'ring-purple-400');
+        }
+
+        function handleZoneClick(orgName) {
+            if (selectedCertElement) {
+                const zone = document.getElementById('zone-' + orgName);
+                if (zone) zone.appendChild(selectedCertElement);
+                selectedCertElement.classList.remove('ring-4', 'ring-purple-400');
+                selectedCertElement = null;
+            }
+        }
+
+        function handlePoolClick() {
+            if (selectedCertElement) {
+                document.getElementById('draggable-inner-container').appendChild(selectedCertElement);
+                selectedCertElement.classList.remove('ring-4', 'ring-purple-400');
+                selectedCertElement = null;
+            }
+        }
+
+        function checkCertMatch() {
+            const draggables = document.querySelectorAll('#draggable-inner-container > div').length;
+            const feedback = document.getElementById('match-feedback');
+            
+            if (draggables > 0) {
+                feedback.innerText = "Please place all certifications into an organization box before checking.";
+                feedback.classList.remove('hidden', 'text-emerald-700', 'bg-emerald-50', 'border-emerald-200');
+                feedback.classList.add('text-purple-800', 'bg-purple-50', 'border-purple-200');
+                return;
+            }
+
+            let allCorrect = true;
+            const certs = ['cert-secplus', 'cert-cissp', 'cert-ceh', 'cert-gsec', 'cert-cisa'];
+            
+            certs.forEach(id => {
+                const el = document.getElementById(id);
+                const correctOrg = el.getAttribute('data-org');
+                const parentZone = el.parentElement.id; 
+                
+                if (parentZone !== 'zone-' + correctOrg) {
+                    allCorrect = false;
+                    el.classList.add('border-red-400', 'bg-red-50');
+                    el.classList.remove('border-slate-300', 'border-green-400', 'bg-green-50');
+                } else {
+                    el.classList.remove('border-red-400', 'border-slate-300', 'bg-red-50');
+                    el.classList.add('border-green-400', 'bg-green-50');
+                }
+            });
+
+            feedback.classList.remove('hidden');
+            if (allCorrect) {
+                feedback.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Excellent! All certifications are matched to their correct organizations.';
+                feedback.classList.remove('text-purple-800', 'bg-purple-50', 'border-purple-200');
+                feedback.classList.add('text-emerald-700', 'bg-emerald-50', 'border-emerald-200');
+            } else {
+                feedback.innerHTML = '<i class="fas fa-times-circle mr-2"></i> Some matches are incorrect (highlighted in red). Try moving them and check again!';
+                feedback.classList.remove('text-emerald-700', 'bg-emerald-50', 'border-emerald-200');
+                feedback.classList.add('text-purple-800', 'bg-purple-50', 'border-purple-200');
+            }
+        }
 
         // --- Framework Logic ---
         function toggleFramework(fw) {
@@ -2895,6 +3405,43 @@
                 </div>
             `;
             panel.classList.remove('hidden');
+        }
+
+        // --- Printing Logic ---
+        function prepareForPrint() {
+            // Expand textareas so all content is visible on the printed page
+            document.querySelectorAll('textarea').forEach(ta => {
+                ta.style.height = 'auto';
+                ta.style.height = (ta.scrollHeight + 10) + 'px'; 
+            });
+            
+            // Ensure inputs explicitly set their attribute values for the print buffer
+            document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(inp => {
+                inp.setAttribute('value', inp.value);
+            });
+        }
+
+        function printFullToolkit() {
+            prepareForPrint();
+            window.print();
+        }
+
+        function printSection(sectionId) {
+            prepareForPrint();
+            
+            // Add isolation classes
+            document.body.classList.add('print-section-only');
+            const target = document.getElementById(sectionId);
+            if (target) target.classList.add('print-target');
+            
+            // Short timeout to allow DOM to recalculate before triggering print dialog
+            setTimeout(() => {
+                window.print();
+                
+                // Cleanup isolation classes after print dialog closes
+                document.body.classList.remove('print-section-only');
+                if (target) target.classList.remove('print-target');
+            }, 100);
         }
 
         // Progress Bar Logic
