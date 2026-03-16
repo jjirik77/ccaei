@@ -196,6 +196,9 @@
 
         /* Print-Optimized Stylesheet (Ink-Saver Mode) */
         @media print {
+            html, body {
+                zoom: 0.7; /* Scales the entire print layout to 70% */
+            }
             * {
                 background: transparent !important;
                 color: #000 !important;
