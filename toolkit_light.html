@@ -3406,6 +3406,44 @@
                     </div>
                 </div>
             `;
+
+            // NEW: Dynamically clone, strip, and append all tool content as plain text
+            const mainClone = document.querySelector('main').cloneNode(true);
+            
+            // 1. Remove all non-text, interactive, or purely visual elements
+            mainClone.querySelectorAll('header, button, iframe, svg, input, select, textarea, .print\\:hidden, .absolute, .cia-triangle-container, img').forEach(el => el.remove());
+            
+            // 2. Strip all classes, inline styles, and event listeners to force a raw text layout
+            mainClone.querySelectorAll('*').forEach(el => {
+                el.removeAttribute('class');
+                el.removeAttribute('style');
+                el.removeAttribute('onclick');
+                el.removeAttribute('oninput');
+                el.removeAttribute('onchange');
+            });
+
+            // 3. Append the text-only reference guide to the report
+            report.innerHTML += `
+                <style>
+                    #plain-text-dump h2 { font-size: 22px; margin-top: 30px; border-bottom: 2px solid #ccc; padding-bottom: 5px; }
+                    #plain-text-dump h3 { font-size: 18px; margin-top: 25px; font-weight: bold; }
+                    #plain-text-dump h4 { font-size: 16px; margin-top: 20px; font-weight: bold; }
+                    #plain-text-dump p { margin-bottom: 12px; }
+                    #plain-text-dump ul, #plain-text-dump ol { margin-bottom: 12px; padding-left: 20px; }
+                    #plain-text-dump li { margin-bottom: 4px; list-style: disc; }
+                    #plain-text-dump table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                    #plain-text-dump th, #plain-text-dump td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+                </style>
+                <div style="font-family: Arial, sans-serif; color: #000; max-width: 800px; margin: 60px auto 0 auto; line-height: 1.6; border-top: 4px solid #000; padding-top: 40px; page-break-before: always;">
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <h1 style="font-size: 28px; margin: 0 0 10px 0;">Complete Toolkit Reference</h1>
+                        <p style="margin: 0; font-style: italic; color: #555;">Text-only documentation of all modules, information, and micro-scripts.</p>
+                    </div>
+                    <div id="plain-text-dump">
+                        ${mainClone.innerHTML}
+                    </div>
+                </div>
+            `;
         }
 
         function printFullToolkit() {
