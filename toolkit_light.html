@@ -200,74 +200,23 @@
             box-shadow: 0 -4px 15px -3px rgba(236, 72, 153, 0.05) !important;
         }
 
-        /* Print-Optimized Stylesheet (Ink-Saver Mode) */
+        /* Print-Optimized Stylesheet: Pure Text Results Report */
         @media print {
             html, body {
-                zoom: 0.7; /* Scales the entire print layout to 70% */
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                background-color: #fff !important;
+                margin: 0 !important;
+                padding: 0 !important;
             }
-            body {
-                font-size: 12pt;
-                background-color: var(--dark-bg) !important;
+            
+            /* Hide the entire interactive web application */
+            main, nav, header, .fixed, button, #sidebar, #mobile-menu-btn, .glass-panel {
+                display: none !important;
             }
-            main {
-                margin-left: 0 !important;
+            
+            /* Reveal ONLY the generated plain-text report */
+            #print-summary-report {
+                display: block !important;
                 width: 100% !important;
-            }
-            header {
-                height: auto !important;
-                min-height: 0 !important;
-                padding: 2rem 0 !important;
-                page-break-after: avoid;
-            }
-            nav, button, iframe, .print\:hidden, #sidebar, #mobile-menu-btn, .cia-triangle-container {
-                display: none !important;
-            }
-            section {
-                page-break-inside: auto;
-                padding: 2rem 0 !important;
-                border-bottom: 2px solid #ccc !important;
-            }
-            h2, h3, h4 {
-                page-break-after: avoid;
-                margin-bottom: 1rem !important;
-            }
-            p, li {
-                page-break-inside: avoid;
-            }
-            .glass-panel, .advisor-note-box, .advisor-script-box, .grid > div {
-                page-break-inside: avoid;
-                break-inside: avoid;
-                margin-bottom: 1.5rem !important;
-            }
-            table {
-                border-collapse: collapse !important;
-                width: 100% !important;
-            }
-            th, td {
-                padding: 0.5rem !important;
-            }
-            a[href^="http"]:after {
-                content: " (" attr(href) ")";
-                font-size: 0.85em;
-                font-family: monospace;
-                word-wrap: break-word;
-            }
-            a[href^="#"] {
-                display: none !important;
-            }
-
-            /* NEW: Sectional Printing & Input Formatting */
-            body.print-section-only header {
-                display: none !important;
-            }
-            body.print-section-only section:not(.print-target) {
-                display: none !important;
-            }
-            textarea {
-                overflow: visible !important;
-                white-space: pre-wrap !important;
             }
         }
     </style>
@@ -2847,6 +2796,9 @@
         </div>
     </div>
 
+    <!-- NEW: Hidden Container for the Plain Text Print Report -->
+    <div id="print-summary-report" class="hidden"></div>
+
     <script>
         // --- Scholarship Data ---
         const scholarshipData = [
@@ -3395,39 +3347,65 @@
             panel.classList.remove('hidden');
         }
 
-        // --- Printing Logic ---
+        // --- Printing Logic (Generates Plain Text Report) ---
         function prepareForPrint() {
-            // Expand textareas so all content is visible on the printed page
-            document.querySelectorAll('textarea').forEach(ta => {
-                ta.style.height = 'auto';
-                ta.style.height = (ta.scrollHeight + 10) + 'px'; 
-            });
+            const report = document.getElementById('print-summary-report');
+            const date = new Date().toLocaleDateString();
             
-            // Ensure inputs explicitly set their attribute values for the print buffer
-            document.querySelectorAll('input[type="text"], input[type="number"], input[type="date"]').forEach(inp => {
-                inp.setAttribute('value', inp.value);
-            });
+            // Extract Student Inputs & Results
+            const valuesResult = document.getElementById('values-result').innerText || "Values not ranked yet.";
+            const selfCheck = document.getElementById('self-check-feedback').innerText || "Assessment not completed.";
 
-            // Capture select dropdown values
-            document.querySelectorAll('select').forEach(sel => {
-                const selectedVal = sel.value;
-                Array.from(sel.options).forEach(opt => {
-                    if (opt.value === selectedVal) {
-                        opt.setAttribute('selected', 'selected');
-                    } else {
-                        opt.removeAttribute('selected');
-                    }
-                });
-            });
+            const progA = document.getElementById('prog-a-name')?.value || "Program A";
+            const progB = document.getElementById('prog-b-name')?.value || "Program B";
+            const tallyA = document.getElementById('tally-a')?.innerText || "0";
+            const tallyB = document.getElementById('tally-b')?.innerText || "0";
+            
+            const taVal = tallyA.split(':').length > 1 ? tallyA.split(':')[1].trim() : "0";
+            const tbVal = tallyB.split(':').length > 1 ? tallyB.split(':')[1].trim() : "0";
 
-            // Capture checkbox and radio button states
-            document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(cb => {
-                if (cb.checked) {
-                    cb.setAttribute('checked', 'checked');
-                } else {
-                    cb.removeAttribute('checked');
-                }
-            });
+            const certFeedback = document.getElementById('match-feedback');
+            const certResult = certFeedback && !certFeedback.classList.contains('hidden') ? certFeedback.innerText : "Not checked yet.";
+
+            const p1 = document.querySelector('#part8 input[placeholder*="AP Comp Sci"]')?.value || "______________________";
+            const p2 = document.querySelector('#part8 input[placeholder*="Local CC"]')?.value || "______________________";
+            const p3 = document.querySelector('#part8 input[placeholder*="State University"]')?.value || "______________________";
+            const p4 = document.querySelector('#part8 input[placeholder*="SOC Analyst"]')?.value || "______________________";
+            const p5 = document.querySelector('#part8 input[placeholder*="Security+"]')?.value || "______________________";
+            const nextStep = document.querySelector('#part8 input[placeholder*="Sign up for Intro"]')?.value || "______________________";
+
+            // Generate Clean Plain Text HTML Document
+            report.innerHTML = `
+                <div style="font-family: Georgia, serif; color: #000; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+                    <div style="text-align: center; border-bottom: 2px solid #000; padding-bottom: 20px; margin-bottom: 30px;">
+                        <h1 style="font-size: 28px; margin: 0 0 10px 0; font-family: Arial, sans-serif;">My Cybersecurity Action Plan</h1>
+                        <p style="margin: 0; font-style: italic; color: #555;">Generated on ${date}</p>
+                    </div>
+                    
+                    <h2 style="font-size: 18px; border-bottom: 1px solid #ccc; padding-bottom: 5px; font-family: Arial, sans-serif;">1. Career Fit & Values</h2>
+                    <p><strong>Interest Profile:</strong> ${valuesResult}</p>
+                    <p><strong>Advising Recommendation:</strong> ${selfCheck}</p>
+
+                    <h2 style="font-size: 18px; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 30px; font-family: Arial, sans-serif;">2. Academic & Certification Readiness</h2>
+                    <p><strong>Program Comparison (${progA}):</strong> ${taVal} feature(s) matched.</p>
+                    <p><strong>Program Comparison (${progB}):</strong> ${tbVal} feature(s) matched.</p>
+                    <p><strong>Certification Knowledge:</strong> ${certResult}</p>
+
+                    <h2 style="font-size: 18px; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 30px; font-family: Arial, sans-serif;">3. My Career Pathway Roadmap</h2>
+                    <ol style="padding-left: 20px; margin-bottom: 20px;">
+                        <li style="margin-bottom: 10px;"><strong>Finish High School with:</strong> ${p1}</li>
+                        <li style="margin-bottom: 10px;"><strong>Enroll in:</strong> ${p2}</li>
+                        <li style="margin-bottom: 10px;"><strong>Transfer / Continue to:</strong> ${p3}</li>
+                        <li style="margin-bottom: 10px;"><strong>Aim for entry role:</strong> ${p4}</li>
+                        <li style="margin-bottom: 10px;"><strong>Consider future cert:</strong> ${p5}</li>
+                    </ol>
+
+                    <h2 style="font-size: 18px; border-bottom: 1px solid #ccc; padding-bottom: 5px; margin-top: 40px; font-family: Arial, sans-serif;">4. Immediate Next Step</h2>
+                    <div style="font-size: 18px; font-weight: bold; padding: 25px; border: 2px dashed #333; text-align: center; background: #f9f9f9; margin-top: 15px;">
+                        ${nextStep}
+                    </div>
+                </div>
+            `;
         }
 
         function printFullToolkit() {
@@ -3436,21 +3414,10 @@
         }
 
         function printSection(sectionId) {
+            // Because we now generate a unified text report, all print buttons 
+            // across the app will output this complete, single-page summary.
             prepareForPrint();
-            
-            // Add isolation classes
-            document.body.classList.add('print-section-only');
-            const target = document.getElementById(sectionId);
-            if (target) target.classList.add('print-target');
-            
-            // Short timeout to allow DOM to recalculate before triggering print dialog
-            setTimeout(() => {
-                window.print();
-                
-                // Cleanup isolation classes after print dialog closes
-                document.body.classList.remove('print-section-only');
-                if (target) target.classList.remove('print-target');
-            }, 100);
+            setTimeout(() => { window.print(); }, 100);
         }
 
         // Progress Bar Logic
